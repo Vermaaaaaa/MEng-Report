@@ -2,8 +2,15 @@
 \section*{Abstract}
 Inertial Measurement Units (IMUs) are widely used in a
 variety of applications such as Body Sensor Networks (BSNs) for orientation
-estimation, however they suffer from drift due to sensor bias and noise that 
+estimation, however the gyroscope suffers from drift due to sensor bias and noise that 
 when integrated accumulate over time. This \fixme{project} investigates a deep 
 learning-based approach which aims to mitigate gyroscopic errors which can be 
 integrated with sensor fusion techniques to achieve more accurate orientation 
-estimates.  
+estimates. The proposed deep-learning architecture leverages both neural 
+networks and a temporal history to learn complex and nonlinear error patterns
+in IMU data, exploring if it outperforms a standard Kalman Filter without learned 
+corrections. The network outputs a correction for the incoming gyroscope sample and 
+ad the measurement noise covariance dependent on the incoming acceleration and 
+magnetometer updates. The data used in training, testing and validating the model 
+come from simulations through MATLAB's Navigation Toolbox and from public datasets 
+such as Berlin Robust Orientation Estimation Assessment Dataset (BROAD).
