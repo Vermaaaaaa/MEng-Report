@@ -1,0 +1,22 @@
+\subsection{Problem Statement: IMU Drift and Its Impact}
+IMUs have shown promise in determining the orientation of an object in motion. However, IMUs 
+suffer from a limitation called drift. IMU drift is characterised by the accumulation of errors
+through the integration of the gyroscopic sensor. The sources of these
+errors include constant bias, scale factor errors and others expanded in \fixme{section}. These
+errors are also not exclusive to the gyroscope but also affect the accelerometer and magnetometer.
+This drift is also dependent on the type of IMU that is used. \fixme{Find cite}
+Lower cost/grade IMUs suffer from drift at a higher magnitude which results orientation 
+inaccuracies much quicker compared to higher cost/grade IMUs.  
+\todo{find cites for IMUs and add some metrics}
+These errors then lead to inaccuracies in the orientation estimation of an object determined by the 
+IMU. 
+
+Kianifar et al. explored using IMUs  for automated orientation estimation in a clinical 
+setting. They found that for rotation angles parallel to gravity, drift due to gyroscope bias
+cannot be compensated by the accelerometer.\fixme{cite}. This was compensated for by using a 
+virtual yaw sensor. Even with multiple sensors, it is still challenging to find an accurate
+orientation estimation. Thus it is important to try and address the drift problem by addressing 
+gyroscopic drift. 
+
+Therefore, this project aims to address gyroscopic drift by using deep-learning methods to learn
+complex and non-linear nature of biases and errors. 
