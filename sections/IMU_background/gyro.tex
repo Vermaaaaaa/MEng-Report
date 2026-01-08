@@ -1,0 +1,51 @@
+\subsection{Gyroscope: Operations and Errors}
+The gyroscope is the main component that is used to determine the orientation 
+of the object. It measures the angular rate in its orthorgonal axes $\omega^x,\omega^y,\omega^z$
+which is used to determined the object's orientation at a discrete time. The orientation is 
+determined through the integration of angular rate.
+
+\subsubsection{Angular Rate Integration}
+Starting in continuous-time kinematics, we can define a quaternion that is represented by the 
+angular rate, where $\omega_q(t)$ is the real angular rate. 
+
+\begin{equation}
+\mathbf{\omega_q(t)} = [0,\ \omega_x(t),\ \omega_y(t),\ \omega_z(t)]
+\end{equation}
+
+The orientation evolves according to
+
+\begin{equation}
+\dot{q}(t) = \frac{1}{2}q(t) \otimes \omega_q(t)
+\end{equation}
+
+where $\otimes$ denotes quaternion multiplication. The solution over $[t_0,t]$ can be written 
+using the quaternion exponential
+
+\begin{equation}
+{q}(t) = q(t_0) \otimes \exp(\frac{1}{2}\int_{t_0}^{t} \omega_q(\tau) \,d\tau)
+\end{equation}
+
+These equations show that the orientation update is determined by integrating the angular rate
+over time and mapping the resulting rotation into a quaternion via the exponential.
+
+\subsubsection{Gyroscope Error Sources}
+\subsubsection*{Constant Bias}
+The bias of a gyroscope is the average output from the gyroscope when it is not undergoing any
+rotation \fixme{cite}. This is measured in $ \degree /h$ and can be estimated by taking an average
+of the output. However, as discussed further in this section other error sources can make this
+difficult to determine. 
+
+\subsubsection*{White Noise / Angle Random Walk (ARW)}
+The gyroscope is also affected by some white noise that fluctuates at a higher rate than the
+sampling rate of the sensor \fixme{cite}. This white noise sequence is zero-mean uncorrelated
+random variables between samples and across axes. When the gyroscope signal is integrated to obtain
+an angle, this white noise produces an ARW.
+The units of ARW is denoted by $ \degree / \sqrt{h}$, where if this value is $0.2\degree / 
+\sqrt{h}$, the ARW in one hour is $0.2 \degree / \sqrt{h}$ and in two hours is  $0.28\degree$
+This shows that the deviation of angle error grows proportionally to $\sqrt{t}$.
+
+\subsubsection*{Flicker Noise / Bias Stability}
+
+\subsubsection*{Temperature}
+
+\subsubsection*{Scale Factor}
