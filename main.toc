@@ -10,7 +10,8 @@
 \contentsline {section}{\numberline {3}IMU Basics and Operational Principles}{5}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Gyroscope: Operations and Errors}{5}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Angular Rate Integration}{5}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Gyroscope Error Sources}{5}{subsubsection.3.1.2}%
-\contentsline {section}{\numberline {4}Deep Learning Architecture}{6}{section.4}%
-\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{7}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion and Next Steps}{8}{section.6}%
+\contentsline {subsubsection}{\numberline {3.1.2}Gyroscope Error Sources}{6}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Accelerometer: Operations and Errors}{6}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Deep Learning Architecture}{7}{section.4}%
+\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{8}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion and Next Steps}{9}{section.6}%

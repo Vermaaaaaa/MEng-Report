@@ -2,24 +2,33 @@
 The gyroscope is the main component that is used to determine the orientation 
 of the object. It measures the angular rate in its orthorgonal axes $\omega^x,\omega^y,\omega^z$
 which is used to determined the object's orientation at a discrete time. The orientation is 
-determined through the integration of angular rate.
+determined through the integration of angular rate. There are multiple different
+ways to represent the orientation of the object, these being, Euler angles, rotation matrices, and
+quaternions. Euler angles give rise to the singularity problem due to the loss
+of one degree-of-freedom whenever two axes of the rotations are parallel \fixme{cite}.
+Rotation matrices are also used, however they are less concise as they are
+represented as 3x3 matrix, where 6 of these elements are redundant\fixme{cite}.
+Therefore in this chapter, the quaternion representation is selected due to 
+being more computationally efficient than the others \fixme{cite prof paper}.
+
 
 \subsubsection{Angular Rate Integration}
 Starting in continuous-time kinematics, we can define a quaternion that is represented by the 
-angular rate, where $\omega_q(t)$ is the real angular rate. 
+angular rate, where $\omega$ is the real angular rate, $\omega_q(t)$ is the pure quaternion. 
 
 \begin{equation}
-\mathbf{\omega_q(t)} = [0,\ \omega_x(t),\ \omega_y(t),\ \omega_z(t)]
+\omega_q(t) = [0,\ \omega_x(t),\ \omega_y(t),\ \omega_z(t)]
 \end{equation}
 
-The orientation evolves according to
+The orientation evolves according to\fixme{cite}
 
 \begin{equation}
 \dot{q}(t) = \frac{1}{2}q(t) \otimes \omega_q(t)
 \end{equation}
 
 where $\otimes$ denotes quaternion multiplication. The solution over $[t_0,t]$ can be written 
-using the quaternion exponential
+using the quaternion exponential, this assumes that the $\omega_q$ is constant over
+$\tau$.
 
 \begin{equation}
 {q}(t) = q(t_0) \otimes \exp(\frac{1}{2}\int_{t_0}^{t} \omega_q(\tau) \,d\tau)
@@ -28,24 +37,87 @@ using the quaternion exponential
 These equations show that the orientation update is determined by integrating the angular rate
 over time and mapping the resulting rotation into a quaternion via the exponential.
 
+Moving to discrete-time kinematics, we can restate of defintions in terms
+$\Delta t$. Here the orientation evolves according to
+
+
+\begin{equation}
+\hat{q}_k = \hat{q}_{k-1} \otimes \Delta q_k
+\end{equation}
+
+where $\Delta q_k$ is 
+
+\begin{equation}
+\Delta q_k = \exp(\frac{1}{2}\omega_{q,k} \Delta t) 
+\end{equation}
+
+This was all done by using an ideal $\omega_k$, if were to model the angular
+rate from a gyroscope as \fixme{cite}
+
+\begin{equation}
+\omega_{m,k} = \omega_k + b_k + n_k 
+\end{equation}
+
+Where $\omega_{m,k}$ is the measured angular rate, $\omega_k$ is the true angular rate,
+$b_k$ is the bias term, and $n_k$ is the noise term. The real quaternion orientation
+update is as follows.
+
+\begin{equation}
+\hat{q}_k = \hat{q}_{k-1} \otimes \exp(\frac{1}{2}(\omega_k + b_k + n_k)_q \Delta t)
+\end{equation}
+
+This shows that the inclusion of the bias and noise accumulates over samples
+as we move forward to the next k, $q_{k-1}$ will incorporate the previous error
+terms. This results in an accumulated orientation error.
+
+
+
+
+
+
 \subsubsection{Gyroscope Error Sources}
+\label{sec:gyroerrors}
 \subsubsection*{Constant Bias}
 The bias of a gyroscope is the average output from the gyroscope when it is not undergoing any
 rotation \fixme{cite}. This is measured in $ \degree /h$ and can be estimated by taking an average
-of the output. However, as discussed further in this section other error sources can make this
-difficult to determine. 
+of the output. As this bias is constant, the drift it causes grows linearly with time. 
+However, as discussed further in this section other error sources can make this
+difficult to determine. \fixme{Figure} shows how constant bias changes the output.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=5cm]{./figures/IMU/Howgood_bias.png}
+    \caption{Bias Effect on Gyro \fixme{cite}}
+    \label{fig:GyroBias}
+\end{figure}
+
 
 \subsubsection*{White Noise / Angle Random Walk (ARW)}
-The gyroscope is also affected by some white noise that fluctuates at a higher rate than the
-sampling rate of the sensor \fixme{cite}. This white noise sequence is zero-mean uncorrelated
+The gyroscope is also affected by some white noise \fixme{cite}. This white noise sequence is zero-mean uncorrelated
 random variables between samples and across axes. When the gyroscope signal is integrated to obtain
 an angle, this white noise produces an ARW.
-The units of ARW is denoted by $ \degree / \sqrt{h}$, where if this value is $0.2\degree / 
-\sqrt{h}$, the ARW in one hour is $0.2 \degree / \sqrt{h}$ and in two hours is  $0.28\degree$
-This shows that the deviation of angle error grows proportionally to $\sqrt{t}$.
+The units of ARW is denoted by $ \degree / \sqrt{h}$, this shows that the deviation of angle error grows proportionally to $\sqrt{t}$.
+As ARW is due to random variables, it is classified as the $1\sigma$ of the orientation error. Analog devices
+shows this in the \fixme{figure}, where the ARW is $ 0.17\degree / \sqrt{h}$.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=5cm]{./figures/IMU/AD_ARW.png}
+    \caption{Bias Effect on Gyro \fixme{cite}}
+    \label{fig:GyroARW}
+\end{figure}
 
 \subsubsection*{Flicker Noise / Bias Stability}
+The gyroscope suffers from flicker noise in electronics \fixme{cite}
+Flicker noise is $1/f$, due to this the effects are observed at lower 
+frequenices while, higher frequenices the noise is dominated by white noise.
 
 \subsubsection*{Temperature}
+Temperature fluctuations due to changes in the environment and sensor heating
+induce a movement in the bias, this relationship is also highly non-linear \fixme{cite}. Therefore, it can be 
+very difficult to model and subsequently subtract from the gyroscope measurements
+compared to a constant bias.
 
-\subsubsection*{Scale Factor}
+
+
+ 
