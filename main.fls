@@ -674,6 +674,10 @@ INPUT sections/FrontPages/LoF.tex
 INPUT ./sections/FrontPages/LoF.tex
 INPUT ./sections/FrontPages/LoF.tex
 INPUT sections/FrontPages/LoF.tex
+INPUT ./main.lof
+INPUT main.lof
+INPUT main.lof
+OUTPUT main.lof
 INPUT ./sections/FrontPages/LoT.tex
 INPUT ./sections/FrontPages/LoT.tex
 INPUT ./sections/FrontPages/LoT.tex
@@ -750,6 +754,13 @@ INPUT sections/IMU_background/accel.tex
 INPUT ./sections/IMU_background/accel.tex
 INPUT ./sections/IMU_background/accel.tex
 INPUT sections/IMU_background/accel.tex
+INPUT ./sections/IMU_background/mag.tex
+INPUT ./sections/IMU_background/mag.tex
+INPUT ./sections/IMU_background/mag.tex
+INPUT sections/IMU_background/mag.tex
+INPUT ./sections/IMU_background/mag.tex
+INPUT ./sections/IMU_background/mag.tex
+INPUT sections/IMU_background/mag.tex
 INPUT ./sections/Neural/model.tex
 INPUT ./sections/Neural/model.tex
 INPUT ./sections/Neural/model.tex

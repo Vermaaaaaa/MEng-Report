@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.12.30)  9 JAN 2026 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.12.30)  9 JAN 2026 23:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -572,37 +572,41 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- (./sections/FrontPages/LoF.tex) (./sections/FrontPages/LoT.tex) (./sections/Intro/introduction.tex [2] (./sections/Intro/background.tex) (./sections/Intro/problem.tex) (./sections/Intro/hypotheses.tex)) (./sections/LitReview/LitReview.tex [3]) (./sections/IMU_background/imu.tex [4] (./sections/IMU_background/gyro.tex [5]
-<./figures/IMU/Howgood_bias.png, id=135, 134.30174pt x 140.32425pt>
+ (./sections/FrontPages/LoF.tex (./main.lof)
+\tf@lof=\write6
+\openout6 = `main.lof'.
+
+) (./sections/FrontPages/LoT.tex) (./sections/Intro/introduction.tex [2] (./sections/Intro/background.tex) (./sections/Intro/problem.tex) (./sections/Intro/hypotheses.tex)) (./sections/LitReview/LitReview.tex [3]) (./sections/IMU_background/imu.tex [4] (./sections/IMU_background/gyro.tex [5]
+<./figures/IMU/Howgood_bias.png, id=149, 134.30174pt x 140.32425pt>
 File: ./figures/IMU/Howgood_bias.png Graphic file (type png)
 <use ./figures/IMU/Howgood_bias.png>
 Package pdftex.def Info: ./figures/IMU/Howgood_bias.png  used on input line 89.
 (pdftex.def)             Requested size: 142.26378pt x 148.64662pt.
-<./figures/IMU/AD_ARW.png, id=137, 279.29344pt x 207.77625pt>
+<./figures/IMU/AD_ARW.png, id=151, 279.29344pt x 207.77625pt>
 File: ./figures/IMU/AD_ARW.png Graphic file (type png)
 <use ./figures/IMU/AD_ARW.png>
 Package pdftex.def Info: ./figures/IMU/AD_ARW.png  used on input line 105.
-(pdftex.def)             Requested size: 142.26378pt x 105.83766pt.
-) (./sections/IMU_background/accel.tex)) (./sections/Neural/model.tex [6 <./figures/IMU/Howgood_bias.png> <./figures/IMU/AD_ARW.png>]) (./sections/Data/data.tex [7]) (./sections/Conclusion/conclusion.tex [8]) [9] (./main.aux)
+(pdftex.def)             Requested size: 213.39566pt x 158.75807pt.
+ [6 <./figures/IMU/Howgood_bias.png> <./figures/IMU/AD_ARW.png>]) (./sections/IMU_background/accel.tex) (./sections/IMU_background/mag.tex)) (./sections/Neural/model.tex [7]) (./sections/Data/data.tex [8]) (./sections/Conclusion/conclusion.tex [9]) [10] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: AFC03AFA32716D819FC5C80E38C76D67;3442.
+(rerunfilecheck)             Checksum: 9CBCBD7A236766A7D38AED93D5FA3FBC;3893.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16705 strings out of 478287
- 293027 string characters out of 5849288
- 1009778 words of memory out of 5000000
- 34635 multiletter control sequences out of 15000+600000
+ 16721 strings out of 478287
+ 293337 string characters out of 5849288
+ 1009787 words of memory out of 5000000
+ 34643 multiletter control sequences out of 15000+600000
  474773 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,6n,68p,1085b,805s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (10 pages, 206927 bytes).
+Output written on main.pdf (11 pages, 209265 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 147 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 250 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,1 +1,22 @@
 \subsection{Accelerometer: Operations and Errors}
+The accelerometer is another component used in determining an orientation estimate of an object.
+It measures the specific force along its orthogonal axes $a^x,a^y,a^z$. These measurements can 
+be rotated in the navigation frame, gravity vector is subtracted, and through integration of the accelerometer,  a velocity and subsequently the position can be derived for
+an object.
+However, the focus of this project is to achieve drift-free orientation, and hence
+this will not be covered. 
+
+The main purpose of the accelerometer is to offer a gravity reference to the system such that,
+an accelerometer is capable of providing drift-free inclination estimates \fixme{cite}.
+However, the accelerometer, as stated above, does not only measure a gravity reference but also any 
+linear and centripetal accelerations that the object also experiences. Under conditions of high 
+accelerations, the reference is unreliable and is only reliable for static or slowly moving 
+objects \fixme{cite}. Additionally, the accelerometer cannot detect rotations about the gravity
+vector, so it cannot provide a yaw/heading of the object.
+However, like the gyroscope, it also suffers from a variety of errors which causes drift in the
+output.
+
+
+
+
+\subsubsection{Accelerometer Error Sources}
