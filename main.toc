@@ -12,8 +12,9 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Angular Rate Integration}{5}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Gyroscope Error Sources}{6}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Accelerometer: Operations and Errors}{7}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Accelerometer Error Sources}{7}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1}Accelerometer Error Effects}{7}{subsubsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.3}Magnetometer: Operations and Errors}{7}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Deep Learning Architecture}{8}{section.4}%
-\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{9}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion and Next Steps}{10}{section.6}%
+\contentsline {subsubsection}{\numberline {3.3.1}Magnetometer Error Sources and Effects}{7}{subsubsection.3.3.1}%
+\contentsline {section}{\numberline {4}Deep Learning Architecture}{9}{section.4}%
+\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{10}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion and Next Steps}{11}{section.6}%

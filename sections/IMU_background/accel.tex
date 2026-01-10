@@ -1,7 +1,7 @@
 \subsection{Accelerometer: Operations and Errors}
 The accelerometer is another component used in determining an orientation estimate of an object.
 It measures the specific force along its orthogonal axes $a^x,a^y,a^z$. These measurements can 
-be rotated in the navigation frame, gravity vector is subtracted, and through integration of the accelerometer,  a velocity and subsequently the position can be derived for
+be rotated in the navigation frame, gravity vector is compensated, and through integration of the accelerometer,  a velocity and subsequently the position can be derived for
 an object.
 However, the focus of this project is to achieve drift-free orientation, and hence
 this will not be covered. 
@@ -9,14 +9,25 @@ this will not be covered.
 The main purpose of the accelerometer is to offer a gravity reference to the system such that,
 an accelerometer is capable of providing drift-free inclination estimates \fixme{cite}.
 However, the accelerometer, as stated above, does not only measure a gravity reference but also any 
-linear and centripetal accelerations that the object also experiences. Under conditions of high 
+linear accelerations that the object also experiences. Under conditions of high 
 accelerations, the reference is unreliable and is only reliable for static or slowly moving 
 objects \fixme{cite}. Additionally, the accelerometer cannot detect rotations about the gravity
 vector, so it cannot provide a yaw/heading of the object.
-However, like the gyroscope, it also suffers from a variety of errors which causes drift in the
+However, like the gyroscope, it also suffers from a variety of errors which causes instability in the
 output.
 
+\subsubsection{Accelerometer Error Effects}
+Accelerometers suffer from a very similar sources of errors to the gyroscope (\hyperref[sec:gyroerrors]{section 3.1.2}). Therefore, in this
+section we will discuss the implications of these errors for our orientation estimates.
 
+\subsubsection*{Constant Bias}
+The effect of constant bias is that it causes an offset in the roll/pitch of the system.
+Unlike constant bias in the gyroscope, it does not grow linearly with time but is a constant
+offset irrespective of time elapsed.
 
+\subsubsection*{High Linear Acceleration}
+As discussed above, the largest problem is high linear accelerations which corrupts the gravity
+reference. This is a dominant issue in high dynamic motions as the accelerometer will not be able
+to correct the orientation estimation through fusion \fixme{section}, especially if gyroscopic drift is not addressed. 
 
-\subsubsection{Accelerometer Error Sources}
+A potential plan to address this will be discussed in \fixme{section}
