@@ -1,2 +1,89 @@
 \newpage
 \section{Deep Learning Architecture}
+
+\begin{itemize}
+  \item TCN Design so causal conv, conv1d, activation functions etc.
+  \item Learning - Loss Functions, Explain problem of overfitting and why we need regularisation, optimisers (explain gradient descent), learning rate
+\end{itemize}
+
+\subsection{Aims of the Deep Learning Model}
+Referring back to \hyperref[sec:problem]{section 1.2}, the overall problem 
+is to implement a model that can output gyroscopic corrections 
+$\Delta\boldsymbol{\omega}_t = [\Delta\omega_x,\Delta\omega_y,\Delta\omega_z]^\top$
+that when subtracted from our measured angular rate, and fused with other
+sensors such as an accelerometer and magnetometer leads to an orientation 
+estimate, that is more accurate to the ground truth orientation of an 
+object compared with only sensor fusion. 
+
+The motivation for learning $\Delta\boldsymbol{\omega}_t$ 
+comes from the fact that while sensor fusion techniques of downweighting 
+or skipping of the accelerometer and magnetometer when they are unreliable
+, drift cannot be mitigated due to the accumulation of gyroscopic bias 
+and noise \fixme{cite, cite2}. 
+
+\subsection{Model Selection}
+\subsubsection{Recurrent Neural Networks (RNNs)}
+The first type of model that was considered is a RNN. RNNs stem from an 
+idea of recurrence, that is that the output depends on some input at time
+t and an internal state of the model that holds information about previous
+outputs of the model. The general idea can be described by the equation
+
+\begin{equation}
+\hat{y} = f_{model}(x_t, h_{t-1})
+\end{equation}
+
+where $\hat{y}$ is the output, $f_{model}$, is a function that describes the model,
+$x_t$ is the input at time t, and $h_{t-1}$ is a vector state that
+describes the internal state of the model at the previous time step. Expanding
+on this the state of the model is updated as follows
+
+\begin{equation}
+h_t = f_w(x_t, h_{t-1})
+\end{equation}
+
+where $f_w$ is a function with weights $w$. This expands to the equations
+
+\begin{equation}
+\hat{y} = W_{hy}^T h_t
+\end{equation}
+
+\begin{equation}
+h_t = \phi(W_{hh}^T h_{t-1} + W_{xh}^T x_t)
+\end{equation}
+
+where $W_{hh}^T, W_{hy}^T, W_{xh}^T$ are a set of weight matrices that are
+reused for every time step, and $\phi$ represents an arbitrary activation function.
+
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=10cm]{./figures/Model/RNN.png}
+    \caption{RNN structure \fixme{cite3}}
+    \label{fig:RNN}
+\end{figure}
+
+\hyperref[fig:RNN]{Figure 3} shows the unrolled flow of the RNN, where the arrows between each
+block represents the passing of $h_t$, from one input to the next. The point
+of the recurrence state $h_t$, is to show how the output of the model depends
+on context from previous inputs plus $h_t$. This is especially relevant in our case, as
+described in \hyperref[sec:gyroint]{section 3.1.1}, the accumulation of 
+gyroscopic errors comes from the integration of the angular rate. As these
+errors accumulate, the current error depends on the history of the gyroscope 
+measurements. 
+
+There are many problems with RNNs however, the biggest being the problem of exploding/vanishing
+gradients. RNNs are trained via backpropagation through time, which propagates gradients across
+timesteps. For long sequences, computing the gradient with respect to $h_0$ involes many factors
+of repeated multiplication of Jacobians across time. This can lead to many values of the computation
+being greater than 1, which explodes gradients leading to unstable training.
+In the case, where many values are less than 1, this causes vanishing gradients where learning long-range
+dependencies becomes difficult. Additionally, as the hidden state $h_t$ is propagated sequentially through
+time, when performing backpropagation training has to be done one sample at a time. This leads to 
+extended training times compared to other models.
+
+
+
+
+\subsubsection{Convolutional Neural Networks (CNNs)}
+\subsubsection{Temporal Convolutional Networks (TCNs)}
+\subsubsection{Summary and Choice}

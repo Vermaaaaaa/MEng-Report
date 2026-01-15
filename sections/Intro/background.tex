@@ -2,17 +2,16 @@
 
 IMUs are composed of multiple sensors which include a gyroscope, accelerometer, and 
 occasionally a magnetometer. These three sensors measure the angular rate, 
-linear acceleration, and the local magnetic field vector respectively. These measurements 
+specific force and the local magnetic field vector respectively. These measurements 
 can be used to estimate the orientation of an object through integration of the angular rate. 
 This data acquisition is essential for several applications such as BSNs \fixme{cite}, robotics, 
 and autonomous vehicles where these systems rely on high-rate orientation updates.
 
 IMUs have emerged as a key technology due to the ability to work in a self-
 contained environment. In environments where external references of orientation are unavailable or 
-unreliable, technologies such as IMUs are attractive. Filters, such as the Kalman filter, 
+unreliable, technologies such as IMUs are attractive. Filters, such as the Kalman filter (KF), 
 allow the use of accelerometers and magnetometers to guide and correct state estimation, 
-but these also suffer from failures like magnetic disturbances and high linear accelerations
-corrupting a gravitational reference.
+but these also suffer from failures like magnetic disturbances and high linear accelerations.
 Due to these limitations, there is significant motivation to explore data-driven methods that 
 compensate for these conditions and errors.
 

@@ -16,5 +16,11 @@
 \contentsline {subsection}{\numberline {3.3}Magnetometer: Operations and Errors}{7}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Magnetometer Error Sources and Effects}{7}{subsubsection.3.3.1}%
 \contentsline {section}{\numberline {4}Deep Learning Architecture}{9}{section.4}%
-\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{10}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion and Next Steps}{11}{section.6}%
+\contentsline {subsection}{\numberline {4.1}Aims of the Deep Learning Model}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Model Selection}{9}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Recurrent Neural Networks (RNNs)}{9}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Convolutional Neural Networks (CNNs)}{10}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Temporal Convolutional Networks (TCNs)}{10}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Summary and Choice}{10}{subsubsection.4.2.4}%
+\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{11}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion and Next Steps}{12}{section.6}%

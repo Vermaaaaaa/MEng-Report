@@ -1,2 +1,15 @@
 \newpage
 \section{Deep Learning Drift Mitigation: Literature Review}
+
+In the field of inertial navigation, many approaches have been considered 
+to address the problem of orientation drift. The classical solution has been
+to use sensor fusion techniques like Kalman filtering. Zhang et
+al. \fixme{cite 1} implemented a quaternion-based KF 
+with vector selection. The Kalman observation step used these vectors 
+to improve the prediction of the state and its covariance. It was noted that
+it worked for short time periods of both magnetic and accelerometer disturbances,
+but for long periods, gyroscopic drift still could not be compensated by due to the accumulation of errors.
+To provide a stronger reference, Alatise et al. \fixme{cite 2} used an extended KF (EKF) to fuse sensor IMU measurements with
+visual data. This resulted in large improvements in regards to orientation
+estimates, however the dependence on visual data increases the complexity and
+is not applicable in visually disturbed environments.   

@@ -13,8 +13,11 @@ being more computationally efficient than the others \fixme{cite prof paper}.
 
 
 \subsubsection{Angular Rate Integration}
+\label{sec:gyroint}
 Starting in continuous-time kinematics, we can define a quaternion that is represented by the 
 angular rate, where $\omega$ is the real angular rate, $\omega_q(t)$ is the pure quaternion. 
+Note: Both the attitude and updated quaternions should be normalised to ensure quaternions represent rotations.
+$q_k \leftarrow \frac{q_k}{\|q_k\|}$.
 
 \begin{equation}
 \omega_q(t) = [0,\ \omega_x(t),\ \omega_y(t),\ \omega_z(t)]
