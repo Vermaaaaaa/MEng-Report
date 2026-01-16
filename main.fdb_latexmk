@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber main"] 1768507131 "main.bcf" "main.bbl" "main" 1768508987
-  "main.bcf" 1768508987 105888 8a2fd055f5518509acfc8a8e3877bc96 "pdflatex"
+["biber main"] 1768594009 "main.bcf" "main.bbl" "main" 1768594979
+  "main.bcf" 1768594979 105888 8a2fd055f5518509acfc8a8e3877bc96 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1768508986 "/home/raz/report/main.tex" "main.pdf" "main" 1768508987
+["pdflatex"] 1768594978 "/home/raz/report/main.tex" "main.pdf" "main" 1768594979
   "/etc/texmf/web2c/texmf.cnf" 1767101038 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/raz/report/main.tex" 1768506983 998 402653e3e5a145f9010e599ba2331076 ""
+  "/home/raz/report/main.tex" 1768594039 992 a5758a1890d3bb6dc7d627819f629e83 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
@@ -95,6 +95,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty" 1575499565 5766 13a9e8766c47f30327caf893ece86ac8 ""
   "/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def" 1284153563 1620 fb1c32b818f2058eca187e5c41dfae77 ""
   "/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty" 1284153563 6187 b27afc771af565d3a9ff1ca7d16d0d46 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty" 1615762720 4288 94714aa7f535440f33181fec52a31963 ""
   "/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575674187 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty" 1636758526 12694 6c23725d50ab9d1e2d3ce482c58ffcf3 ""
@@ -111,16 +112,16 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1767103506 2800419 486919dd636980c66943ce8ca455d61b ""
   "figures/IMU/AD_ARW.png" 1767979373 40296 7bd947f304416d1276a2d96645af19bc ""
   "figures/IMU/Howgood_bias.png" 1767978534 8299 15a5ae8ded5fbf5966647ccf99fb8448 ""
+  "figures/Model/CNN.png" 1768594830 154870 552d533d3dc2d92e75080b42fe7cf143 ""
   "figures/Model/RNN.png" 1768496513 39653 d69e32e8c227d495b38e1faca87d9d8a ""
-  "main.aux" 1768508987 5318 38f72b2e291b8d78276cabbe6b0448de "pdflatex"
-  "main.bbl" 1768507132 0 d41d8cd98f00b204e9800998ecf8427e "biber main"
-  "main.lof" 1768508987 424 eb0ebc80db849126a4643a4a1dbc6e48 "pdflatex"
-  "main.out" 1768508987 5470 1ab2be2b85ae77819058794e16b1aa17 "pdflatex"
-  "main.run.xml" 1768508987 2321 e96a0df8e94489688133fcb7b4f81e44 "pdflatex"
-  "main.tex" 1768506983 998 402653e3e5a145f9010e599ba2331076 ""
-  "main.toc" 1768508987 2401 990006e3031d432f9b7d50fde7335c53 "pdflatex"
+  "main.aux" 1768594979 5683 4f31e0e2cd87eb91dff2b69695234e33 "pdflatex"
+  "main.bbl" 1768594009 0 d41d8cd98f00b204e9800998ecf8427e "biber main"
+  "main.lof" 1768594979 562 32472521b90f051c79ce92e97c01afed "pdflatex"
+  "main.out" 1768594979 5509 0777b9d7b34910fde0e2e04cf5a1f898 "pdflatex"
+  "main.run.xml" 1768594979 2321 e96a0df8e94489688133fcb7b4f81e44 "pdflatex"
+  "main.tex" 1768594039 992 a5758a1890d3bb6dc7d627819f629e83 ""
+  "main.toc" 1768594979 2472 01bab5184f8b687dba20d22115a3c456 "pdflatex"
   "sections/Conclusion/conclusion.tex" 1767812353 44 fe9c0c435dcf4668bb26fd6b20c41698 ""
-  "sections/Data/data.tex" 1767812306 58 918f1cd0b3a65fb57a23104c8cd4f70d ""
   "sections/FrontPages/LoF.tex" 1767987918 62 ca36c5d06ac248150c40c674015a6f31 ""
   "sections/FrontPages/LoT.tex" 1767127650 78 d2752095138e53a4103bc579302f9cbf ""
   "sections/FrontPages/abstract.tex" 1767804588 1149 7baeb092de4a388e3c7680af0b0ab821 ""
@@ -135,7 +136,7 @@
   "sections/Intro/introduction.tex" 1767811911 134 f13ac0c474307a99b76bf01178fd0843 ""
   "sections/Intro/problem.tex" 1768491321 1442 a32e550fd3b4d0ff387cd5ece24a48b4 ""
   "sections/LitReview/LitReview.tex" 1768320723 1013 5b509a671d70c39cfa12db008688d3d5 ""
-  "sections/Neural/model.tex" 1768507653 4018 1635364b1fdfaf97a6e23c6c6e77c6e5 ""
+  "sections/Neural/model.tex" 1768594978 6410 dcc893608d7e1c41b4d0f2cd6a95ec0d ""
   (generated)
   "main.aux"
   "main.bcf"

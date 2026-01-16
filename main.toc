@@ -20,7 +20,8 @@
 \contentsline {subsection}{\numberline {4.2}Model Selection}{9}{subsection.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.1}Recurrent Neural Networks (RNNs)}{9}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}Convolutional Neural Networks (CNNs)}{10}{subsubsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.3}Temporal Convolutional Networks (TCNs)}{10}{subsubsection.4.2.3}%
-\contentsline {subsubsection}{\numberline {4.2.4}Summary and Choice}{10}{subsubsection.4.2.4}%
-\contentsline {section}{\numberline {5}Data: Training, Testing, and Validation}{11}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion and Next Steps}{12}{section.6}%
+\contentsline {subsubsection}{\numberline {4.2.3}Temporal Convolutional Networks (TCNs)}{11}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Summary and Choice}{11}{subsubsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.3}TCN Design and Parameters}{11}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Learning}{11}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Conclusion and Next Steps}{12}{section.5}%

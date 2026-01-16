@@ -78,12 +78,61 @@ of repeated multiplication of Jacobians across time. This can lead to many value
 being greater than 1, which explodes gradients leading to unstable training.
 In the case, where many values are less than 1, this causes vanishing gradients where learning long-range
 dependencies becomes difficult. Additionally, as the hidden state $h_t$ is propagated sequentially through
-time, when performing backpropagation training has to be done one sample at a time. This leads to 
-extended training times compared to other models.
+time, when performing backpropagation, training cannot be parallelised over timesteps. This results in 
+a high training times compared to convolutional models.
 
-
-
+Updated versions of the RNN have been proposed to solve the problem of vanishing and exploding
+gradients. These being Long Short Term Memory (LSTM) and Gated Recurrent Units (GRUs). These methods
+exploit the use of a cell state that does not need to do perform repeated multiplication of Jacobians,
+however they are still subject to long training times \fixme{cite} and the gradient problem is not fully 
+solved but mitigated \fixme{cite, cite}.
 
 \subsubsection{Convolutional Neural Networks (CNNs)}
+The next type of model considered was the CNN, even though typically it is used in computer
+vision tasks; it has seen wide use in research relating to drift reduction \fixme{cite, cite, cite}. 
+This model is based on the idea of convolving input data with a learnable filter to extract local 
+features in the input data. The filter can be thought of like a window that slides over the 
+data, and each filter has a defined set of weights in which it multiplies with input data.
+This convolution operation can be described by the equation below: 
+
+\begin{equation}
+  z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=-R}^{R} w_{f,c}[k] x_c[t+k]
+\end{equation}
+
+\begin{equation}
+  y_f[t] = \phi(z_f[t])
+\end{equation}
+
+where $y_f[t]$, is the output of filter f, $b_f$ is a bias, $C_{in}$ is the input channels 
+(for our case $C_{in}$ would be 3 for $\omega_x, \omega_y, \omega_z$), $K$ is the 
+kernel/filter width and $R =\left \lfloor{K/2}\right \rfloor $, $w_{f,c}$ is the weights of the filter for a specific channel, 
+$x_c$ is the input data of that channel, and $\phi$ is an arbitrary non-linear activation
+function (typically ReLU).
+
+For example if $K = 3$, $R = 1$ the convolution will occur 
+of the timesteps $x[t-1], x[t], x[t+1]$, this is how the convolution extracts local features 
+in the input data.
+ 
+Typically, these CNNs are made up of layers, where in each layer the number of filters 
+grow e.g. $L1 = 16, L2 = 32, L3 = 64$ etc. These additional filters in later layers allow the
+model to learn more complex feature sets based on the previous layers' filter. Zeiler et al.
+\fixme{cite} shows this in their figure 2 where their convolutional network is used for image
+classification.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=10cm]{./figures/Model/CNN.png}
+    \caption{1D CNN structure \fixme{cite}}
+    \label{fig:CNN}
+\end{figure}
+
+
+
+
+\newpage
+
 \subsubsection{Temporal Convolutional Networks (TCNs)}
 \subsubsection{Summary and Choice}
+
+\subsection{TCN Design and Parameters}
+\subsection{Learning}

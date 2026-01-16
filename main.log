@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.12.30)  15 JAN 2026 20:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.12.30)  16 JAN 2026 20:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -371,6 +371,8 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \TX@delta=\dimen155
 \TX@cols=\count393
 \TX@ftn=\toks19
+) (/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
  (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -462,24 +464,24 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count406
@@ -512,8 +514,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 21.
-Package biblatex Info: Reference segment=0 on input line 21.
+Package biblatex Info: Reference section=0 on input line 22.
+Package biblatex Info: Reference segment=0 on input line 22.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -549,17 +551,17 @@ Package biblatex Info: Reference segment=0 on input line 21.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \celsius on input line 21.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 21.
+LaTeX Info: Redefining \celsius on input line 22.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 22.
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 21.
-Package gensymb Info: Using \Omega for \ohm on input line 21.
+LaTeX Info: Redefining \ohm on input line 22.
+Package gensymb Info: Using \Omega for \ohm on input line 22.
 
 Package gensymb Warning: Not defining \micro.
 
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 22.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -569,9 +571,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count412
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 22.
+LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \nameref on input line 22.
  (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -581,7 +583,7 @@ LaTeX Info: Redefining \nameref on input line 21.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./sections/FrontPages/abstract.tex) (./sections/FrontPages/acknowledgements.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 \newpage
+l.30 \newpage
               [1] (./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 6.
@@ -596,42 +598,48 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout6 = `main.lof'.
 
 ) (./sections/FrontPages/LoT.tex) (./sections/Intro/introduction.tex [2] (./sections/Intro/background.tex) (./sections/Intro/problem.tex) (./sections/Intro/hypotheses.tex)) (./sections/LitReview/LitReview.tex [3]) (./sections/IMU_background/imu.tex [4] (./sections/IMU_background/gyro.tex [5]
-<./figures/IMU/Howgood_bias.png, id=187, 134.30174pt x 140.32425pt>
+<./figures/IMU/Howgood_bias.png, id=193, 134.30174pt x 140.32425pt>
 File: ./figures/IMU/Howgood_bias.png Graphic file (type png)
 <use ./figures/IMU/Howgood_bias.png>
 Package pdftex.def Info: ./figures/IMU/Howgood_bias.png  used on input line 92.
 (pdftex.def)             Requested size: 142.26378pt x 148.64662pt.
-<./figures/IMU/AD_ARW.png, id=189, 279.29344pt x 207.77625pt>
+<./figures/IMU/AD_ARW.png, id=195, 279.29344pt x 207.77625pt>
 File: ./figures/IMU/AD_ARW.png Graphic file (type png)
 <use ./figures/IMU/AD_ARW.png>
 Package pdftex.def Info: ./figures/IMU/AD_ARW.png  used on input line 108.
 (pdftex.def)             Requested size: 213.39566pt x 158.75807pt.
  [6 <./figures/IMU/Howgood_bias.png> <./figures/IMU/AD_ARW.png>]) (./sections/IMU_background/accel.tex) (./sections/IMU_background/mag.tex [7])) (./sections/Neural/model.tex [8]
-<./figures/Model/RNN.png, id=215, 847.36575pt x 245.718pt>
+<./figures/Model/RNN.png, id=222, 847.36575pt x 245.718pt>
 File: ./figures/Model/RNN.png Graphic file (type png)
 <use ./figures/Model/RNN.png>
 Package pdftex.def Info: ./figures/Model/RNN.png  used on input line 60.
 (pdftex.def)             Requested size: 284.52756pt x 82.50818pt.
- [9 <./figures/Model/RNN.png>]) (./sections/Data/data.tex [10]) (./sections/Conclusion/conclusion.tex [11]) [12] (./main.aux)
+ [9 <./figures/Model/RNN.png>]
+<./figures/Model/CNN.png, id=235, 639.89063pt x 468.24937pt>
+File: ./figures/Model/CNN.png Graphic file (type png)
+<use ./figures/Model/CNN.png>
+Package pdftex.def Info: ./figures/Model/CNN.png  used on input line 124.
+(pdftex.def)             Requested size: 284.52756pt x 208.20955pt.
+ [10]) (./sections/Conclusion/conclusion.tex [11 <./figures/Model/CNN.png>]) [12] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1AB2BE2B85AE77819058794E16B1AA17;5470.
+(rerunfilecheck)             Checksum: 0777B9D7B34910FDE0E2E04CF5A1F898;5509.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16883 strings out of 478287
- 295989 string characters out of 5849288
- 1013194 words of memory out of 5000000
- 34780 multiletter control sequences out of 15000+600000
+ 16930 strings out of 478287
+ 297140 string characters out of 5849288
+ 1012991 words of memory out of 5000000
+ 34823 multiletter control sequences out of 15000+600000
  474773 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,6n,68p,1166b,805s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (13 pages, 259807 bytes).
+Output written on main.pdf (13 pages, 385917 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
- 266 compressed objects within 3 object streams
- 62 named destinations out of 1000 (max. 500000)
- 224 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 329 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 
