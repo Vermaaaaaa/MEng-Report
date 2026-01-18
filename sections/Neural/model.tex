@@ -96,8 +96,9 @@ data, and each filter has a defined set of weights in which it multiplies with i
 This convolution operation can be described by the equation below: 
 
 \begin{equation}
-  z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=-R}^{R} w_{f,c}[k] x_c[t+k]
+  z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=0}^{K-1} w_{f,c}[k] x_c[t+k- \lfloor K/2 \rfloor]
 \end{equation}
+\label{eq:12}
 
 \begin{equation}
   y_f[t] = \phi(z_f[t])
@@ -105,11 +106,11 @@ This convolution operation can be described by the equation below:
 
 where $y_f[t]$, is the output of filter f, $b_f$ is a bias, $C_{in}$ is the input channels 
 (for our case $C_{in}$ would be 3 for $\omega_x, \omega_y, \omega_z$), $K$ is the 
-kernel/filter width and $R =\left \lfloor{K/2}\right \rfloor $, $w_{f,c}$ is the weights of the filter for a specific channel, 
+kernel/filter width, $w_{f,c}$ is the weights of the filter for a specific channel, 
 $x_c$ is the input data of that channel, and $\phi$ is an arbitrary non-linear activation
 function (typically ReLU).
 
-For example if $K = 3$, $R = 1$ the convolution will occur 
+For example if $K = 3$, the convolution will occur 
 of the timesteps $x[t-1], x[t], x[t+1]$, this is how the convolution extracts local features 
 in the input data.
  
@@ -119,7 +120,7 @@ model to learn more complex feature sets based on the previous layers' filter. Z
 \fixme{cite} shows this in their figure 2 where their convolutional network is used for image
 classification.
 
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=10cm]{./figures/Model/CNN.png}
     \caption{1D CNN structure \fixme{cite}}
@@ -127,12 +128,78 @@ classification.
 \end{figure}
 
 
+CNNs are more attractive than RNNs due to its ability to be efficiently
+trained by using parallelisation\fixme{cite}. As stated before, RNNs cannot exploit 
+this, but CNNs can. This leads to the ability to test multiple different
+iterations of a model where parameters and loss functions may be changed
+to explore what effects they may have \fixme{see section}. CNNs also do
+not suffer from vanishing//exploding gradients and are seen to be more
+stable during training\fixme{cite}. 
 
-
-\newpage
+However, unlike RNNs, baseline CNNs cannot produce outputs due to significant 
+temporal information. It can extract local features and in 1D convolutions
+it has some ability to traverse backwards through time but not to any
+significant degree. As seen in \hyperref[sec:gyroint]{section 3.1.1}, 
+the accumulation of drift is due to the integration of the angular rate
+as we move forward in time. 
 
 \subsubsection{Temporal Convolutional Networks (TCNs)}
+TCNs are an extension of the baseline CNN and include two main differences
+in their implementation as shown by Bai et al.\fixme{cite}. These differences
+are the use of dilations that grow the receptive field allowing the network
+to look back further in time and learn long-term information. Furthermore,
+causal convolutions meaning, that the convolution operation cannot
+look forward in time. To explain causality we can look back at  
+\hyperref[eq:12]{equation 12} and modify this so 
+
+\begin{equation}
+  z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=0}^{K-1} w_{f,c}[k] x_c[t-k]
+\end{equation}
+
+\begin{equation}
+  y_f[t] = \phi(z_f[t])
+\end{equation}
+
+The difference is that the $k$ is subtracted from $x[t]$. The causality
+is enforced here as at time $t$, we cannot access future information unless
+the model is to be used after data collection and not in a real time 
+setting.
+
+Dilations allow the model to look further back in time without the need
+of increasing parameters for the same $K$ and $C_{in}$ used in convolutions. This is best represented in
+the figure 5.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{./figures/Model/dilations.png}
+    \caption{CNN structure with dilations \fixme{cite}}
+    \label{fig:dilations}
+\end{figure}
+
+As we can see in the diagram, as the dilations increase layer by layer
+the output to the next layer looks further back into the history of
+$x[t]$. This can be modelled by the equation
+
+\begin{equation}
+  z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=0}^{K-1} w_{f,c}[k] x_c[t-dk]
+\end{equation}
+
+where $d$ is the dilation factor of the layer. 
+
+
 \subsubsection{Summary and Choice}
+In summary, the choice has been to select the TCN. This is because it 
+has the ability to look back in history and model long-term dependencies
+between data, something baseline CNN cannot do. Additionally, like a CNN
+it is quicker and more stable in training unlike an RNN. However, the TCN
+does have its problems, these being extra data storage during its operation
+and domain transfer. Unlike RNNs which only have store $h(t)$, TCNs needs
+to take in a raw sequence upto its effective history length \fixme{cite}.
+Domain transfer refers to transferring a model that has been trained in 
+one domain (i.e. small receptive field) and applied to another domain
+(i.e. large receptive field), where the TCN may perform poorly due to 
+this change in domain.
+
 
 \subsection{TCN Design and Parameters}
 \subsection{Learning}
