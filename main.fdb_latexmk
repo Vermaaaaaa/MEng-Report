@@ -1,10 +1,10 @@
 # Fdb version 3
-["biber main"] 1768753064 "main.bcf" "main.bbl" "main" 1768758676
-  "main.bcf" 1768758676 105888 8a2fd055f5518509acfc8a8e3877bc96 "pdflatex"
+["biber main"] 1768770544 "main.bcf" "main.bbl" "main" 1768776710
+  "main.bcf" 1768776710 105888 8a2fd055f5518509acfc8a8e3877bc96 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1768758674 "/home/raz/report/main.tex" "main.pdf" "main" 1768758676
+["pdflatex"] 1768776709 "/home/raz/report/main.tex" "main.pdf" "main" 1768776710
   "/etc/texmf/web2c/texmf.cnf" 1767101038 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/raz/report/main.tex" 1768753064 1105 21bad1e97c7dd8fc4a619c73fa24acd9 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -49,6 +49,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1248133631 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1248133631 32442 c975af247b6702f7ca0c299af3616b80 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -199,14 +200,14 @@
   "figures/Model/RNN.png" 1768496513 39653 d69e32e8c227d495b38e1faca87d9d8a ""
   "figures/Model/dilations.png" 1768659998 38265 c9b50c7d862fa150bc38390f9d9cfa2a ""
   "figures/Model/residualblock.tex" 1768757367 1682 4a1e04300fa809acbc896d17db0b4e33 ""
-  "main.aux" 1768758676 7568 bbd80ff6ef23f2fbe783ac920e1f2096 "pdflatex"
-  "main.bbl" 1768753065 0 d41d8cd98f00b204e9800998ecf8427e "biber main"
-  "main.lof" 1768758676 810 b0da732b84f0aea58ad4bd7b5c10a2b5 "pdflatex"
-  "main.lot" 1768758676 97 5cf5b0386fd40380792e6ea6f8d001bc "pdflatex"
-  "main.out" 1768758676 6383 471962ae1142865e42618f03e1156042 "pdflatex"
-  "main.run.xml" 1768758676 2321 e96a0df8e94489688133fcb7b4f81e44 "pdflatex"
+  "main.aux" 1768776710 7798 60bac2e1b7870c8abf75efa4a3636fd0 "pdflatex"
+  "main.bbl" 1768770545 0 d41d8cd98f00b204e9800998ecf8427e "biber main"
+  "main.lof" 1768776710 810 b0da732b84f0aea58ad4bd7b5c10a2b5 "pdflatex"
+  "main.lot" 1768776710 195 af3d05d60f4ef1e65c7532f96d79d3ba "pdflatex"
+  "main.out" 1768776710 6410 abd1d3cf1d98ebd555acb5c6d7bdfbf3 "pdflatex"
+  "main.run.xml" 1768776710 2321 e96a0df8e94489688133fcb7b4f81e44 "pdflatex"
   "main.tex" 1768753064 1105 21bad1e97c7dd8fc4a619c73fa24acd9 ""
-  "main.toc" 1768758676 3080 d7dac10b6ee58b48fa14004c5da4d83a "pdflatex"
+  "main.toc" 1768776710 3086 e072ae3c99fe51c029db0c581c134cc9 "pdflatex"
   "sections/Conclusion/conclusion.tex" 1768671724 1627 fecdedc7db7733237a2d29da3e1f1a10 ""
   "sections/FrontPages/LoF.tex" 1767987918 62 ca36c5d06ac248150c40c674015a6f31 ""
   "sections/FrontPages/LoT.tex" 1768757752 60 3c0b7b7f6e3246fbb257165ff6959978 ""
@@ -221,7 +222,7 @@
   "sections/Intro/hypotheses.tex" 1768668694 775 7315b190a39da92f4ce46082ea08cc90 ""
   "sections/Intro/introduction.tex" 1767811911 134 f13ac0c474307a99b76bf01178fd0843 ""
   "sections/Intro/problem.tex" 1768491321 1442 a32e550fd3b4d0ff387cd5ece24a48b4 ""
-  "sections/Neural/model.tex" 1768758674 12990 bb4ff0e6097e766a37c62632e71cfb50 ""
+  "sections/Neural/model.tex" 1768776709 15629 52c0c875be1a07ae2edbf08c1254bd9f ""
   (generated)
   "main.aux"
   "main.bcf"

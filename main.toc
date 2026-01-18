@@ -21,11 +21,11 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Convolutional Neural Networks (CNNs)}{9}{subsubsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.3}Temporal Convolutional Networks (TCNs)}{10}{subsubsection.3.2.3}%
 \contentsline {subsubsection}{\numberline {3.2.4}Summary and Choice}{11}{subsubsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.3}TCN Design and Parameters}{11}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}TCN Design}{11}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Normalisation}{12}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Activation Functions}{13}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Regularisation}{13}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}1x1 Convolution}{13}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.4}Residual Connections/1x1 Convolution}{13}{subsubsection.3.3.4}%
 \contentsline {subsubsection}{\numberline {3.3.5}Loss Functions}{13}{subsubsection.3.3.5}%
 \contentsline {section}{\numberline {4}Conclusion and Next Steps}{14}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Semester 2 Aims}{14}{subsection.4.1}%

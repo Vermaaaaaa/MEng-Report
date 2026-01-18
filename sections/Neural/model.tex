@@ -130,7 +130,7 @@ trained by using parallelisation\fixme{cite}. As stated before, RNNs cannot expl
 this, but CNNs can. This leads to the ability to test multiple different
 iterations of a model where parameters and loss functions may be changed
 to explore what effects they may have \fixme{see section}. CNNs also do
-not suffer from vanishing//exploding gradients and are seen to be more
+not suffer from vanishing//exploding gradients as much and are seen to be more
 stable during training\fixme{cite}. 
 
 However, unlike RNNs, baseline CNNs cannot produce outputs due to significant 
@@ -199,10 +199,7 @@ one domain (i.e. small receptive field) and applied to another domain
 this change in domain.
 
 
-\subsection{TCN Design and Parameters}
-\begin{itemize}
-  \item Learning - Loss Functions, Explain problem of overfitting and why we need regularisation, optimisers (explain gradient descent), learning rate
-\end{itemize}
+\subsection{TCN Design}
 
 The main design of the TCN comes from Bai et al. \fixme{cite}. Figure 6
 demonstrates the architecture of the residual block that has been 
@@ -232,19 +229,19 @@ techniques.
 \small
 \begin{tabular}{p{2.0cm} p{3.5cm} p{3.5cm} p{5.0cm} }
 \hline
-\textbf{Method} & \textbf{Normalizes what?} & \textbf{Stats over}  & \textbf{Pros / Cons} \\
+\textbf{Method} & \textbf{Normalises} & \textbf{Stats over}  & \textbf{Pros / Cons} \\
 \hline
 BatchNorm & Activations (per channel) & Batch (and spatial/time dims) &
 + Fast and adds some regularisation -- small batch/streaming issues \\
 LayerNorm & Activations (per token/sample) & Features within a sample  &
-+ Batch-size independent -- sometimes weaker in CNNs \\
++ Batch-size independent -- sometimes worse performance in CNNs \\
 GroupNorm & Activations (channel groups) & Groups of channels within a sample &
-+ Works with small batch; -- Number of groups need to be selected \\
++ Works well with small batch -- Number of groups need to be selected \\
 WeightNorm & Weights (reparam) & Weight vector norm (no batch stats) &
-+ Simple no batches; -- less regularisation than BatchNorm \\
++ Simple no batches -- less regularisation than BatchNorm \\
 \hline
 \end{tabular}
-\caption{Common normalisation methods}
+\caption{Common normalisation methods.}
 \label{tab:normalisation_methods}
 \end{table}
 
@@ -264,7 +261,48 @@ Activation fucntions are functions that are used in deep learning to add non-lin
 to our output. This is because seen in equations 10,12,14, the relationship between
 weights and input data is all linear. If the relationship between input and output
 were linear there would be no need for a deep learning model as these relationships 
-could be modelled easily.
+could be modelled easily. The table below demonstrates common activation functions
+used.
+
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{p{2.0cm} p{2.0cm} p{2.0cm} p{3.5cm} p{5.0cm}}
+\hline
+\textbf{Activation} & \textbf{Definition} & \textbf{Output range} & \textbf{When used} & \textbf{Pros / Cons} \\
+\hline
+ReLU & $\mathrm{ReLU}(x)=\max(0,x)$ & $[0,\infty)$ &
+CNN default baseline &
++ Fast activations -- ReLU can result in 0 output (dying ReLU)  \\
+Leaky ReLU & $\max(\alpha x, x)$, $\alpha \in (0,1)$ & $(-\infty,\infty)$ &
+When ReLU units die  &
++ Reduces dying ReLU -- extra hyperparameter $\alpha$ \\
+GELU & $x\,\Phi(x)$ (Gaussian CDF) &
+$(-\infty,\infty)$ &
+Transformers, deep networks &
++ Smooth and good performance -- slower than ReLU \\
+Swish & $x\,\sigma(\beta x)$ &
+$(-\infty,\infty)$ &
+Transformers/CNNs &
++ Smooth, often improves accuracy -- slower than ReLU \\
+\hline
+\end{tabular}
+\caption{Common activation functions.}
+\label{tab:activation_functions}
+\end{table}
+
+From the table above, the motivation for ReLU is that it is commonly used as the baseline
+for CNNs and is also used by Bai et al. in their TCN implementation. However, they
+can be prone to overfitting \fixme{brossard cite} or dying ReLU can occur. If ReLU
+is prone to dying ReLU, then leaky ReLU will be used and tested against the other
+functions. GELU and Swish are known to be smooth implementations of ReLU, where it
+is able to take values where $x<0$ and can have slight performance improvements \fixme{cite activations}
+but are computationally more expensive and performance is model dependent. For implementation,
+ReLU will be considered first, however if problems arise the other activation functions 
+will be used.
+
 
 \subsubsection{Regularisation}
 Regularisation is a technique used in deep learning models to help models avoid
@@ -275,7 +313,29 @@ If the model is still prone to overfitting, more advanced regularisation techniq
 may be employed like weight decay which penalises large weights within kernels to
 allow for smoother functions.
 
-\subsubsection{1x1 Convolution}
+\subsubsection{Residual Connections/1x1 Convolution}
+The right branch (figure 6) is essential in training very deep neural networks 
+where networks may not be able to converge due to exploding/vanishing gradients. This branch
+is called a residual connection, where the equation below shows its operation 
+
+\begin{equation}
+  y = \mathcal{F}(x, {W_i}) + Wx
+\end{equation}
+
+where $y$ is the output, $\mathcal{F}(x, {W_i})$ is the residual mapping to be learned,
+$W$, is a projection applied to $x$ (1x1 convolution), and $x$
+is our input\fixme{cite residual}.  
+
+Residual connections adds the input of a block to the output of the block, so when
+learning the model learns the relationship of $\mathcal{F}(x, W_i) = y - Wx$, which 
+is easier to learn than the full mapping directly. The 1x1 convolution is included as
+the model goes deeper, the number of channels increases to capture more complex 
+features as each channel has their own set of filter/kernels. The addition between
+$\mathcal{F}(x, W_i)$ and $x$ must be of two tensors of the same size so $W$ allows
+the addition to be possible.
+
+
+
 \subsubsection{Loss Functions}
 
 
