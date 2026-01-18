@@ -1,10 +1,7 @@
 \newpage
 \section{Deep Learning Architecture}
 
-\begin{itemize}
-  \item TCN Design so causal conv, conv1d, activation functions etc.
-  \item Learning - Loss Functions, Explain problem of overfitting and why we need regularisation, optimisers (explain gradient descent), learning rate
-\end{itemize}
+
 
 \subsection{Aims of the Deep Learning Model}
 Referring back to \hyperref[sec:problem]{section 1.2}, the overall problem 
@@ -144,6 +141,7 @@ the accumulation of drift is due to the integration of the angular rate
 as we move forward in time. 
 
 \subsubsection{Temporal Convolutional Networks (TCNs)}
+\label{sec:tcn_sel}
 TCNs are an extension of the baseline CNN and include two main differences
 in their implementation as shown by Bai et al.\fixme{cite}. These differences
 are the use of dilations that grow the receptive field allowing the network
@@ -202,4 +200,82 @@ this change in domain.
 
 
 \subsection{TCN Design and Parameters}
-\subsection{Learning}
+\begin{itemize}
+  \item Learning - Loss Functions, Explain problem of overfitting and why we need regularisation, optimisers (explain gradient descent), learning rate
+\end{itemize}
+
+The main design of the TCN comes from Bai et al. \fixme{cite}. Figure 6
+demonstrates the architecture of the residual block that has been 
+implemented.
+
+\begin{figure}[H]
+    \centering
+    \input{./figures/Model/residualblock.tex}
+    \caption{Structure of residual block}
+    \label{fig:residual}
+\end{figure}
+
+The dialted causal convolution is the same as discussed in \hyperref[sec:tcn_sel]{section 3.2.3.}
+
+\subsubsection{Normalisation}
+Normalisation is a technique used in deep learning to ensure training stability, 
+while also reducing training times by allowing the use of higher learning rates. 
+The aim of normalisation is to address internal covariate shift, the change in
+the distrubution of each layer's inputs during training, as parameters of the
+previous layers changes \fixme{cite}. This can be done by the following 
+techniques.
+
+
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{p{2.0cm} p{3.5cm} p{3.5cm} p{5.0cm} }
+\hline
+\textbf{Method} & \textbf{Normalizes what?} & \textbf{Stats over}  & \textbf{Pros / Cons} \\
+\hline
+BatchNorm & Activations (per channel) & Batch (and spatial/time dims) &
++ Fast and adds some regularisation -- small batch/streaming issues \\
+LayerNorm & Activations (per token/sample) & Features within a sample  &
++ Batch-size independent -- sometimes weaker in CNNs \\
+GroupNorm & Activations (channel groups) & Groups of channels within a sample &
++ Works with small batch; -- Number of groups need to be selected \\
+WeightNorm & Weights (reparam) & Weight vector norm (no batch stats) &
++ Simple no batches; -- less regularisation than BatchNorm \\
+\hline
+\end{tabular}
+\caption{Common normalisation methods}
+\label{tab:normalisation_methods}
+\end{table}
+
+\FloatBarrier
+
+From the table above, in training BatchNorm, GroupNorm, and WeightNorm will be 
+tested to see which technique yields the best model accuracy to model training 
+stability. The reason why these have been selected is that BatchNorm has seen wide
+use in CNN models for drift reduction \fixme{cite brossard, cite chen}. WeightNorm
+as the original TCN implementation uses it to avoid errors with small batch sizes \fixme{cite}.
+GroupNorm as it is a middle ground where it works well with small batch sizes compared
+to BatchNorm but it may introduce more complexity with groups needing to be selected and
+as such will be tested last to see if the other techniques give an acceptable tradeoff.
+
+\subsubsection{Activation Functions}
+Activation fucntions are functions that are used in deep learning to add non-linearity
+to our output. This is because seen in equations 10,12,14, the relationship between
+weights and input data is all linear. If the relationship between input and output
+were linear there would be no need for a deep learning model as these relationships 
+could be modelled easily.
+
+\subsubsection{Regularisation}
+Regularisation is a technique used in deep learning models to help models avoid
+overfitting to training data and allows the model to be more generalisable to unseen
+data. The technique that will be implemented first is dropout, where dropout 
+randomly zeroes out all activations within the model for an input in training data.
+If the model is still prone to overfitting, more advanced regularisation techniques
+may be employed like weight decay which penalises large weights within kernels to
+allow for smoother functions.
+
+\subsubsection{1x1 Convolution}
+\subsubsection{Loss Functions}
+
+

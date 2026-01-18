@@ -1,0 +1,53 @@
+\begin{tikzpicture}[
+  font=\small,
+  block/.style={draw, rounded corners, minimum width=3.6cm, minimum height=0.75cm, align=center},
+  conv/.style={block, fill=green!20},
+  norm/.style={block, fill=orange!20},
+  act/.style={block, fill=green!10},
+  drop/.style={block, fill=yellow!25},
+  plus/.style={circle, draw, fill=red!15, minimum size=6mm, inner sep=0pt},
+  dot/.style={circle, fill=black, inner sep=2.2pt},
+  opt/.style={draw, dashed, rounded corners, fill=green!10, minimum width=2.2cm, minimum height=0.75cm, align=center},
+  >=Latex
+]
+
+% left stack
+\node[conv] (c1) {Dilated Causal Conv};
+\node[norm, above=3mm of c1] (n1) {Normalisation};
+\node[act,  above=3mm of n1] (r1)  {Activation};
+\node[drop, above=3mm of r1]  (d1)  {Regularisation};
+
+\node[conv, above=6mm of d1] (c2) {Dilated Causal Conv};
+\node[norm, above=3mm of c2] (n2) {Normalisation};
+\node[act,  above=3mm of n2] (r2)  {Activation};
+\node[drop, above=3mm of r2]  (d2)  {Regularisation};
+
+% input / output dots and arrows
+\node[dot, below=8mm of c1] (in) {};
+\draw[->] (in) -- (c1);
+
+\draw[->] (c1) -- (n1);
+\draw[->] (n1) -- (r1);
+\draw[->] (r1) -- (d1);
+
+\draw[->] (d1) -- (c2);
+
+\draw[->] (c2) -- (n2);
+\draw[->] (n2) -- (r2);
+\draw[->] (r2) -- (d2);
+
+\node[plus, right=3.2cm of d2] (add) {$+$};
+\draw[->] (d2.east) -- (add.west);
+
+% residual path (identity / projection)
+\draw[->] (in) -| node[opt, midway, above=7mm] (proj) {1x1 Conv\\(optional)} (add);
+
+
+% output
+\draw[->] (add) -- ++(0,1.2cm);
+
+% dashed container
+\node[draw, dashed, rounded corners, inner sep=6mm, fit=(in)(d2)(add)(proj),
+      label={[anchor=north west]north west:\textbf{Residual block $(k,d)$}}] (box) {};
+
+\end{tikzpicture}
