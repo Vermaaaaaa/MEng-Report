@@ -5,11 +5,11 @@ which is used to determined the object's orientation at a discrete time. The ori
 determined through the integration of angular rate. There are multiple different
 ways to represent the orientation of the object, these being, Euler angles, rotation matrices, and
 quaternions. Euler angles give rise to the singularity problem due to the loss
-of one degree-of-freedom whenever two axes of the rotations are parallel \fixme{cite}.
+of one degree-of-freedom whenever two axes of the rotations are parallel \cite{yang_2014_body}.
 Rotation matrices are also used, however they are less concise as they are
-represented as 3x3 matrix, where 6 of these elements are redundant\fixme{cite}.
+represented as 3x3 matrix, where 6 of these elements are redundant\cite{yang_2014_body}.
 Therefore in this chapter, the quaternion representation is selected due to 
-being more computationally efficient than the others \fixme{cite prof paper}.
+being more computationally efficient than the others \cite{zhang_2011_a}.
 
 
 \subsubsection{Angular Rate Integration}
@@ -23,7 +23,7 @@ $q_k \leftarrow \frac{q_k}{\|q_k\|}$.
 \omega_q(t) = [0,\ \omega_x(t),\ \omega_y(t),\ \omega_z(t)]
 \end{equation}
 
-The orientation evolves according to\fixme{cite}
+The orientation evolves according to \cite{sol_2017_quaternion}
 
 \begin{equation}
 \dot{q}(t) = \frac{1}{2}q(t) \otimes \omega_q(t)
@@ -55,7 +55,7 @@ where $\Delta q_k$ is
 \end{equation}
 
 This was all done by using an ideal $\omega_k$, if were to model the angular
-rate from a gyroscope as \fixme{cite}
+rate from a gyroscope as \cite{trawny_2005_indirect}
 
 \begin{equation}
 \omega_{m,k} = \omega_k + b_k + n_k 
@@ -82,42 +82,37 @@ terms. This results in an accumulated orientation error.
 \label{sec:gyroerrors}
 \subsubsection*{Constant Bias}
 The bias of a gyroscope is the average output from the gyroscope when it is not undergoing any
-rotation \fixme{cite}. This is measured in $ \degree /h$ and can be estimated by taking an average
+rotation \cite{woodman_2007_number}. This is measured in $ \degree /h$ and can be estimated by taking an average
 of the output. As this bias is constant, the drift it causes grows linearly with time. 
 However, as discussed further in this section other error sources can make this
-difficult to determine. \fixme{Figure} shows how constant bias changes the output.
+difficult to determine. Figure 1 shows how constant bias changes the output.
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=5cm]{./figures/IMU/Howgood_bias.png}
-    \caption{Bias Effect on Gyro \fixme{cite}}
+    \caption{Bias Effect on Gyro \cite{a2010_how}}
     \label{fig:GyroBias}
 \end{figure}
 
 
 \subsubsection*{White Noise / Angle Random Walk (ARW)}
-The gyroscope is also affected by some white noise \fixme{cite}. This white noise sequence is zero-mean uncorrelated
+The gyroscope is also affected by some white noise \cite{woodman_2007_number}. This white noise sequence is zero-mean uncorrelated
 random variables between samples and across axes. When the gyroscope signal is integrated to obtain
 an angle, this white noise produces an ARW.
 The units of ARW is denoted by $ \degree / \sqrt{h}$, this shows that the deviation of angle error grows proportionally to $\sqrt{t}$.
 As ARW is due to random variables, it is classified as the $1\sigma$ of the orientation error. Analog devices
-shows this in the \fixme{figure}, where the ARW is $ 0.17\degree / \sqrt{h}$.
+shows this in the figure 2, where the ARW is $ 0.17\degree / \sqrt{h}$.
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=7.5cm]{./figures/IMU/AD_ARW.png}
-    \caption{Effect of ARW on Gyro Output \fixme{cite}}
+    \caption{Effect of ARW on Gyro Output \cite{looney_2016_designing}}
     \label{fig:GyroARW}
 \end{figure}
 
-\subsubsection*{Flicker Noise / Bias Stability}
-The gyroscope suffers from flicker noise in electronics \fixme{cite}
-Flicker noise is $1/f$, due to this the effects are observed at lower 
-frequenices while, higher frequenices the noise is dominated by white noise.
-
 \subsubsection*{Temperature}
 Temperature fluctuations due to changes in the environment and sensor heating
-induce a movement in the bias, this relationship is also highly non-linear \fixme{cite}. Therefore, it can be 
+induce a movement in the bias, this relationship is also highly non-linear \cite{woodman_2007_number}. Therefore, it can be 
 very difficult to model and subsequently subtract from the gyroscope measurements
 compared to a constant bias.
 

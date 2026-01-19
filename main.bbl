@@ -1,0 +1,1106 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{filippeschi_2017_survey}{article}{}
+      \name{author}{6}{}{%
+        {{hash=a062549a22f94e10daf8941f09f151d2}{%
+           family={Filippeschi},
+           familyi={F\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=abe7deb26f77b1b5ef821fb9e57f54a4}{%
+           family={Schmitz},
+           familyi={S\bibinitperiod},
+           given={Norbert},
+           giveni={N\bibinitperiod}}}%
+        {{hash=09f3a65813a6f85f2a663ad25eaf4909}{%
+           family={Miezal},
+           familyi={M\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=57677dc843a44f6c5fed9d5039135a0a}{%
+           family={Bleser},
+           familyi={B\bibinitperiod},
+           given={Gabriele},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a48d7b9849a87133cc4582c83c891f99}{%
+           family={Ruffaldi},
+           familyi={R\bibinitperiod},
+           given={Emanuele},
+           giveni={E\bibinitperiod}}}%
+        {{hash=c0478ee9487d25a73d22d36eaf6bffa8}{%
+           family={Stricker},
+           familyi={S\bibinitperiod},
+           given={Didier},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{78c1717389e57418470958f2ce120c98}
+      \strng{fullhash}{e6993d67cc66bce8e457615d8baf670f}
+      \strng{bibnamehash}{e6993d67cc66bce8e457615d8baf670f}
+      \strng{authorbibnamehash}{e6993d67cc66bce8e457615d8baf670f}
+      \strng{authornamehash}{78c1717389e57418470958f2ce120c98}
+      \strng{authorfullhash}{e6993d67cc66bce8e457615d8baf670f}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sensors}
+      \field{month}{06}
+      \field{title}{Survey of Motion Tracking Methods Based on Inertial Sensors: A Focus on Upper Limb Human Motion}
+      \field{volume}{17}
+      \field{year}{2017}
+      \field{pages}{1257}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/s17061257
+      \endverb
+    \endentry
+    \entry{kianifar_2019_inertial}{article}{}
+      \name{author}{5}{}{%
+        {{hash=87d19c7af581a1eec9f2849d24bdbb8c}{%
+           family={Kianifar},
+           familyi={K\bibinitperiod},
+           given={Rezvan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=9b19cd5d76471f3a37b57dd2c6439097}{%
+           family={Joukov},
+           familyi={J\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+        {{hash=de34c750fe9b7852c816c25476f977df}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dddd671ff19b11ca9aec8ee8b5a83624}{%
+           family={Raina},
+           familyi={R\bibinitperiod},
+           given={Sachin},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7be8ae2de32e6e154dd5dd61d19d2bdb}{%
+           family={Kulić},
+           familyi={K\bibinitperiod},
+           given={Dana},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{f68e2ce0e84d7a192490bb33f1c70fda}
+      \strng{fullhash}{2f04176ea5c4e1a479bd4a93e40e5a25}
+      \strng{bibnamehash}{2f04176ea5c4e1a479bd4a93e40e5a25}
+      \strng{authorbibnamehash}{2f04176ea5c4e1a479bd4a93e40e5a25}
+      \strng{authornamehash}{f68e2ce0e84d7a192490bb33f1c70fda}
+      \strng{authorfullhash}{2f04176ea5c4e1a479bd4a93e40e5a25}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Rehabilitation and Assistive Technologies Engineering}
+      \field{month}{01}
+      \field{title}{Inertial measurement unit-based pose estimation: Analyzing and reducing sensitivity to sensor placement and body measures}
+      \field{volume}{6}
+      \field{year}{2019}
+      \field{pages}{205566831881345}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1177/2055668318813455
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/full/10.1177/2055668318813455
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/full/10.1177/2055668318813455
+      \endverb
+    \endentry
+    \entry{yang_2014_body}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fcdeef628f31c9c5305ee39311f1fcc6}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Guang-Zhong},
+           giveni={G\bibinithyphendelim Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {London Springer}%
+      }
+      \strng{namehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{fullhash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{bibnamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{authorbibnamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{authornamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{authorfullhash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Body Sensor Networks}
+      \field{year}{2014}
+    \endentry
+    \entry{zhang_2011_a}{article}{}
+      \name{author}{2}{}{%
+        {{hash=76a53b1551e4ef6f6fd98153a22c9b03}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Zhi-Qiang},
+           giveni={Z\bibinithyphendelim Q\bibinitperiod}}}%
+        {{hash=a7c0b41ca43e810099b83e09e01e607b}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Jian-Kang},
+           giveni={J\bibinithyphendelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{c97847e5ef5efd4407aca0003440024f}
+      \strng{fullhash}{c97847e5ef5efd4407aca0003440024f}
+      \strng{bibnamehash}{c97847e5ef5efd4407aca0003440024f}
+      \strng{authorbibnamehash}{c97847e5ef5efd4407aca0003440024f}
+      \strng{authornamehash}{c97847e5ef5efd4407aca0003440024f}
+      \strng{authorfullhash}{c97847e5ef5efd4407aca0003440024f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Instrumentation and Measurement}
+      \field{month}{11}
+      \field{title}{A Novel Hierarchical Information Fusion Method for Three-Dimensional Upper Limb Motion Estimation}
+      \field{urlday}{27}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
+      \field{volume}{60}
+      \field{year}{2011}
+      \field{urldateera}{ce}
+      \field{pages}{3709\bibrangedash 3719}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/tim.2011.2135070
+      \endverb
+    \endentry
+    \entry{sol_2017_quaternion}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e082ff94720eff98805e9e08ca921bcc}{%
+           family={Solà},
+           familyi={S\bibinitperiod},
+           given={Joan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {arXiv.org}%
+      }
+      \strng{namehash}{e082ff94720eff98805e9e08ca921bcc}
+      \strng{fullhash}{e082ff94720eff98805e9e08ca921bcc}
+      \strng{bibnamehash}{e082ff94720eff98805e9e08ca921bcc}
+      \strng{authorbibnamehash}{e082ff94720eff98805e9e08ca921bcc}
+      \strng{authornamehash}{e082ff94720eff98805e9e08ca921bcc}
+      \strng{authorfullhash}{e082ff94720eff98805e9e08ca921bcc}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Quaternion kinematics for the error-state Kalman filter}
+      \field{urlday}{23}
+      \field{urlmonth}{2}
+      \field{urlyear}{2024}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1711.02508
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1711.02508
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1711.02508
+      \endverb
+    \endentry
+    \entry{trawny_2005_indirect}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=3e73ad4675bb5df79cb09693b9b87ed4}{%
+           family={Trawny},
+           familyi={T\bibinitperiod},
+           given={Nikolas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=a4672def88dc7c762c3b3145a3c0bc1a}{%
+           family={Roumeliotis},
+           familyi={R\bibinitperiod},
+           given={Stergios},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{2322b5d6a4e52e4d528b17e436fd363b}
+      \strng{fullhash}{2322b5d6a4e52e4d528b17e436fd363b}
+      \strng{bibnamehash}{2322b5d6a4e52e4d528b17e436fd363b}
+      \strng{authorbibnamehash}{2322b5d6a4e52e4d528b17e436fd363b}
+      \strng{authornamehash}{2322b5d6a4e52e4d528b17e436fd363b}
+      \strng{authorfullhash}{2322b5d6a4e52e4d528b17e436fd363b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Indirect Kalman Filter for 3D Attitude Estimation}
+      \field{urlday}{9}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{year}{2005}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://mars.cs.umn.edu/tr/reports/Trawny05b.pdf
+      \endverb
+      \verb{url}
+      \verb https://mars.cs.umn.edu/tr/reports/Trawny05b.pdf
+      \endverb
+    \endentry
+    \entry{woodman_2007_number}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b86717f6a7585a322607ace1ec027945}{%
+           family={Woodman},
+           familyi={W\bibinitperiod},
+           given={Oliver\bibnamedelima J},
+           giveni={O\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{b86717f6a7585a322607ace1ec027945}
+      \strng{fullhash}{b86717f6a7585a322607ace1ec027945}
+      \strng{bibnamehash}{b86717f6a7585a322607ace1ec027945}
+      \strng{authorbibnamehash}{b86717f6a7585a322607ace1ec027945}
+      \strng{authornamehash}{b86717f6a7585a322607ace1ec027945}
+      \strng{authorfullhash}{b86717f6a7585a322607ace1ec027945}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{An introduction to inertial navigation}
+      \field{title}{Number 696 An introduction to inertial navigation}
+      \field{year}{2007}
+      \verb{urlraw}
+      \verb https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-696.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-696.pdf
+      \endverb
+    \endentry
+    \entry{a2010_how}{article}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Control Systems}
+      \field{month}{02}
+      \field{title}{How Good Is Your Gyro [Ask the Experts]}
+      \field{urlday}{31}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
+      \field{volume}{30}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \field{pages}{12\bibrangedash 86}
+      \range{pages}{75}
+      \verb{doi}
+      \verb 10.1109/mcs.2009.935122
+      \endverb
+    \endentry
+    \entry{looney_2016_designing}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=c9ab698508b45bb8973d0ded45d4b2a5}{%
+           family={Looney},
+           familyi={L\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Analog.com}%
+      }
+      \list{publisher}{1}{%
+        {Analog Devices, Inc.}%
+      }
+      \strng{namehash}{c9ab698508b45bb8973d0ded45d4b2a5}
+      \strng{fullhash}{c9ab698508b45bb8973d0ded45d4b2a5}
+      \strng{bibnamehash}{c9ab698508b45bb8973d0ded45d4b2a5}
+      \strng{authorbibnamehash}{c9ab698508b45bb8973d0ded45d4b2a5}
+      \strng{authornamehash}{c9ab698508b45bb8973d0ded45d4b2a5}
+      \strng{authorfullhash}{c9ab698508b45bb8973d0ded45d4b2a5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{03}
+      \field{title}{Designing for Low Noise Feedback Control with MEMS Gyroscopes}
+      \field{urlday}{9}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.analog.com/en/resources/technical-articles/low-noise-feedback-control-mems-gyroscopes.html
+      \endverb
+      \verb{url}
+      \verb https://www.analog.com/en/resources/technical-articles/low-noise-feedback-control-mems-gyroscopes.html
+      \endverb
+    \endentry
+    \entry{sabatini_2011_estimating}{article}{}
+      \name{author}{1}{}{%
+        {{hash=376085daa787333f753902fa1f401ec3}{%
+           family={Sabatini},
+           familyi={S\bibinitperiod},
+           given={Angelo\bibnamedelima Maria},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{376085daa787333f753902fa1f401ec3}
+      \strng{fullhash}{376085daa787333f753902fa1f401ec3}
+      \strng{bibnamehash}{376085daa787333f753902fa1f401ec3}
+      \strng{authorbibnamehash}{376085daa787333f753902fa1f401ec3}
+      \strng{authornamehash}{376085daa787333f753902fa1f401ec3}
+      \strng{authorfullhash}{376085daa787333f753902fa1f401ec3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sensors}
+      \field{month}{01}
+      \field{title}{Estimating Three-Dimensional Orientation of Human Body Parts by Inertial/Magnetic Sensing}
+      \field{volume}{11}
+      \field{year}{2011}
+      \field{pages}{1489\bibrangedash 1525}
+      \range{pages}{37}
+      \verb{doi}
+      \verb 10.3390/s110201489
+      \endverb
+    \endentry
+    \entry{detection}{misc}{}
+      \list{organization}{1}{%
+        {ieeexplore.ieee.org}%
+      }
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{Detection of static and dynamic activities using uniaxial accelerometers | IEEE Journals \& Magazine | IEEE Xplore}
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=547939
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=547939
+      \endverb
+    \endentry
+    \entry{bachmann_2004_an}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ac3babc34f172a7d648b1104de5f0da4}{%
+           family={Bachmann},
+           familyi={B\bibinitperiod},
+           given={E.R},
+           giveni={E\bibinitperiod}}}%
+        {{hash=7f6fc060c600bfcc573af6a3e37870eb}{%
+           family={Yun},
+           familyi={Y\bibinitperiod},
+           given={Xiaoping},
+           giveni={X\bibinitperiod}}}%
+        {{hash=4f07de4a9d96dd5c2b888973b4cae054}{%
+           family={Peterson},
+           familyi={P\bibinitperiod},
+           given={Charles\bibnamedelima W},
+           giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{a17e3b28e3954ac2e303e2e7f0c81449}
+      \strng{fullhash}{a17e3b28e3954ac2e303e2e7f0c81449}
+      \strng{bibnamehash}{a17e3b28e3954ac2e303e2e7f0c81449}
+      \strng{authorbibnamehash}{a17e3b28e3954ac2e303e2e7f0c81449}
+      \strng{authornamehash}{a17e3b28e3954ac2e303e2e7f0c81449}
+      \strng{authorfullhash}{a17e3b28e3954ac2e303e2e7f0c81449}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{An investigation of the effects of magnetic variations on inertial/magnetic orientation sensors}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
+      \field{urlyear}{2023}
+      \field{year}{2004}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1109/robot.2004.1307974
+      \endverb
+    \endentry
+    \entry{luiz_2011_geometric}{article}{}
+      \name{author}{5}{}{%
+        {{hash=a6c6226b8e9d8fff6ebcf54e55154ded}{%
+           family={Luiz},
+           familyi={L\bibinitperiod},
+           given={José},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2cb636e394d7a59cc5b8775b2beba6cc}{%
+           family={Elkaim},
+           familyi={E\bibinitperiod},
+           given={Gabriel\bibnamedelima Hugh},
+           giveni={G\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=738b36d95685dbf9263f8679e563b9bf}{%
+           family={Silvestre},
+           familyi={S\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod}}}%
+        {{hash=a4de5647a1d262cee566597f26e723ea}{%
+           family={Oliveira},
+           familyi={O\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=20926fd57ec92a45bbd919ef130268f8}{%
+           family={Cardeira},
+           familyi={C\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{75f473fd6b94447aad49859b61b43579}
+      \strng{fullhash}{74a715176f90abae8afed23dfb4a4811}
+      \strng{bibnamehash}{74a715176f90abae8afed23dfb4a4811}
+      \strng{authorbibnamehash}{74a715176f90abae8afed23dfb4a4811}
+      \strng{authornamehash}{75f473fd6b94447aad49859b61b43579}
+      \strng{authorfullhash}{74a715176f90abae8afed23dfb4a4811}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{04}
+      \field{title}{Geometric Approach to Strapdown Magnetometer Calibration in Sensor Frame}
+      \field{volume}{47}
+      \field{year}{2011}
+      \field{pages}{1293\bibrangedash 1306}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1109/taes.2011.5751259
+      \endverb
+    \endentry
+    \entry{a2026_calibration}{misc}{}
+      \list{organization}{1}{%
+        {Ieee.org}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{Calibration of a magnetometer in combination with inertial sensors}
+      \field{urlday}{10}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/6289882
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/6289882
+      \endverb
+    \endentry
+    \entry{zhang_2012_quaternionbased}{article}{}
+      \name{author}{3}{}{%
+        {{hash=76a53b1551e4ef6f6fd98153a22c9b03}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Zhi-Qiang},
+           giveni={Z\bibinithyphendelim Q\bibinitperiod}}}%
+        {{hash=85ea5d8c6fc2be6b9cae229fdff73961}{%
+           family={Meng},
+           familyi={M\bibinitperiod},
+           given={Xiao-Li},
+           giveni={X\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=a7c0b41ca43e810099b83e09e01e607b}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Jian-Kang},
+           giveni={J\bibinithyphendelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{024ee2b09b300c4fe52253e570ae4410}
+      \strng{fullhash}{024ee2b09b300c4fe52253e570ae4410}
+      \strng{bibnamehash}{024ee2b09b300c4fe52253e570ae4410}
+      \strng{authorbibnamehash}{024ee2b09b300c4fe52253e570ae4410}
+      \strng{authornamehash}{024ee2b09b300c4fe52253e570ae4410}
+      \strng{authorfullhash}{024ee2b09b300c4fe52253e570ae4410}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Instrumentation and Measurement}
+      \field{month}{10}
+      \field{title}{Quaternion-Based Kalman Filter With Vector Selection for Accurate Orientation Tracking}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2020}
+      \field{volume}{61}
+      \field{year}{2012}
+      \field{urldateera}{ce}
+      \field{pages}{2817\bibrangedash 2824}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/tim.2012.2196397
+      \endverb
+    \endentry
+    \entry{bo_2023_robust}{article}{}
+      \name{author}{4}{}{%
+        {{hash=9453c8df74ae77cafe5b64c37b59b41c}{%
+           family={Bo},
+           familyi={B\bibinitperiod},
+           given={Fan},
+           giveni={F\bibinitperiod}}}%
+        {{hash=508f0a4e80af71a1970f575437811489}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jia},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2f281880cf168a91c1a63ce7574d2bcf}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Weibing},
+           giveni={W\bibinitperiod}}}%
+        {{hash=f6c9b44234e74aebd406a61a8112ae20}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Kaiyue},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Multidisciplinary Digital Publishing Institute}%
+      }
+      \strng{namehash}{b7b5458a8da157269c57f6291c2e2010}
+      \strng{fullhash}{ee9a483165c3d25e4a5b28f01b824dbc}
+      \strng{bibnamehash}{ee9a483165c3d25e4a5b28f01b824dbc}
+      \strng{authorbibnamehash}{ee9a483165c3d25e4a5b28f01b824dbc}
+      \strng{authornamehash}{b7b5458a8da157269c57f6291c2e2010}
+      \strng{authorfullhash}{ee9a483165c3d25e4a5b28f01b824dbc}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Micromachines}
+      \field{month}{05}
+      \field{title}{Robust Attitude and Heading Estimation under Dynamic Motion and Magnetic Disturbance}
+      \field{volume}{14}
+      \field{year}{2023}
+      \field{pages}{1070\bibrangedash 1070}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/mi14051070
+      \endverb
+      \verb{urlraw}
+      \verb https://pmc.ncbi.nlm.nih.gov/articles/PMC10221362/
+      \endverb
+      \verb{url}
+      \verb https://pmc.ncbi.nlm.nih.gov/articles/PMC10221362/
+      \endverb
+    \endentry
+    \entry{soleimany_2019_deep}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=64799b93d52b63000d140b22f0b385bc}{%
+           family={Soleimany},
+           familyi={S\bibinitperiod},
+           given={Ava},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{64799b93d52b63000d140b22f0b385bc}
+      \strng{fullhash}{64799b93d52b63000d140b22f0b385bc}
+      \strng{bibnamehash}{64799b93d52b63000d140b22f0b385bc}
+      \strng{authorbibnamehash}{64799b93d52b63000d140b22f0b385bc}
+      \strng{authornamehash}{64799b93d52b63000d140b22f0b385bc}
+      \strng{authorfullhash}{64799b93d52b63000d140b22f0b385bc}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Deep Sequence Modeling MIT 6.S191}
+      \field{urlday}{15}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://introtodeeplearning.com/2019/materials/2019_6S191_L2.pdf
+      \endverb
+      \verb{url}
+      \verb https://introtodeeplearning.com/2019/materials/2019_6S191_L2.pdf
+      \endverb
+    \endentry
+    \entry{kanai_preventing}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=2196e37e30c3d056275434b8b0da1bf5}{%
+           family={Kanai},
+           familyi={K\bibinitperiod},
+           given={Sekitoshi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c746b82c2fe33d1bf3485678e43ee7ec}{%
+           family={Fujiwara},
+           familyi={F\bibinitperiod},
+           given={Yasuhiro},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=299f9bdff652c8f8a19288016bbb0b47}{%
+           family={Iwamura},
+           familyi={I\bibinitperiod},
+           given={Sotetsu},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{bb36e5a56f598f5e83c0ee8b9d499eaa}
+      \strng{fullhash}{bb36e5a56f598f5e83c0ee8b9d499eaa}
+      \strng{bibnamehash}{bb36e5a56f598f5e83c0ee8b9d499eaa}
+      \strng{authorbibnamehash}{bb36e5a56f598f5e83c0ee8b9d499eaa}
+      \strng{authornamehash}{bb36e5a56f598f5e83c0ee8b9d499eaa}
+      \strng{authorfullhash}{bb36e5a56f598f5e83c0ee8b9d499eaa}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Preventing Gradient Explosions in Gated Recurrent Units}
+      \field{urlday}{15}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://papers.nips.cc/paper_files/paper/2017/file/f2fc990265c712c49d51a18a32b39f0c-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://papers.nips.cc/paper_files/paper/2017/file/f2fc990265c712c49d51a18a32b39f0c-Paper.pdf
+      \endverb
+    \endentry
+    \entry{razvanpascanu_2012_on}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7045b009b04d57bd2e19b5dfa0864d4f}{%
+           family={Pascanu},
+           familyi={P\bibinitperiod},
+           given={Razvan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=a2d359b12ca2fadf0b40136a73f021bb}{%
+           family={Mikolov},
+           familyi={M\bibinitperiod},
+           given={Tomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=419350ebbeb4eba5351469f378dee007}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {unknown}%
+      }
+      \strng{namehash}{53ada37151850a44fd3c822344631ce6}
+      \strng{fullhash}{53ada37151850a44fd3c822344631ce6}
+      \strng{bibnamehash}{53ada37151850a44fd3c822344631ce6}
+      \strng{authorbibnamehash}{53ada37151850a44fd3c822344631ce6}
+      \strng{authornamehash}{53ada37151850a44fd3c822344631ce6}
+      \strng{authorfullhash}{53ada37151850a44fd3c822344631ce6}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ResearchGate}
+      \field{month}{11}
+      \field{title}{On the difficulty of training Recurrent Neural Networks}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/233730646_On_the_difficulty_of_training_Recurrent_Neural_Networks
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/233730646_On_the_difficulty_of_training_Recurrent_Neural_Networks
+      \endverb
+    \endentry
+    \entry{chen_2018_improving}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=829eea973bbe5e8092364f82ffab169e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Hua},
+           giveni={H\bibinitperiod}}}%
+        {{hash=8046259ea5dd1d3111c61cfa10f8159b}{%
+           family={Aggarwal},
+           familyi={A\bibinitperiod},
+           given={Priyanka},
+           giveni={P\bibinitperiod}}}%
+        {{hash=1eba36f6c967b0283cdc0b4a697661b4}{%
+           family={Taha},
+           familyi={T\bibinitperiod},
+           given={Tarek\bibnamedelima M.},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=07145b69850ba21bd0251326fa1bbed8}{%
+           family={Chodavarapu},
+           familyi={C\bibinitperiod},
+           given={Vamsy\bibnamedelima P.},
+           giveni={V\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE Xplore}%
+      }
+      \strng{namehash}{b546c3eea7fc907acae40ec98b042036}
+      \strng{fullhash}{6f74ff87c4e100b1828ec83236367dd7}
+      \strng{bibnamehash}{6f74ff87c4e100b1828ec83236367dd7}
+      \strng{authorbibnamehash}{6f74ff87c4e100b1828ec83236367dd7}
+      \strng{authornamehash}{b546c3eea7fc907acae40ec98b042036}
+      \strng{authorfullhash}{6f74ff87c4e100b1828ec83236367dd7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{07}
+      \field{title}{Improving Inertial Sensor by Reducing Errors using Deep Learning Methodology}
+      \field{year}{2018}
+      \field{pages}{197\bibrangedash 202}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/NAECON.2018.8556718
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/8556718
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/8556718
+      \endverb
+    \endentry
+    \entry{brossard_2020_denoising}{article}{}
+      \name{author}{3}{}{%
+        {{hash=854a0b2b95cff4c82a5024e661a20e08}{%
+           family={Brossard},
+           familyi={B\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=59b817f224393aa579d65cb93d5902d5}{%
+           family={Bonnabel},
+           familyi={B\bibinitperiod},
+           given={Silvere},
+           giveni={S\bibinitperiod}}}%
+        {{hash=053b4b9329c7d82cd9a45801fa98a71f}{%
+           family={Barrau},
+           familyi={B\bibinitperiod},
+           given={Axel},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{34a0cdf030432888508419d8a801b49b}
+      \strng{fullhash}{34a0cdf030432888508419d8a801b49b}
+      \strng{bibnamehash}{34a0cdf030432888508419d8a801b49b}
+      \strng{authorbibnamehash}{34a0cdf030432888508419d8a801b49b}
+      \strng{authornamehash}{34a0cdf030432888508419d8a801b49b}
+      \strng{authorfullhash}{34a0cdf030432888508419d8a801b49b}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Robotics and Automation Letters}
+      \field{title}{Denoising IMU Gyroscopes with Deep Learning for Open-Loop Attitude Estimation}
+      \field{urlday}{29}
+      \field{urlmonth}{6}
+      \field{urlyear}{2022}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 1}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1109/lra.2020.3003256
+      \endverb
+    \endentry
+    \entry{zeiler_2013_visualizing}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=9a41b251854459a9748aac30847ea96d}{%
+           family={Zeiler},
+           familyi={Z\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a6784304d1cc890b2cb6c6c7f2f3fd76}{%
+           family={Fergus},
+           familyi={F\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{db127c59cdeb228b5efdb18ffc3e341b}
+      \strng{fullhash}{db127c59cdeb228b5efdb18ffc3e341b}
+      \strng{bibnamehash}{db127c59cdeb228b5efdb18ffc3e341b}
+      \strng{authorbibnamehash}{db127c59cdeb228b5efdb18ffc3e341b}
+      \strng{authornamehash}{db127c59cdeb228b5efdb18ffc3e341b}
+      \strng{authorfullhash}{db127c59cdeb228b5efdb18ffc3e341b}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Visualizing and Understanding Convolutional Networks}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://arxiv.org/pdf/1311.2901
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/pdf/1311.2901
+      \endverb
+    \endentry
+    \entry{hoa_2024_onedimensional}{article}{}
+      \name{author}{8}{}{%
+        {{hash=a824ba858db7e207f40eb982a990fb0f}{%
+           family={Hoa},
+           familyi={H\bibinitperiod},
+           given={Pham\bibnamedelima Viet},
+           giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=7f114c5d7f4f5fb4def45b264d1331f7}{%
+           family={Binh},
+           familyi={B\bibinitperiod},
+           given={Nguyen\bibnamedelima An},
+           giveni={N\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=b117b39d4ce9e218d7d5c1fdd6fe7896}{%
+           family={Hong},
+           familyi={H\bibinitperiod},
+           given={Pham\bibnamedelima Viet},
+           giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=26689e0deced8381ea31b194ef859acc}{%
+           family={An},
+           familyi={A\bibinitperiod},
+           given={Nguyen\bibnamedelima Ngoc},
+           giveni={N\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=d35c048cd1d6599fad7a8756d225c34e}{%
+           family={Phuong},
+           familyi={P\bibinitperiod},
+           given={Thi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3eadfef1b33122eb1f42e4b35aa8a3c0}{%
+           family={Hanh},
+           familyi={H\bibinitperiod},
+           given={Nguyen\bibnamedelima Cao},
+           giveni={N\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=425f58662b025fece6ebd7fb39e2079f}{%
+           family={Thao},
+           familyi={T\bibinitperiod},
+           given={Phuong},
+           giveni={P\bibinitperiod}}}%
+        {{hash=b153b6aefc9d2159db9d1899de762df1}{%
+           family={Bui},
+           familyi={B\bibinitperiod},
+           given={Dieu\bibnamedelima Tien},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science+Business Media}%
+      }
+      \strng{namehash}{b0ee85eaf5a6e5bb48e0d0b41fe69e1c}
+      \strng{fullhash}{1e8601c627b470729a414c71f6b58991}
+      \strng{bibnamehash}{b0ee85eaf5a6e5bb48e0d0b41fe69e1c}
+      \strng{authorbibnamehash}{b0ee85eaf5a6e5bb48e0d0b41fe69e1c}
+      \strng{authornamehash}{b0ee85eaf5a6e5bb48e0d0b41fe69e1c}
+      \strng{authorfullhash}{1e8601c627b470729a414c71f6b58991}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Earth Science Informatics}
+      \field{month}{07}
+      \field{title}{One-dimensional deep learning driven geospatial analysis for flash flood susceptibility mapping: a case study in North Central Vietnam}
+      \field{urlday}{12}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{volume}{17}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{4419\bibrangedash 4440}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1007/s12145-024-01285-8
+      \endverb
+    \endentry
+    \entry{krizhevsky_2012_imagenet}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%
+           family={Krizhevsky},
+           familyi={K\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=813bd95fe553e6079cd53a567b238287}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey\bibnamedelima E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{fullhash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{bibnamehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{authorbibnamehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{authornamehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{authorfullhash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications of the ACM}
+      \field{month}{05}
+      \field{title}{ImageNet Classification with Deep Convolutional Neural Networks}
+      \field{volume}{60}
+      \field{year}{2012}
+      \field{pages}{84\bibrangedash 90}
+      \range{pages}{7}
+    \endentry
+    \entry{bai_2018_an}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=46866596e404b7745d45fdb1cbff0a01}{%
+           family={Bai},
+           familyi={B\bibinitperiod},
+           given={Shaojie},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9573100c2c564d54be0b4f5b5311f41e}{%
+           family={Zico\bibnamedelima Kolter},
+           familyi={Z\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9025300f43a193cfed8e10e924f2a117}{%
+           family={Koltun},
+           familyi={K\bibinitperiod},
+           given={Vladlen},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{2fc6fca78816ecb423622125bf148abb}
+      \strng{fullhash}{2fc6fca78816ecb423622125bf148abb}
+      \strng{bibnamehash}{2fc6fca78816ecb423622125bf148abb}
+      \strng{authorbibnamehash}{2fc6fca78816ecb423622125bf148abb}
+      \strng{authornamehash}{2fc6fca78816ecb423622125bf148abb}
+      \strng{authorfullhash}{2fc6fca78816ecb423622125bf148abb}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{04}
+      \field{title}{An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://arxiv.org/pdf/1803.01271
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/pdf/1803.01271
+      \endverb
+    \endentry
+    \entry{ioffe_2015_batch}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=5543e82359e26b035efc009cb3efff9d}{%
+           family={Ioffe},
+           familyi={I\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ed568d9c3bb059e6bf22899fbf170f86}{%
+           family={Szegedy},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{fullhash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{bibnamehash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{authorbibnamehash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{authornamehash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{authorfullhash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift}
+      \field{year}{2015}
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v37/ioffe15.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v37/ioffe15.pdf
+      \endverb
+    \endentry
+    \entry{ramachandran_2017_searching}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=e67314b379d3959e35d4acce17b95a6d}{%
+           family={Ramachandran},
+           familyi={R\bibinitperiod},
+           given={Prajit},
+           giveni={P\bibinitperiod}}}%
+        {{hash=91aafc93e68e8c6a55e8cd804c2acaf2}{%
+           family={Zoph},
+           familyi={Z\bibinitperiod},
+           given={Barret},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c636f146591d51579a8119b777394878}{%
+           family={Le},
+           familyi={L\bibinitperiod},
+           given={Quoc\bibnamedelima V},
+           giveni={Q\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {arXiv.org}%
+      }
+      \strng{namehash}{057007a647f95fd49b81c4ff27c3c59e}
+      \strng{fullhash}{057007a647f95fd49b81c4ff27c3c59e}
+      \strng{bibnamehash}{057007a647f95fd49b81c4ff27c3c59e}
+      \strng{authorbibnamehash}{057007a647f95fd49b81c4ff27c3c59e}
+      \strng{authornamehash}{057007a647f95fd49b81c4ff27c3c59e}
+      \strng{authorfullhash}{057007a647f95fd49b81c4ff27c3c59e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Searching for Activation Functions}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1710.05941
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1710.05941
+      \endverb
+    \endentry
+    \entry{he_2016_deep}{article}{}
+      \name{author}{4}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5e72bc22dbcf0984c6d113d280e36990}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Xiangyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=bb295293acacd54387339079ebbe4ead}{%
+           family={Ren},
+           familyi={R\bibinitperiod},
+           given={Shaoqing},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f85751488058842b5777c7b4074077b5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3733dbdff90171390240438fddfbc952}
+      \strng{fullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{bibnamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{authorbibnamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{authornamehash}{3733dbdff90171390240438fddfbc952}
+      \strng{authorfullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{06}
+      \field{title}{Deep Residual Learning for Image Recognition}
+      \field{year}{2016}
+      \field{pages}{770\bibrangedash 778}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/cvpr.2016.90
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/7780459
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/7780459
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

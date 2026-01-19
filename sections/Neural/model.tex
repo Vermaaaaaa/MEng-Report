@@ -16,7 +16,7 @@ The motivation for learning $\Delta\boldsymbol{\omega}_t$
 comes from the fact that while sensor fusion techniques of downweighting 
 or skipping of the accelerometer and magnetometer when they are unreliable
 , drift cannot be mitigated due to the accumulation of gyroscopic bias 
-and noise \fixme{cite, cite2}. 
+and noise \cite{zhang_2012_quaternionbased},\cite{bo_2023_robust}. 
 
 \subsection{Model Selection}
 \subsubsection{Recurrent Neural Networks (RNNs)}
@@ -55,7 +55,7 @@ reused for every time step, and $\phi$ represents an arbitrary activation functi
 \begin{figure}[htp]
     \centering
     \includegraphics[width=10cm]{./figures/Model/RNN.png}
-    \caption{RNN structure \fixme{cite3}}
+    \caption{RNN structure \cite{soleimany_2019_deep}}
     \label{fig:RNN}
 \end{figure}
 
@@ -81,12 +81,12 @@ a high training times compared to convolutional models.
 Updated versions of the RNN have been proposed to solve the problem of vanishing and exploding
 gradients. These being Long Short Term Memory (LSTM) and Gated Recurrent Units (GRUs). These methods
 exploit the use of a cell state that does not need to do perform repeated multiplication of Jacobians,
-however they are still subject to long training times \fixme{cite} and the gradient problem is not fully 
-solved but mitigated \fixme{cite, cite}.
+however they are still subject to long training times  and the gradient problem is not fully 
+solved but mitigated \cite{kanai_preventing}\cite{razvanpascanu_2012_on}.
 
 \subsubsection{Convolutional Neural Networks (CNNs)}
 The next type of model considered was the CNN, even though typically it is used in computer
-vision tasks; it has seen wide use in research relating to drift reduction \fixme{cite, cite, cite}. 
+vision tasks; it has seen wide use in research relating to drift reduction \cite{chen_2018_improving}\cite{brossard_2020_denoising}. 
 This model is based on the idea of convolving input data with a learnable filter to extract local 
 features in the input data. The filter can be thought of like a window that slides over the 
 data, and each filter has a defined set of weights in which it multiplies with input data.
@@ -114,23 +114,23 @@ in the input data.
 Typically, these CNNs are made up of layers, where in each layer the number of filters 
 grow e.g. $L1 = 16, L2 = 32, L3 = 64$ etc. These additional filters in later layers allow the
 model to learn more complex feature sets based on the previous layers' filter. Zeiler et al.
-\fixme{cite} shows this in their figure 2 where their convolutional network is used for image
+\cite{zeiler_2013_visualizing} shows this in their figure 2 where their convolutional network is used for image
 classification.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=10cm]{./figures/Model/CNN.png}
-    \caption{1D CNN structure \fixme{cite}}
+    \caption{1D CNN structure \cite{hoa_2024_onedimensional}}
     \label{fig:CNN}
 \end{figure}
 
 
 CNNs are more attractive than RNNs due to its ability to be efficiently
-trained by using parallelisation\fixme{cite}. As stated before, RNNs cannot exploit 
+trained by using parallelisation \cite{krizhevsky_2012_imagenet}. As stated before, RNNs cannot exploit 
 this, but CNNs can. This leads to the ability to test multiple different
 iterations of a model where parameters and loss functions may be changed
-to explore what effects they may have \fixme{see section}. CNNs also do
-not suffer from vanishing//exploding gradients as much and are seen to be more
+to explore what effects they may have (section 3.3). CNNs also do
+not suffer from vanishing/exploding gradients as much and are seen to be more
 stable during training\fixme{cite}. 
 
 However, unlike RNNs, baseline CNNs cannot produce outputs due to significant 
@@ -143,7 +143,7 @@ as we move forward in time.
 \subsubsection{Temporal Convolutional Networks (TCNs)}
 \label{sec:tcn_sel}
 TCNs are an extension of the baseline CNN and include two main differences
-in their implementation as shown by Bai et al.\fixme{cite}. These differences
+in their implementation as shown by Bai et al.\cite{bai_2018_an}. These differences
 are the use of dilations that grow the receptive field allowing the network
 to look back further in time and learn long-term information. Furthermore,
 causal convolutions meaning, that the convolution operation cannot
@@ -158,10 +158,10 @@ look forward in time. To explain causality we can look back at
   y_f[t] = \phi(z_f[t])
 \end{equation}
 
-The difference is that the $k$ is subtracted from $x[t]$. The causality
-is enforced here as at time $t$, we cannot access future information unless
-the model is to be used after data collection and not in a real time 
-setting.
+The difference is that the $k$ is subtracted from $x[t]$. Causality
+is enforced here as at time $t$, we cannot access future information i.e.
+$x[t+1], x[t+2]$... etc. 
+
 
 Dilations allow the model to look further back in time without the need
 of increasing parameters for the same $K$ and $C_{in}$ used in convolutions. This is best represented in
@@ -170,7 +170,7 @@ the figure 5.
 \begin{figure}[H]
     \centering
     \includegraphics[width=10cm]{./figures/Model/dilations.png}
-    \caption{CNN structure with dilations \fixme{cite}}
+    \caption{CNN structure with dilations \cite{bai_2018_an}}
     \label{fig:dilations}
 \end{figure}
 
@@ -188,11 +188,11 @@ where $d$ is the dilation factor of the layer.
 \subsubsection{Summary and Choice}
 In summary, the choice has been to select the TCN. This is because it 
 has the ability to look back in history and model long-term dependencies
-between data, something baseline CNN cannot do. Additionally, like a CNN
+between data, something baseline CNNs cannot do. Additionally, like a CNN
 it is quicker and more stable in training unlike an RNN. However, the TCN
 does have its problems, these being extra data storage during its operation
 and domain transfer. Unlike RNNs which only have store $h(t)$, TCNs needs
-to take in a raw sequence upto its effective history length \fixme{cite}.
+to take in a raw sequence upto its effective history length \cite{bai_2018_an}.
 Domain transfer refers to transferring a model that has been trained in 
 one domain (i.e. small receptive field) and applied to another domain
 (i.e. large receptive field), where the TCN may perform poorly due to 
@@ -201,7 +201,7 @@ this change in domain.
 
 \subsection{TCN Design}
 
-The main design of the TCN comes from Bai et al. \fixme{cite}. Figure 6
+The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 6
 demonstrates the architecture of the residual block that has been 
 implemented.
 
@@ -219,7 +219,7 @@ Normalisation is a technique used in deep learning to ensure training stability,
 while also reducing training times by allowing the use of higher learning rates. 
 The aim of normalisation is to address internal covariate shift, the change in
 the distrubution of each layer's inputs during training, as parameters of the
-previous layers changes \fixme{cite}. This can be done by the following 
+previous layers changes \cite{ioffe_2015_batch}. This can be done by the following 
 techniques.
 
 
@@ -227,17 +227,17 @@ techniques.
 \begin{table}[!htbp]
 \centering
 \small
-\begin{tabular}{p{2.0cm} p{3.5cm} p{3.5cm} p{5.0cm} }
+\begin{tabular}{p{2.0cm} p{5cm} p{7.5cm} }
 \hline
-\textbf{Method} & \textbf{Normalises} & \textbf{Stats over}  & \textbf{Pros / Cons} \\
+\textbf{Method} & \textbf{Normalises}   & \textbf{Pros / Cons} \\
 \hline
-BatchNorm & Activations (per channel) & Batch (and spatial/time dims) &
+BatchNorm & Activations (per channel) &
 + Fast and adds some regularisation -- small batch/streaming issues \\
-LayerNorm & Activations (per token/sample) & Features within a sample  &
+LayerNorm & Activations (per token/sample)  &
 + Batch-size independent -- sometimes worse performance in CNNs \\
-GroupNorm & Activations (channel groups) & Groups of channels within a sample &
-+ Works well with small batch -- Number of groups need to be selected \\
-WeightNorm & Weights (reparam) & Weight vector norm (no batch stats) &
+GroupNorm & Activations (channel groups) &
++ Works well with small batches -- Number of groups need to be selected \\
+WeightNorm & Weights (reparam) &
 + Simple no batches -- less regularisation than BatchNorm \\
 \hline
 \end{tabular}
@@ -250,8 +250,8 @@ WeightNorm & Weights (reparam) & Weight vector norm (no batch stats) &
 From the table above, in training BatchNorm, GroupNorm, and WeightNorm will be 
 tested to see which technique yields the best model accuracy to model training 
 stability. The reason why these have been selected is that BatchNorm has seen wide
-use in CNN models for drift reduction \fixme{cite brossard, cite chen}. WeightNorm
-as the original TCN implementation uses it to avoid errors with small batch sizes \fixme{cite}.
+use in CNN models for drift reduction \cite{brossard_2020_denoising}\cite{chen_2018_improving}. WeightNorm
+as the original TCN implementation uses it to avoid errors with small batch sizes \cite{bai_2018_an}.
 GroupNorm as it is a middle ground where it works well with small batch sizes compared
 to BatchNorm but it may introduce more complexity with groups needing to be selected and
 as such will be tested last to see if the other techniques give an acceptable tradeoff.
@@ -295,19 +295,22 @@ Transformers/CNNs &
 
 From the table above, the motivation for ReLU is that it is commonly used as the baseline
 for CNNs and is also used by Bai et al. in their TCN implementation. However, they
-can be prone to overfitting \fixme{brossard cite} or dying ReLU can occur. If ReLU
-is prone to dying ReLU, then leaky ReLU will be used and tested against the other
+can be prone to overfitting \cite{brossard_2020_denoising} or dying ReLU can occur. If ReLU
+is prone to dying ReLU, then leaky ReLU will be used and tested against the other  
 functions. GELU and Swish are known to be smooth implementations of ReLU, where it
-is able to take values where $x<0$ and can have slight performance improvements \fixme{cite activations}
+is able to take values where $x<0$ and can have slight performance improvements \cite{ramachandran_2017_searching}
 but are computationally more expensive and performance is model dependent. For implementation,
-ReLU will be considered first, however if problems arise the other activation functions 
+ReLU will be considered first for its computational efficiency, however if problems arise the other activation functions 
 will be used.
 
 
 \subsubsection{Regularisation}
 Regularisation is a technique used in deep learning models to help models avoid
 overfitting to training data and allows the model to be more generalisable to unseen
-data. The technique that will be implemented first is dropout, where dropout 
+data. Overfitting is when the model learns its training data too precisely, so it 
+performs well to training data but less than adequate to unseen data. 
+
+The technique that will be implemented first is dropout, where dropout 
 randomly zeroes out all activations within the model for an input in training data.
 If the model is still prone to overfitting, more advanced regularisation techniques
 may be employed like weight decay which penalises large weights within kernels to
@@ -324,7 +327,7 @@ is called a residual connection, where the equation below shows its operation
 
 where $y$ is the output, $\mathcal{F}(x, {W_i})$ is the residual mapping to be learned,
 $W$, is a projection applied to $x$ (1x1 convolution), and $x$
-is our input\fixme{cite residual}.  
+is our input\cite{he_2016_deep}.  
 
 Residual connections adds the input of a block to the output of the block, so when
 learning the model learns the relationship of $\mathcal{F}(x, W_i) = y - Wx$, which 
