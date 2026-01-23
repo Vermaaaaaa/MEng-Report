@@ -4,19 +4,10 @@
 
 
 \subsection{Aims of the Deep Learning Model}
-Referring back to \hyperref[sec:problem]{section 1.2}, the overall problem 
-is to implement a model that can output gyroscopic corrections 
-$\Delta\boldsymbol{\omega}_t = [\Delta\omega_x,\Delta\omega_y,\Delta\omega_z]^\top$
-that when subtracted from our measured angular rate, and fused with other
-sensors such as an accelerometer and magnetometer leads to an orientation 
-estimate, that is more accurate to the ground truth orientation of an 
-object compared with only sensor fusion. 
-
-The motivation for learning $\Delta\boldsymbol{\omega}_t$ 
+The motivation for learning $\Delta\boldsymbol{\omega}_t = [\Delta\omega_x,\Delta\omega_y,\Delta\omega_z]^\top$ 
 comes from the fact that while sensor fusion techniques of downweighting 
-or skipping of the accelerometer and magnetometer when they are unreliable
-, drift cannot be mitigated due to the accumulation of gyroscopic bias 
-and noise \cite{zhang_2012_quaternionbased},\cite{bo_2023_robust}. 
+or skipping of the accelerometer and magnetometer when they are unreliable, drift cannot be mitigated due to the accumulation of gyroscopic bias 
+and noise \cite{zhang_2012_quaternionbased}\cite{bo_2023_robust}. 
 
 \subsection{Model Selection}
 \subsubsection{Recurrent Neural Networks (RNNs)}
@@ -32,7 +23,7 @@ outputs of the model. The general idea can be described by the equation
 where $\hat{y}$ is the output, $f_{model}$, is a function that describes the model,
 $x_t$ is the input at time t, and $h_{t-1}$ is a vector state that
 describes the internal state of the model at the previous time step. Expanding
-on this the state of the model is updated as follows
+on this, the state of the model is updated as follows
 
 \begin{equation}
 h_t = f_w(x_t, h_{t-1})
@@ -71,7 +62,7 @@ measurements.
 There are many problems with RNNs however, the biggest being the problem of exploding/vanishing
 gradients. RNNs are trained via backpropagation through time, which propagates gradients across
 timesteps. For long sequences, computing the gradient with respect to $h_0$ involes many factors
-of repeated multiplication of Jacobians across time. This can lead to many values of the computation
+of repeated multiplication of weight matrices across time. This can lead to many values of the computation
 being greater than 1, which explodes gradients leading to unstable training.
 In the case, where many values are less than 1, this causes vanishing gradients where learning long-range
 dependencies becomes difficult. Additionally, as the hidden state $h_t$ is propagated sequentially through
@@ -80,13 +71,13 @@ a high training times compared to convolutional models.
 
 Updated versions of the RNN have been proposed to solve the problem of vanishing and exploding
 gradients. These being Long Short Term Memory (LSTM) and Gated Recurrent Units (GRUs). These methods
-exploit the use of a cell state that does not need to do perform repeated multiplication of Jacobians,
+exploit the use of a cell state that does not need to do perform repeated multiplication of weight matrices,
 however they are still subject to long training times  and the gradient problem is not fully 
 solved but mitigated \cite{kanai_preventing}\cite{razvanpascanu_2012_on}.
 
 \subsubsection{Convolutional Neural Networks (CNNs)}
 The next type of model considered was the CNN, even though typically it is used in computer
-vision tasks; it has seen wide use in research relating to drift reduction \cite{chen_2018_improving}\cite{brossard_2020_denoising}. 
+vision tasks; it has seen wide use in research relating to drift reduction \cite{brossard_2020_denoising}\cite{chen_2018_improving}. 
 This model is based on the idea of convolving input data with a learnable filter to extract local 
 features in the input data. The filter can be thought of like a window that slides over the 
 data, and each filter has a defined set of weights in which it multiplies with input data.
@@ -126,12 +117,11 @@ classification.
 
 
 CNNs are more attractive than RNNs due to its ability to be efficiently
-trained by using parallelisation \cite{krizhevsky_2012_imagenet}. As stated before, RNNs cannot exploit 
-this, but CNNs can. This leads to the ability to test multiple different
+trained by using parallelisation \cite{krizhevsky_2012_imagenet}. This leads to the ability to test multiple different
 iterations of a model where parameters and loss functions may be changed
 to explore what effects they may have (section 3.3). CNNs also do
 not suffer from vanishing/exploding gradients as much and are seen to be more
-stable during training\fixme{cite}. 
+stable during training due to no backpropagation through time. 
 
 However, unlike RNNs, baseline CNNs cannot produce outputs due to significant 
 temporal information. It can extract local features and in 1D convolutions
@@ -147,7 +137,7 @@ in their implementation as shown by Bai et al.\cite{bai_2018_an}. These differen
 are the use of dilations that grow the receptive field allowing the network
 to look back further in time and learn long-term information. Furthermore,
 causal convolutions meaning, that the convolution operation cannot
-look forward in time. To explain causality we can look back at  
+look forward in time. To explain causality, we can look back at  
 \hyperref[eq:12]{equation 12} and modify this so 
 
 \begin{equation}
@@ -174,7 +164,7 @@ the figure 5.
     \label{fig:dilations}
 \end{figure}
 
-As we can see in the diagram, as the dilations increase layer by layer
+As we can see in the diagram, as the dilations increase layer by layer,
 the output to the next layer looks further back into the history of
 $x[t]$. This can be modelled by the equation
 
@@ -187,7 +177,7 @@ where $d$ is the dilation factor of the layer.
 
 \subsubsection{Summary and Choice}
 In summary, the choice has been to select the TCN. This is because it 
-has the ability to look back in history and model long-term dependencies
+can look back in history and model long-term dependencies
 between data, something baseline CNNs cannot do. Additionally, like a CNN
 it is quicker and more stable in training unlike an RNN. However, the TCN
 does have its problems, these being extra data storage during its operation
@@ -203,7 +193,7 @@ this change in domain.
 
 The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 6
 demonstrates the architecture of the residual block that has been 
-implemented.
+implemented in the first semester.
 
 \begin{figure}[H]
     \centering
@@ -227,18 +217,18 @@ techniques.
 \begin{table}[!htbp]
 \centering
 \small
-\begin{tabular}{p{2.0cm} p{5cm} p{7.5cm} }
+\begin{tabular}{p{2.0cm} p{3.0cm} p{5.0cm} p{5.0cm}}
 \hline
-\textbf{Method} & \textbf{Normalises}   & \textbf{Pros / Cons} \\
+\textbf{Method} & \textbf{Normalises}   & \textbf{Pros} & \textbf{Cons} \\
 \hline
 BatchNorm & Activations (per channel) &
-+ Fast and adds some regularisation -- small batch/streaming issues \\
+ Fast and adds some regularisation &  small batch/streaming issues \\
 LayerNorm & Activations (per token/sample)  &
-+ Batch-size independent -- sometimes worse performance in CNNs \\
+ Batch-size independent & sometimes worse performance in CNNs \\
 GroupNorm & Activations (channel groups) &
-+ Works well with small batches -- Number of groups need to be selected \\
+ Works well with small batches & Number of groups need to be selected \\
 WeightNorm & Weights (reparam) &
-+ Simple no batches -- less regularisation than BatchNorm \\
+ Simple no batches & less regularisation than BatchNorm \\
 \hline
 \end{tabular}
 \caption{Common normalisation methods.}
@@ -258,10 +248,8 @@ as such will be tested last to see if the other techniques give an acceptable tr
 
 \subsubsection{Activation Functions}
 Activation fucntions are functions that are used in deep learning to add non-linearity
-to our output. This is because seen in equations 10,12,14, the relationship between
-weights and input data is all linear. If the relationship between input and output
-were linear there would be no need for a deep learning model as these relationships 
-could be modelled easily. The table below demonstrates common activation functions
+to our output. This is because seen in equations 9,11,13,15, the relationship between
+weights and input data is all linear. The table below demonstrates common activation functions
 used.
 
 \begin{table}[!htbp]
@@ -269,24 +257,25 @@ used.
 \small
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.05}
-\begin{tabular}{p{2.0cm} p{2.0cm} p{2.0cm} p{3.5cm} p{5.0cm}}
+\begin{tabular}{p{1.5cm} p{1.5cm} p{1.5cm} p{2.5cm} p{3.5cm} p{3.5cm}}
 \hline
-\textbf{Activation} & \textbf{Definition} & \textbf{Output range} & \textbf{When used} & \textbf{Pros / Cons} \\
+\textbf{Activation} & \textbf{Definition} & \textbf{Output range} & \textbf{When used} & \textbf{Pros} & \textbf{Cons} \\
 \hline
 ReLU & $\mathrm{ReLU}(x)=\max(0,x)$ & $[0,\infty)$ &
 CNN default baseline &
-+ Fast activations -- ReLU can result in 0 output (dying ReLU)  \\
+Fast activations & ReLU can result in 0 output (dying ReLU)  \\
 Leaky ReLU & $\max(\alpha x, x)$, $\alpha \in (0,1)$ & $(-\infty,\infty)$ &
 When ReLU units die  &
-+ Reduces dying ReLU -- extra hyperparameter $\alpha$ \\
+Reduces dying ReLU & extra hyperparameter $\alpha$ \\
 GELU & $x\,\Phi(x)$ (Gaussian CDF) &
 $(-\infty,\infty)$ &
 Transformers, deep networks &
-+ Smooth and good performance -- slower than ReLU \\
+Smooth and good performance & slower than ReLU \\
 Swish & $x\,\sigma(\beta x)$ &
 $(-\infty,\infty)$ &
-Transformers/CNNs &
-+ Smooth, often improves accuracy -- slower than ReLU \\
+Transformers
+/CNNs &
+Smooth, often improves accuracy & slower than ReLU \\
 \hline
 \end{tabular}
 \caption{Common activation functions.}
@@ -316,6 +305,7 @@ If the model is still prone to overfitting, more advanced regularisation techniq
 may be employed like weight decay which penalises large weights within kernels to
 allow for smoother functions.
 
+\newpage
 \subsubsection{Residual Connections/1x1 Convolution}
 The right branch (figure 6) is essential in training very deep neural networks 
 where networks may not be able to converge due to exploding/vanishing gradients. This branch
@@ -329,7 +319,7 @@ where $y$ is the output, $\mathcal{F}(x, {W_i})$ is the residual mapping to be l
 $W$, is a projection applied to $x$ (1x1 convolution), and $x$
 is our input\cite{he_2016_deep}.  
 
-Residual connections adds the input of a block to the output of the block, so when
+Residual connections adds inputs of a block to the output of the block, so when
 learning the model learns the relationship of $\mathcal{F}(x, W_i) = y - Wx$, which 
 is easier to learn than the full mapping directly. The 1x1 convolution is included as
 the model goes deeper, the number of channels increases to capture more complex 
@@ -338,7 +328,5 @@ $\mathcal{F}(x, W_i)$ and $x$ must be of two tensors of the same size so $W$ all
 the addition to be possible.
 
 
-
-\subsubsection{Loss Functions}
 
 

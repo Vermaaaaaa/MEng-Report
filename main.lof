@@ -1,6 +1,10 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Bias Effect on Gyro \blx@tocontentsinit {0}\cite {a2010_how}}}{5}{figure.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Effect of ARW on Gyro Output \blx@tocontentsinit {0}\cite {looney_2016_designing}}}{5}{figure.2}%
-\contentsline {figure}{\numberline {3}{\ignorespaces RNN structure \blx@tocontentsinit {0}\cite {soleimany_2019_deep}}}{8}{figure.3}%
-\contentsline {figure}{\numberline {4}{\ignorespaces 1D CNN structure \blx@tocontentsinit {0}\cite {hoa_2024_onedimensional}}}{9}{figure.4}%
-\contentsline {figure}{\numberline {5}{\ignorespaces CNN structure with dilations \blx@tocontentsinit {0}\cite {bai_2018_an}}}{10}{figure.5}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Structure of residual block}}{11}{figure.6}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Bias Effect on Gyro \blx@tocontentsinit {0}\cite {a2010_how}}}{6}{figure.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Effect of ARW on Gyro Output \blx@tocontentsinit {0}\cite {looney_2016_designing}}}{6}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Geodesic Angle Rotation Error for Undisturbed Slow Rotation}}{9}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Geodesic Angle Rotation Error for Undisturbed Fast Rotation}}{10}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Geodesic Angle Rotation Error for Disturbed Stationary Magnet}}{11}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Comparison of Yaw between Ground Truth and UKF fusion for Disturbed Stationary Magnet}}{12}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces RNN structure \blx@tocontentsinit {0}\cite {soleimany_2019_deep}}}{13}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces 1D CNN structure \blx@tocontentsinit {0}\cite {hoa_2024_onedimensional}}}{14}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces CNN structure with dilations \blx@tocontentsinit {0}\cite {bai_2018_an}}}{15}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Structure of residual block}}{16}{figure.10}%

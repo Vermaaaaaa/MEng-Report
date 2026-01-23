@@ -1,7 +1,7 @@
 \subsection{Gyroscope: Operations and Errors}
 The gyroscope is the main component that is used to determine the orientation 
 of the object. It measures the angular rate in its orthorgonal axes $\omega^x,\omega^y,\omega^z$
-which is used to determined the object's orientation at a discrete time. The orientation is 
+which is used to determine the object's orientation at a discrete time. The orientation is 
 determined through the integration of angular rate. There are multiple different
 ways to represent the orientation of the object, these being, Euler angles, rotation matrices, and
 quaternions. Euler angles give rise to the singularity problem due to the loss
@@ -14,7 +14,7 @@ being more computationally efficient than the others \cite{zhang_2011_a}.
 
 \subsubsection{Angular Rate Integration}
 \label{sec:gyroint}
-Starting in continuous-time kinematics, we can define a quaternion that is represented by the 
+We can define a quaternion that is represented by the 
 angular rate, where $\omega$ is the real angular rate, $\omega_q(t)$ is the pure quaternion. 
 Note: Both the attitude and updated quaternions should be normalised to ensure quaternions represent rotations.
 $q_k \leftarrow \frac{q_k}{\|q_k\|}$.
@@ -23,35 +23,19 @@ $q_k \leftarrow \frac{q_k}{\|q_k\|}$.
 \omega_q(t) = [0,\ \omega_x(t),\ \omega_y(t),\ \omega_z(t)]
 \end{equation}
 
-The orientation evolves according to \cite{sol_2017_quaternion}
-
-\begin{equation}
-\dot{q}(t) = \frac{1}{2}q(t) \otimes \omega_q(t)
-\end{equation}
-
-where $\otimes$ denotes quaternion multiplication. The solution over $[t_0,t]$ can be written 
-using the quaternion exponential, this assumes that the $\omega_q$ is constant over
-$\tau$.
-
-\begin{equation}
-{q}(t) = q(t_0) \otimes \exp(\frac{1}{2}\int_{t_0}^{t} \omega_q(\tau) \,d\tau)
-\end{equation}
-
-These equations show that the orientation update is determined by integrating the angular rate
-over time and mapping the resulting rotation into a quaternion via the exponential.
-
-Moving to discrete-time kinematics, we can restate of defintions in terms
-$\Delta t$. Here the orientation evolves according to
-
+The orientation evolves according to \cite{yang_2014_body}
 
 \begin{equation}
 \hat{q}_k = \hat{q}_{k-1} \otimes \Delta q_k
 \end{equation}
 
-where $\Delta q_k$ is 
+where $\Delta q_k$ is \cite{yang_2014_body} 
 
 \begin{equation}
-\Delta q_k = \exp(\frac{1}{2}\omega_{q,k} \Delta t) 
+\Delta q_k = \begin{bmatrix}
+    \frac{\omega}{|\omega|} \sin{\frac{|\omega| \Delta t}{2}} \\
+    \cos{\frac{|\omega| \Delta t}{2}}
+    \end{bmatrix}
 \end{equation}
 
 This was all done by using an ideal $\omega_k$, if were to model the angular
@@ -63,15 +47,26 @@ rate from a gyroscope as \cite{trawny_2005_indirect}
 
 Where $\omega_{m,k}$ is the measured angular rate, $\omega_k$ is the true angular rate,
 $b_k$ is the bias term, and $n_k$ is the noise term. The real quaternion orientation
-update is as follows.
+update is as follows where $\Delta q_k$ becomes $\Delta q_{m,k}$.
 
 \begin{equation}
-\hat{q}_k = \hat{q}_{k-1} \otimes \exp(\frac{1}{2}(\omega_k + b_k + n_k)_q \Delta t)
+\Delta q_{m,k} = \begin{bmatrix}
+    \frac{\omega_{m,k}}{|\omega_{m,k}|} \sin{\frac{|\omega_{m,k}| \Delta t}{2}} \\
+    \cos{\frac{|\omega_{m,k}| \Delta t}{2}}
+    \end{bmatrix}
+\end{equation}
+
+and the update is now
+
+\begin{equation}
+\hat{q}_k = \hat{q}_{k-1} \otimes \Delta q_{m,k}
 \end{equation}
 
 This shows that the inclusion of the bias and noise accumulates over samples
 as we move forward to the next k, $q_{k-1}$ will incorporate the previous error
 terms. This results in an accumulated orientation error.
+
+For more information about this derivation see Chapter 12\cite{yang_2014_body}.
 
 
 
@@ -110,11 +105,14 @@ shows this in the figure 2, where the ARW is $ 0.17\degree / \sqrt{h}$.
     \label{fig:GyroARW}
 \end{figure}
 
-\subsubsection*{Temperature}
-Temperature fluctuations due to changes in the environment and sensor heating
-induce a movement in the bias, this relationship is also highly non-linear \cite{woodman_2007_number}. Therefore, it can be 
-very difficult to model and subsequently subtract from the gyroscope measurements
-compared to a constant bias.
+
+For more gyroscope error sources and effects, see \cite{woodman_2007_number}.
+
+%\subsubsection*{Temperature}
+%Temperature fluctuations due to changes in the environment and sensor heating
+%induce a movement in the bias, this relationship is also highly non-linear \cite{woodman_2007_number}. Therefore, it can be 
+%very difficult to model and subsequently subtract from the gyroscope measurements
+%compared to a constant bias.
 
 
 
