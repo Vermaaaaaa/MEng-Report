@@ -1,21 +1,17 @@
 \subsection{Gyroscope: Operations and Errors}
 The gyroscope is the main component that is used to determine the orientation 
-of the object. It measures the angular rate in its orthorgonal axes $\omega^x,\omega^y,\omega^z$
+of the object. It measures the angular rate in its orthogonal axes $\omega^x,\omega^y,\omega^z$
 which is used to determine the object's orientation at a discrete time. The orientation is 
-determined through the integration of angular rate. There are multiple different
-ways to represent the orientation of the object, these being, Euler angles, rotation matrices, and
-quaternions. Euler angles give rise to the singularity problem due to the loss
-of one degree-of-freedom whenever two axes of the rotations are parallel \cite{yang_2014_body}.
-Rotation matrices are also used, however they are less concise as they are
-represented as 3x3 matrix, where 6 of these elements are redundant\cite{yang_2014_body}.
-Therefore in this chapter, the quaternion representation is selected due to 
-being more computationally efficient than the others \cite{zhang_2011_a}.
+determined through the integration of angular rate.
+In this chapter, the quaternion representation is selected due to 
+being more computationally efficient than other methods \cite{zhang_2011_a} and does
+not suffer from gimbal lock \cite{yang_2014_body}.
 
 
 \subsubsection{Angular Rate Integration}
 \label{sec:gyroint}
 We can define a quaternion that is represented by the 
-angular rate, where $\omega$ is the real angular rate, $\omega_q(t)$ is the pure quaternion. 
+angular rate, where $\omega$ is the real angular rate, and $\omega_q(t)$ is the pure quaternion. 
 Note: Both the attitude and updated quaternions should be normalised to ensure quaternions represent rotations.
 $q_k \leftarrow \frac{q_k}{\|q_k\|}$.
 
@@ -38,14 +34,14 @@ where $\Delta q_k$ is \cite{yang_2014_body}
     \end{bmatrix}
 \end{equation}
 
-This was all done by using an ideal $\omega_k$, if were to model the angular
+This was all done by using an ideal $\omega_k$, if we were to model the angular
 rate from a gyroscope as \cite{trawny_2005_indirect}
 
 \begin{equation}
 \omega_{m,k} = \omega_k + b_k + n_k 
 \end{equation}
 
-Where $\omega_{m,k}$ is the measured angular rate, $\omega_k$ is the true angular rate,
+where $\omega_{m,k}$ is the measured angular rate, $\omega_k$ is the true angular rate,
 $b_k$ is the bias term, and $n_k$ is the noise term. The real quaternion orientation
 update is as follows where $\Delta q_k$ becomes $\Delta q_{m,k}$.
 
@@ -94,9 +90,9 @@ difficult to determine. Figure 1 shows how constant bias changes the output.
 The gyroscope is also affected by some white noise \cite{woodman_2007_number}. This white noise sequence is zero-mean uncorrelated
 random variables between samples and across axes. When the gyroscope signal is integrated to obtain
 an angle, this white noise produces an ARW.
-The units of ARW is denoted by $ \degree / \sqrt{h}$, this shows that the deviation of angle error grows proportionally to $\sqrt{t}$.
-As ARW is due to random variables, it is classified as the $1\sigma$ of the orientation error. Analog devices
-shows this in the figure 2, where the ARW is $ 0.17\degree / \sqrt{h}$.
+The units of ARW are denoted by $ \degree / \sqrt{h}$, this shows that the deviation of angle error grows proportionally to $\sqrt{t}$.
+As ARW is due to random variables, it is classified as the $1\sigma$ of the orientation error. Analog Devices
+shows this in figure 2, where the ARW is $ 0.17\degree / \sqrt{h}$.
 
 \begin{figure}[htp]
     \centering

@@ -22,7 +22,7 @@ outputs of the model. The general idea can be described by the equation
 
 where $\hat{y}$ is the output, $f_{model}$, is a function that describes the model,
 $x_t$ is the input at time t, and $h_{t-1}$ is a vector state that
-describes the internal state of the model at the previous time step. Expanding
+describes the internal state of the model at the previous timestep. Expanding
 on this, the state of the model is updated as follows
 
 \begin{equation}
@@ -40,7 +40,7 @@ h_t = \phi(W_{hh}^T h_{t-1} + W_{xh}^T x_t)
 \end{equation}
 
 where $W_{hh}^T, W_{hy}^T, W_{xh}^T$ are a set of weight matrices that are
-reused for every time step, and $\phi$ represents an arbitrary activation function.
+reused for every timestep, and $\phi$ represents an arbitrary activation function.
 
 
 \begin{figure}[htp]
@@ -50,29 +50,29 @@ reused for every time step, and $\phi$ represents an arbitrary activation functi
     \label{fig:RNN}
 \end{figure}
 
-\hyperref[fig:RNN]{Figure 3} shows the unrolled flow of the RNN, where the arrows between each
+\hyperref[fig:RNN]{Figure 7} shows the unrolled flow of the RNN, where the arrows between each
 block represents the passing of $h_t$, from one input to the next. The point
 of the recurrence state $h_t$, is to show how the output of the model depends
 on context from previous inputs plus $h_t$. This is especially relevant in our case, as
-described in \hyperref[sec:gyroint]{section 3.1.1}, the accumulation of 
+described in \hyperref[sec:gyroint]{section 2.1.1}, the accumulation of 
 gyroscopic errors comes from the integration of the angular rate. As these
 errors accumulate, the current error depends on the history of the gyroscope 
 measurements. 
 
 There are many problems with RNNs however, the biggest being the problem of exploding/vanishing
 gradients. RNNs are trained via backpropagation through time, which propagates gradients across
-timesteps. For long sequences, computing the gradient with respect to $h_0$ involes many factors
+timesteps. For long sequences, computing the gradient with respect to $h_0$ involves many factors
 of repeated multiplication of weight matrices across time. This can lead to many values of the computation
 being greater than 1, which explodes gradients leading to unstable training.
 In the case, where many values are less than 1, this causes vanishing gradients where learning long-range
 dependencies becomes difficult. Additionally, as the hidden state $h_t$ is propagated sequentially through
 time, when performing backpropagation, training cannot be parallelised over timesteps. This results in 
-a high training times compared to convolutional models.
+high training times compared to convolutional models.
 
 Updated versions of the RNN have been proposed to solve the problem of vanishing and exploding
-gradients. These being Long Short Term Memory (LSTM) and Gated Recurrent Units (GRUs). These methods
-exploit the use of a cell state that does not need to do perform repeated multiplication of weight matrices,
-however they are still subject to long training times  and the gradient problem is not fully 
+gradients. These being Long Short-Term Memory (LSTM) and Gated Recurrent Units (GRUs). These methods
+exploit the use of a cell state that does not need to perform repeated multiplication of weight matrices,
+however, they are still subject to long training times  and the gradient problem is not fully 
 solved but mitigated \cite{kanai_preventing}\cite{razvanpascanu_2012_on}.
 
 \subsubsection{Convolutional Neural Networks (CNNs)}
@@ -99,11 +99,11 @@ $x_c$ is the input data of that channel, and $\phi$ is an arbitrary non-linear a
 function (typically ReLU).
 
 For example if $K = 3$, the convolution will occur 
-of the timesteps $x[t-1], x[t], x[t+1]$, this is how the convolution extracts local features 
+over the timesteps $x[t-1], x[t], x[t+1]$, this is how the convolution extracts local features 
 in the input data.
  
 Typically, these CNNs are made up of layers, where in each layer the number of filters 
-grow e.g. $L1 = 16, L2 = 32, L3 = 64$ etc. These additional filters in later layers allow the
+grows e.g. $L1 = 16, L2 = 32, L3 = 64$ etc. These additional filters in later layers allow the
 model to learn more complex feature sets based on the previous layers' filter. Zeiler et al.
 \cite{zeiler_2013_visualizing} shows this in their figure 2 where their convolutional network is used for image
 classification.
@@ -119,14 +119,14 @@ classification.
 CNNs are more attractive than RNNs due to its ability to be efficiently
 trained by using parallelisation \cite{krizhevsky_2012_imagenet}. This leads to the ability to test multiple different
 iterations of a model where parameters and loss functions may be changed
-to explore what effects they may have (section 3.3). CNNs also do
+to explore what effects they may have. CNNs also do
 not suffer from vanishing/exploding gradients as much and are seen to be more
 stable during training due to no backpropagation through time. 
 
 However, unlike RNNs, baseline CNNs cannot produce outputs due to significant 
 temporal information. It can extract local features and in 1D convolutions
 it has some ability to traverse backwards through time but not to any
-significant degree. As seen in \hyperref[sec:gyroint]{section 3.1.1}, 
+significant degree. As seen in \hyperref[sec:gyroint]{section 2.1.1}, 
 the accumulation of drift is due to the integration of the angular rate
 as we move forward in time. 
 
@@ -138,7 +138,7 @@ are the use of dilations that grow the receptive field allowing the network
 to look back further in time and learn long-term information. Furthermore,
 causal convolutions meaning, that the convolution operation cannot
 look forward in time. To explain causality, we can look back at  
-\hyperref[eq:12]{equation 12} and modify this so 
+\hyperref[eq:12]{equation 13} and modify this so 
 
 \begin{equation}
   z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=0}^{K-1} w_{f,c}[k] x_c[t-k]
@@ -154,8 +154,7 @@ $x[t+1], x[t+2]$... etc.
 
 
 Dilations allow the model to look further back in time without the need
-of increasing parameters for the same $K$ and $C_{in}$ used in convolutions. This is best represented in
-the figure 5.
+of increasing parameters for the same $K$ and $C_{in}$ used in convolutions. This is best represented in figure 9.
 
 \begin{figure}[H]
     \centering
@@ -181,8 +180,8 @@ can look back in history and model long-term dependencies
 between data, something baseline CNNs cannot do. Additionally, like a CNN
 it is quicker and more stable in training unlike an RNN. However, the TCN
 does have its problems, these being extra data storage during its operation
-and domain transfer. Unlike RNNs which only have store $h(t)$, TCNs needs
-to take in a raw sequence upto its effective history length \cite{bai_2018_an}.
+and domain transfer. Unlike RNNs which only have store $h(t)$, TCNs need
+to take in a raw sequence up to its effective history length \cite{bai_2018_an}.
 Domain transfer refers to transferring a model that has been trained in 
 one domain (i.e. small receptive field) and applied to another domain
 (i.e. large receptive field), where the TCN may perform poorly due to 
@@ -191,7 +190,7 @@ this change in domain.
 
 \subsection{TCN Design}
 
-The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 6
+The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 10
 demonstrates the architecture of the residual block that has been 
 implemented in the first semester.
 
@@ -202,14 +201,14 @@ implemented in the first semester.
     \label{fig:residual}
 \end{figure}
 
-The dialted causal convolution is the same as discussed in \hyperref[sec:tcn_sel]{section 3.2.3.}
+The dilated causal convolution is the same as discussed in \hyperref[sec:tcn_sel]{section 4.2.3.}
 
 \subsubsection{Normalisation}
 Normalisation is a technique used in deep learning to ensure training stability, 
 while also reducing training times by allowing the use of higher learning rates. 
 The aim of normalisation is to address internal covariate shift, the change in
-the distrubution of each layer's inputs during training, as parameters of the
-previous layers changes \cite{ioffe_2015_batch}. This can be done by the following 
+the distribution of each layer's inputs during training, as parameters of the
+previous layers change \cite{ioffe_2015_batch}. This can be done by the following 
 techniques.
 
 
@@ -244,11 +243,11 @@ use in CNN models for drift reduction \cite{brossard_2020_denoising}\cite{chen_2
 as the original TCN implementation uses it to avoid errors with small batch sizes \cite{bai_2018_an}.
 GroupNorm as it is a middle ground where it works well with small batch sizes compared
 to BatchNorm but it may introduce more complexity with groups needing to be selected and
-as such will be tested last to see if the other techniques give an acceptable tradeoff.
+as such will be tested last to see if the other techniques give an acceptable trade-off.
 
 \subsubsection{Activation Functions}
-Activation fucntions are functions that are used in deep learning to add non-linearity
-to our output. This is because seen in equations 9,11,13,15, the relationship between
+Activation functions are functions that are used in deep learning to add non-linearity
+to our output. This is because seen in equations 11,12,13,15,17 the relationship between
 weights and input data is all linear. The table below demonstrates common activation functions
 used.
 
@@ -307,7 +306,7 @@ allow for smoother functions.
 
 \newpage
 \subsubsection{Residual Connections/1x1 Convolution}
-The right branch (figure 6) is essential in training very deep neural networks 
+The right branch (figure 10) is essential in training very deep neural networks 
 where networks may not be able to converge due to exploding/vanishing gradients. This branch
 is called a residual connection, where the equation below shows its operation 
 
@@ -319,11 +318,11 @@ where $y$ is the output, $\mathcal{F}(x, {W_i})$ is the residual mapping to be l
 $W$, is a projection applied to $x$ (1x1 convolution), and $x$
 is our input\cite{he_2016_deep}.  
 
-Residual connections adds inputs of a block to the output of the block, so when
+Residual connections add inputs of a block to the output of the block, so when
 learning the model learns the relationship of $\mathcal{F}(x, W_i) = y - Wx$, which 
 is easier to learn than the full mapping directly. The 1x1 convolution is included as
 the model goes deeper, the number of channels increases to capture more complex 
-features as each channel has their own set of filter/kernels. The addition between
+features as each channel has their own set of filters/kernels. The addition between
 $\mathcal{F}(x, W_i)$ and $x$ must be of two tensors of the same size so $W$ allows
 the addition to be possible.
 

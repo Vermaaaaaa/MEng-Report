@@ -1,0 +1,66 @@
+# LaTeX intermediate files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.lb
+
+# Bibliography files
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# Index files
+*.idx
+*.ilg
+*.ind
+
+# Glossary files
+*.glo
+*.gls
+*.glg
+
+# Nomenclature
+*.nlo
+*.nls
+
+# TikZ / pgfplots externalization
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# Latexmk
+*.fls
+
+# Build directories
+/build/
+/out/
+/dist/
+
+# PDF output (optional — keep if you want PDFs versioned)
+*.pdf
+
+# Temporary files
+*.tmp
+*.temp
+
+# Editor-specific files
+# VS Code
+.vscode/
+
+# IntelliJ / JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

@@ -1,14 +1,14 @@
-\subsection{Inertial Measurement Units (IMUs) and their applications}
+\subsection{Inertial Measurement Units and their applications}
 
 IMUs are composed of multiple sensors which include a gyroscope, accelerometer, and 
 occasionally a magnetometer. These three sensors measure the angular rate, 
 specific force, and the local magnetic field vector respectively. These measurements 
 can be used to estimate the orientation of an object through integration of the angular rate. 
-This data acquisition is essential for several applications such as BSNs\cite{filippeschi_2017_survey}
-, robotics, and autonomous vehicles where these systems rely on high-rate orientation updates.
+This data acquisition is essential for several applications such as BSNs\cite{filippeschi_2017_survey}, 
+robotics, and autonomous vehicles where these systems rely on high-rate orientation updates.
 
 IMUs have emerged as a key technology due to their ability to work in a self-contained environment. In environments where external references of orientation are unavailable or 
-unreliable, technologies such as IMUs are attractive. Filters, such as the Kalman filter (KF), 
+unreliable, technologies such as IMUs are attractive. Filters, such as the KF, 
 allow the use of accelerometers and magnetometers to guide and correct state estimation, 
 but these also suffer from failures like magnetic disturbances, and high linear accelerations.
 Due to these limitations, there is significant motivation to explore deep-learning methods that 

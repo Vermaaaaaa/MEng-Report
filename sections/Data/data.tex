@@ -2,7 +2,7 @@
 \section{Unaided Unscented Kalman Filter Evaluation}
 
 \subsection{Unscented Kalman Filter (UKF) Overview}
-The UKF is an extension of the KF, it is an algorithm that is used in state estimation and
+The UKF is an extension of the KF; it is an algorithm that is used in state estimation and
 can be used to fuse our gyroscope, accelerometer, and magnetometer to get an overall orientation
 estimate of our system. Unlike standard KF, the UKF can model the non-linear relationships
 in orientation estimation due to quaternion integration. Another alternative to the UKF is the extended Kalman filter (EKF), 
@@ -13,7 +13,7 @@ better performance.
 For an in-depth derivation regarding the UKF see Chapter 12.3.3 \cite{yang_2014_body}.
 
 \subsection{Datasets and Experimental Data}
-The dataset used for UKF evaluation has been from BROAD \cite{laidig_2021_broada} whilst training, testing and, validation data will be from a range of sources
+The dataset used for UKF evaluation is from BROAD \cite{laidig_2021_broada} whilst training, testing and, validation data will be from a range of sources
 including BROAD, OxIOD \cite{a2019_dataset}, and others to improve 
 generalisation of the model across sensors, motion scenarios, and disturbances. 
 
@@ -21,7 +21,7 @@ The reason why BROAD
 was used for the baseline is that it has many appealing qualities, these 
 being isolated magnetometer and accelerometer disturbances, short and long motions, and rest phases.
 These properties allow us to estimate the noise of each sensor for process and measurement noise 
-covariances, explored in \hyperref[sec:filtersetup]{section 3.3},  from the rest segments and tests the
+covariances, explored in \hyperref[sec:filtersetup]{section 3.3},  from the rest segments and test the
 filter under disturbed conditions.
 
 
@@ -65,20 +65,20 @@ magnetometer measurements were downweighted for correcting the orientation. The 
 was determined by taking a mean of all measurements for each sensor during the rest periods, 
 and subtracting this mean, to get residuals from the sensors. These
 residuals were then computed as the covariance which is modelled as Gaussian noise and before each correction applied by the filter, 
-a heuristic approach was taken by tuning arbitrary tolerances to accept or reject the sensor
-measurements. If measurements was deemed unreliable, then the matrix $R$ would be multiplied by a scalar
-value to downweight updates during corrections, this scheme was selected as by outright rejecting measurements caused 
-jerking orientation estimates.
+a heuristic approach was taken by tuning arbitrary tolerances to accept or downweight the sensor
+measurements. If measurements were deemed unreliable, then the matrix $R$ would be multiplied by a scalar
+value to downweight updates during corrections, this scheme was selected because outright rejection of measurements caused 
+discontinuous orientation estimates.
 
 The matrix $Q$, also took a similar approach where gyro bias was determined through subtracting 
-the mean during rest phases and these resdiuals were computed as the covariance which was modelled to be Gaussian noise. 
+the mean during rest phases and these residuals were computed as the covariance which was modelled to be Gaussian noise. 
 \newpage
 \subsection{Scenarios and Error Metrics}
 The scenarios chosen to evaluate the performance of the filter were undisturbed slow rotation,
 undisturbed fast rotation, and disturbed stationary magnet \cite{laidig_2021_broada}. The first scenario was chosen to
 see how the filter behaves under ideal conditions where accelerometer and magnetometer measurements
-were close to ideal. The second scenario for how high linear accelerations corrupt orientation
-estimates (inclination) given by the filter, and the final scenario for how magnetometer disturbances
+were close to ideal. The second scenario was chosen to show how high linear accelerations corrupt orientation
+estimates (inclination) given by the filter, and the final scenario was chosen to show how magnetometer disturbances
 affect the yaw estimation of the filter. 
 
 \subsubsection{Quaternion Sign Convention}
@@ -148,7 +148,7 @@ $30.9128$ \\
 \FloatBarrier
 
 As we can see from the graph and table, the UKF performed reasonably well in determining the orientation
-with a $\mu = 5.8150$, $\sigma = 3.7535$ $\text{median} = 4.9821$. This means that under undisturbed conditions of the
+with a $\mu = 5.8150$, $\sigma = 3.7535$, and a $\text{median} = 4.9821$. This means that under undisturbed conditions of the
 magnetometer and accelerometer, it is a viable choice to use a UKF to determine the orientation. 
 Additionally, with a $\text{max} = 30.9128$, even though it is quite high under these close to
 ideal conditions, the spikes were brief and the UKF was able to recover quite well to keep the mean low. 
@@ -196,11 +196,11 @@ $72.9758$ \\
 \FloatBarrier
 
 As we can see from the graph and table, the UKF performed okay in determining the orientation
-with a $\mu = 11.4535$, $\sigma = 9.0682$ $\text{median} = 9.0273$. This means that under the
-disturbed conditions of the accelerometer, it can be seen that the UKF is a reasonable choice, 
+with a $\mu = 11.4535$, $\sigma = 9.0682$, and a $\text{median} = 9.0273$. This means that under the
+disturbed conditions of the accelerometer, the UKF is a reasonable choice, 
 however, there is still a lot of room for improvement on the orientation estimation.  
 Furthermore, with a $\text{max} = 72.9758$, this is very high and can lead to severe inaccuracies
-if not addressed. Again with the previous test, the UKF was able to recover relatively well but
+if not addressed. Again, with the previous test, the UKF was able to recover relatively well but
 this max would not be acceptable for an orientation of an object and can lead to severe consequences
 if not addressed. 
 
@@ -243,8 +243,8 @@ $179.9404$ \\
 \FloatBarrier
 
 As we can see from the graph and table, the UKF performed terribly in determining the orientation
-with a $\mu = 37.8035$, $\sigma = 38.8809$ $\text{median} = 23.6325$. This means that under
-a magnetic disturbance, a UKF alone cannot be used for accurace orientation estimates even with
+with a $\mu = 37.8035$, $\sigma = 38.8809$, and a $\text{median} = 23.6325$. This means that under
+a magnetic disturbance, a UKF alone cannot be used for accurate orientation estimates even with
 adaptive gating for the magnetometer. As the gating for the magnetometer would have likely 
 downweighted the magnetic reference, the accumulation of errors through integration would have
 also played a large role in the inaccuracy of the orientation.  
@@ -260,7 +260,7 @@ also played a large role in the inaccuracy of the orientation.
 This can be further shown by looking at the comparison of the yaw between ground truth and fusion.
 Looking at Figure 6, we can see that the magnetic disturbance causes wide variations of the yaw
 throughout the test. This further supports the conclusion that without addressing gyroscopic drift
-through deep-learning then accurate orientation estimates from an IMU is unlikely.
+through deep-learning, accurate orientation estimates from an IMU is unlikely.
 
 
 

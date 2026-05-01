@@ -128,30 +128,6 @@
       \verb https://journals.sagepub.com/doi/full/10.1177/2055668318813455
       \endverb
     \endentry
-    \entry{yang_2014_body}{book}{}
-      \name{author}{1}{}{%
-        {{hash=fcdeef628f31c9c5305ee39311f1fcc6}{%
-           family={Yang},
-           familyi={Y\bibinitperiod},
-           given={Guang-Zhong},
-           giveni={G\bibinithyphendelim Z\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {London Springer}%
-      }
-      \strng{namehash}{fcdeef628f31c9c5305ee39311f1fcc6}
-      \strng{fullhash}{fcdeef628f31c9c5305ee39311f1fcc6}
-      \strng{bibnamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
-      \strng{authorbibnamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
-      \strng{authornamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
-      \strng{authorfullhash}{fcdeef628f31c9c5305ee39311f1fcc6}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Body Sensor Networks}
-      \field{year}{2014}
-    \endentry
     \entry{zhang_2011_a}{article}{}
       \name{author}{2}{}{%
         {{hash=76a53b1551e4ef6f6fd98153a22c9b03}{%
@@ -171,8 +147,8 @@
       \strng{authorbibnamehash}{c97847e5ef5efd4407aca0003440024f}
       \strng{authornamehash}{c97847e5ef5efd4407aca0003440024f}
       \strng{authorfullhash}{c97847e5ef5efd4407aca0003440024f}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Instrumentation and Measurement}
@@ -189,6 +165,30 @@
       \verb{doi}
       \verb 10.1109/tim.2011.2135070
       \endverb
+    \endentry
+    \entry{yang_2014_body}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fcdeef628f31c9c5305ee39311f1fcc6}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Guang-Zhong},
+           giveni={G\bibinithyphendelim Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {London Springer}%
+      }
+      \strng{namehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{fullhash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{bibnamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{authorbibnamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{authornamehash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \strng{authorfullhash}{fcdeef628f31c9c5305ee39311f1fcc6}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Body Sensor Networks}
+      \field{year}{2014}
     \endentry
     \entry{trawny_2005_indirect}{misc}{}
       \name{author}{2}{}{%
@@ -325,8 +325,8 @@
       \strng{authorbibnamehash}{376085daa787333f753902fa1f401ec3}
       \strng{authornamehash}{376085daa787333f753902fa1f401ec3}
       \strng{authorfullhash}{376085daa787333f753902fa1f401ec3}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Sensors}
@@ -976,8 +976,8 @@
       \strng{authorbibnamehash}{1a23c09aa65b3c2ade45ed18d8127375}
       \strng{authornamehash}{1a23c09aa65b3c2ade45ed18d8127375}
       \strng{authorfullhash}{1a23c09aa65b3c2ade45ed18d8127375}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Communications of the ACM}
@@ -1085,8 +1085,8 @@
       \strng{authorbibnamehash}{057007a647f95fd49b81c4ff27c3c59e}
       \strng{authornamehash}{057007a647f95fd49b81c4ff27c3c59e}
       \strng{authorfullhash}{057007a647f95fd49b81c4ff27c3c59e}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Searching for Activation Functions}
