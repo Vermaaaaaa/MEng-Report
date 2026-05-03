@@ -1,5 +1,73 @@
 \newpage
-\section{Dataset (BROAD)}
+\section{Dataset}
+\subsection{Dataset Selection}
+
+\subsubsection{BROAD}
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{p{3.5cm} p{8.5cm}}
+\hline
+\textbf{Feature} & \textbf{Description} \\
+\hline
+
+Sampling Rate & $286\,\text{Hz}$ \\
+Ground Truth & Optical Motion Capture (OMC) quaternion $[w, x, y, z]$ in ENU reference frame \\
+Number of Trials & 39 \\
+Number of Samples & 1508364 samples \\
+Diverse Trial Set & slow/fast rotations, translations, magnetic disturbances \\
+
+\hline
+\end{tabular}
+\caption{Key characteristics of the BROAD dataset \cite{laidig_2021_broada}}
+\label{tab:broad_dataset}
+\end{table}
 
 
-Testing some stuff
+
+
+BROAD \cite{laidig_2021_broada} is the dataset used in the project. It has 
+several characteristics that make it suitable for selection.
+First of these is the inclusion of a magnetometer, this project specifically
+focuses on 9 DOF IMUs, which causes many other datasets to be excluded based
+on this alone. The OMC ground truth quaternions provide a high accuracy 
+reference which make it a suitable training target for deep learning.
+
+Additionally, BROAD trials include slow and fast rotations, isolated 
+accelerometer and magnetometer disturbances, and combined scenarios. 
+This means that a variety of trial types across the set can be split such 
+that train, validation, and test sets are equally represented. 
+Hence, the evaluation of the deep learning
+method reflects generalisation across disturbance conditions. Furthermore, BROAD includes
+rest phases for each trial, which allows for sensor noise characteristics 
+to be determined empirically. This is expanded upon in \fixme{sections}.
+  
+\subsubsection{Simulated Data}
+Simulators (MATLAB's Navigation Toolbox \cite{mathworks_navigation_toolbox}),
+can be used to generate a diverse IMU dataset with the advantage of 
+near perfect ground truth
+quaternions. This is due to the ability of creating trials that focus on
+different scenarios and define the motion profile the IMU undergoes. However, 
+they suffer from major restrictions that do not make them suitable.
+
+The fundamental problem is that the real sensor characteristics are hard to
+model as these simulations mainly use simple Gaussian processes. Real noise
+is more complex with bias being temperature dependent, noise is correlated
+across axes, and magnetic disturbances vary both spatially and temporally. 
+This makes deep learning models trained on this data harder to generalise 
+to real scenarios (sim to real gap) as the data does not capture the same level of complexith
+in error sources described in \hyperref[sec:gyroerrors]{section 2.1.2}. This
+domain shift causes a model's evaluation on real IMUs to underperform. 
+
+Moreover, simulation causes leakage into deep learning design decisions as
+simulated sensor noise profiles are known beforehand. This leads to any
+decisions made to be circular in nature.
+
+Due to the main restriction of the sim to real gap, the choice was made to use the BROAD dataset.
+
+\subsubsection{EuRoC MAV / TUM-VI}
+
+
+
+
+\subsection{Scope and Limitations}
