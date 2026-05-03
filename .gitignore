@@ -45,8 +45,7 @@
 /out/
 /dist/
 
-# PDF output (optional — keep if you want PDFs versioned)
-*.pdf
+
 
 # Temporary files
 *.tmp
