@@ -12,20 +12,6 @@ better performance.
 
 For an in-depth derivation regarding the UKF see Chapter 12.3.3 \cite{yang_2014_body}.
 
-\subsection{Datasets and Experimental Data}
-The dataset used for UKF evaluation is from BROAD \cite{laidig_2021_broada} whilst training, testing and, validation data will be from a range of sources
-including BROAD, OxIOD \cite{a2019_dataset}, and others to improve 
-generalisation of the model across sensors, motion scenarios, and disturbances. 
-
-The reason why BROAD
-was used for the baseline is that it has many appealing qualities, these 
-being isolated magnetometer and accelerometer disturbances, short and long motions, and rest phases.
-These properties allow us to estimate the noise of each sensor for process and measurement noise 
-covariances, explored in \hyperref[sec:filtersetup]{section 3.3},  from the rest segments and test the
-filter under disturbed conditions.
-
-
-
 \subsection{Filter Setup}
 
 Table 1 below shows the configuration used for the UKF for each of the scenarios. 

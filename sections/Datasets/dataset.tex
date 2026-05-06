@@ -1,5 +1,5 @@
 \newpage
-\section{Dataset}
+\section{datasets}
 \subsection{Dataset Selection}
 
 \subsubsection{BROAD}
@@ -32,6 +32,9 @@ First of these is the inclusion of a magnetometer, this project specifically
 focuses on 9 DOF IMUs, which causes many other datasets to be excluded based
 on this alone. The OMC ground truth quaternions provide a high accuracy 
 reference which make it a suitable training target for deep learning.
+The ground truth has also been synchronised with the IMU readings, allowing
+for supervised learning at every timestep without discontinuities or needing to 
+interpolate.
 
 Additionally, BROAD trials include slow and fast rotations, isolated 
 accelerometer and magnetometer disturbances, and combined scenarios. 
@@ -55,7 +58,7 @@ model as these simulations mainly use simple Gaussian processes. Real noise
 is more complex with bias being temperature dependent, noise is correlated
 across axes, and magnetic disturbances vary both spatially and temporally. 
 This makes deep learning models trained on this data harder to generalise 
-to real scenarios (sim to real gap) as the data does not capture the same level of complexith
+to real scenarios (sim to real gap) as the data does not capture the same level of complexity
 in error sources described in \hyperref[sec:gyroerrors]{section 2.1.2}. This
 domain shift causes a model's evaluation on real IMUs to underperform. 
 
@@ -65,9 +68,31 @@ decisions made to be circular in nature.
 
 Due to the main restriction of the sim to real gap, the choice was made to use the BROAD dataset.
 
-\subsubsection{EuRoC MAV / TUM-VI}
-
-
-
-
 \subsection{Scope and Limitations}
+The BROAD dataset is not without its limitations, it has a small number of trials  
+
+\subsection{Data Normalisation}
+Data normalisation is the process of converting a variable's actual range to a standard range
+of values that is seen at a neural network's (NN) input.  
+LeCun et al highlights normalisation by stating that convergence is usually faster if the average of the
+input variable over training is close to zero \cite{lecun_1998_efficient}.
+This is due to any shift in the average input from zero will bias NN weight updates in a certain direction
+be it positive or negative. Meaning, that if the network wanted to shift weights in the opposite direction
+it must 'zigzag' which is inefficient and slow \cite{lecun_1998_efficient}. 
+Sola et al also states that 
+we can expect better predictions from our NN by utilising normalisation. It was 
+concluded that with adequate normalisation of input data, estimation errors can be reduced by a factor of 
+by a factor between 5-10 \cite{sola_1997_importance}. 
+
+Thus, data normalisation was considered to be a very important addition to the pre-processing pipeline.
+
+\subsubsection{Z-Score Normalisation}
+\subsubsection{Min/Max Scaling}
+\subsubsection{Normalisation Implementation}
+
+
+\subsection{Noise Augmentation}
+
+\subsection{Windowing}
+
+
