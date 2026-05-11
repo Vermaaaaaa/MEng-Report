@@ -1,0 +1,49 @@
+\usetikzlibrary{positioning, fit, arrows.meta, shadows, calc}
+
+\begin{tikzpicture}[
+  font=\large,
+  >=Latex,
+  block/.style={
+    draw, rounded corners=6pt, minimum width=4.2cm, minimum height=1.4cm,
+    align=center, drop shadow
+  },
+  tcn/.style={block, fill=blue!20, draw=blue!50!black},
+  ukf/.style={block, fill=red!15, draw=red!40!black},
+]
+
+\node[tcn] (tcn) {Temporal Convolutional\\Network (TCN)};
+\node[ukf, below=1.6cm of tcn, xshift=1.8cm] (ukf) {Multiplicative Unscented\\Kalman Filter (MUKF)};
+
+%% Input junction
+\coordinate (inp) at ([xshift=-3.8cm] $(tcn.west)!0.5!(ukf.west)$);
+\node[left=2mm of inp, align=right] (labels) {
+  $\boldsymbol{\omega}_{n}^{\mathrm{IMU}}$\\[4pt]
+  $\mathbf{a}_{n}^{\mathrm{IMU}}$\\[4pt]
+  $\mathbf{m}_{n}^{\mathrm{IMU}}$
+};
+\filldraw (inp) circle (3pt);
+\draw[->] (inp) |- (tcn.west);
+\draw[->] (inp) |- (ukf.west);
+
+%% TCN -> MUKF: right then down, label on vertical segment
+\coordinate (corner) at (tcn.east |- ukf.north);
+\draw[->] (tcn.east) -- (corner) 
+    node[midway, above, font=\normalsize] {$\hat{\mathbf{b}}_{n+1}$}
+    -- (ukf.north);
+
+%% Output
+\node[right=1.6cm of ukf.east, align=left] (out) {$\hat{\mathbf{q}}_{n+1}$};
+\draw[->] (ukf.east) -- (out.west);
+
+%% Phantom node for bottom label — included in fit so box expands
+\node[below=1.0cm of ukf, font=\normalsize, align=center] (bottomlabel)
+  {proposed deep learning aided orientation estimation system};
+
+%% Dashed container fitted around everything including label
+\node[
+  draw, dashed, rounded corners=8pt,
+  inner sep=8mm,
+  fit=(tcn)(ukf)(corner)(out)(bottomlabel),
+] {};
+
+\end{tikzpicture}

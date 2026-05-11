@@ -1,5 +1,5 @@
 \newpage
-\section{datasets}
+\section{Datasets}
 \subsection{Dataset Selection}
 
 \subsubsection{BROAD}
@@ -68,8 +68,22 @@ decisions made to be circular in nature.
 
 Due to the main restriction of the sim to real gap, the choice was made to use the BROAD dataset.
 
-\subsection{Scope and Limitations}
-The BROAD dataset is not without its limitations, it has a small number of trials  
+\subsubsection{Train, Validation, and Test Dataset Split}
+
+\subsection{Scope and Limitations of BROAD}
+The BROAD dataset is not without its limitations, the main limitation is that it contains a small number of distinct trials,
+which limits the diversity of conditions the model can be exposed to. In comparison, most 
+conventional deep learning tasks such as natural language processing and image processing tend to have more diverse pool in its training set 
+which allows for their solutions to generalise and converge easier.
+This limitation can lead to poorer 
+generalisation to our test set and thus may reduce performance on unseen conditions. Hestness et al empirically demonstrates this
+through a power-law which states that generalisation error decreases as the training set increases \cite{hestness_deep}. However,
+adding noise augmentation \fixme{section} can artificially diversify the training set and is able to alleviate this limitation but not fully solve it. 
+
+Further, the data collected was in a controlled laboratory setting, where clean and predictable conditions are present. In a real deployment, 
+temperature, and scale factor errors may be more present compared to the dataset. This can hurt generalisation even if the same hardware
+is being used. However, to try and alleviate this, the model was tested on the more disturbed conditions (see \fixme{section}) to try and test the model at
+these extreme conditions.
 
 \subsection{Data Normalisation}
 Data normalisation is the process of converting a variable's actual range to a standard range
@@ -79,7 +93,7 @@ input variable over training is close to zero \cite{lecun_1998_efficient}.
 This is due to any shift in the average input from zero will bias NN weight updates in a certain direction
 be it positive or negative. Meaning, that if the network wanted to shift weights in the opposite direction
 it must 'zigzag' which is inefficient and slow \cite{lecun_1998_efficient}. 
-Sola et al also states that 
+Sola et al expands on normalisation stating 
 we can expect better predictions from our NN by utilising normalisation. It was 
 concluded that with adequate normalisation of input data, estimation errors can be reduced by a factor of 
 by a factor between 5-10 \cite{sola_1997_importance}. 
@@ -87,12 +101,15 @@ by a factor between 5-10 \cite{sola_1997_importance}.
 Thus, data normalisation was considered to be a very important addition to the pre-processing pipeline.
 
 \subsubsection{Z-Score Normalisation}
+
+
+
+
 \subsubsection{Min/Max Scaling}
-\subsubsection{Normalisation Implementation}
+\subsubsection{Summary and Choice}
 
 
 \subsection{Noise Augmentation}
 
-\subsection{Windowing}
 
 
