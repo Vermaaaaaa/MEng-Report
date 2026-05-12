@@ -4,7 +4,7 @@
 \subsection{Kalman Filter Overview}
 The Kalman filter (KF) is an optimal recursive estimator used to estimate a 
 state under noisy measurements and uncertain dynamics. It works under an assumption that the relationship
-between our state and measurements can be modelled as linear and Gaussian \fixme{cite intro to KF}.
+between our state and measurements can be modelled as linear and Gaussian \cite{welch_2006_an}.
 
 \begin{table}[!htbp]
 \centering
@@ -32,7 +32,7 @@ the new information the filter has gained about the system.
 However, the KF breaks down for orientation estimation due to some key factors. First, quaternion kinematics are
 non-linear (\fixme{see SO(3) equation}) and the assumption that the relationship is linear is violated. Second, as the relationship is non-linear, this
 breaks the Gaussian noise process model as propagation through a non-linear function produces a non-Gaussian output. Third,
-as quaternions exist in SO(3) and not Euclidean space, adding a Gaussian term to the state can push it off the manifold.
+as quaternions exist in SO(3) and not Euclidean space, adding a Gaussian term to the state can push it off the manifold \cite{gallo_2022_the}.
 
 
 
@@ -40,81 +40,75 @@ as quaternions exist in SO(3) and not Euclidean space, adding a Gaussian term to
 \subsection{Unscented Kalman Filter}
 The Unscented Kalman Filter (UKF) is an extension of the KF that allows for non-linear relationships to be more accurately modelled by the filter. 
 Traditionally, to apply a KF to a non-linear relationship an extended KF (EKF) is used which linearises all non-linear 
-models through the use of Jacobian matrices that are evaluated at the current state estimate. \fixme{cite Julier}. 
+models through the use of Jacobian matrices that are evaluated at the current state estimate \cite{julier_1997_a}.  
 However, better performance tends to be achieved by a UKF for orientation estimation as a UKF gives more accurate covariance propagation at 
-larger rotations \cite{kraft_2003_a} \fixme{cite Julier}.
+larger rotations. This is due to UKFs are able to capture second order processes through the use of sigma points \cite{kraft_2003_a} \cite{julier_1997_a}.
 
 Sigma points are drawn from a specific, deterministic algorithm that when a non-linear function is applied to these points; a set of $2n + 1$ transformed
-points are left ($n = 3$ for a 3D error state, giving $7$ sigma points).
+points are left.
 These sigma points are then used to reconstruct the mean by taking a weighted average of these points and the weighted outer product
 for the covariance. 
 
 However, with the non-linear propagation addressed, computing a weighted mean of quaternions directly is geometrically invalid. This is due to
 quaternions exisiting on the SO(3) manifold, as the element-wise average of quaternions does not lie on the unit sphere and therefore does not represent a valid rotation.  
 
-For an in-depth derivation regarding the UKF see \fixme{cite Julier}.
+For an in-depth derivation regarding the UKF see \cite{julier_1997_a}.
 
 \subsection{The Manifold Problem}
 The core issue of the UKF is that it assumes that the x lies within Euclidean space, however quaternions lie on the SO(3) manifold. So computing the mean
-and adding the measurement noise to the state is geometrically invalid, thus the state that is estimated is also invalid.
+and adding the measurement noise to the quaternion state is geometrically invalid, thus the state that is estimated is also invalid.
 
 The solution to this problem is to perform any arithmetic computations that the UKF requires within the local tangent space (so(3)). By taking the current 
 state estimate (quaternion on the SO(3) manifold) and mapping it to and from Euclidean vector space, the predict and update steps are performed validly 
 and the geometric representation of the state is conserved. Brossard et al and Crassidis et al
-explore and show this within their UKF-Manifold and Unscented Quaternion Estimator (USQUE) implementations \fixme{cite UKF-M and USQUE}.
+explore and show this within their UKF-Manifold and Unscented Quaternion Estimator (USQUE) implementations \cite{brossard_2020_a} \cite{crassidis_unscented}.
 
 Thus the implementation used in this project is based on UKF-M as it is generalisable to various manifolds not just SO(3).
 
 \subsection{Filter Design}
+Table 3 below shows the configuration used for the MUKF. 
 
-
-
-\subsection{Filter Setup}
-
-Table 1 below shows the configuration used for the UKF for each of the scenarios. 
-
-\label{sec:filtersetup}
-\begin{table}[!htbp]
+\begin{table}[h]
 \centering
-\small
-\begin{tabular}{p{2.0cm} p{5.0cm} p{5.0cm} p{1.5cm}}
+\begin{tabular}{lll}
 \hline
-\textbf{State} & \textbf{Process Noise ($Q$)} & \textbf{Measurement Noise ($R$)} & \textbf{Sampling Rate} \\
+\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\
 \hline
-\makecell[l]{$q_w, q_x, q_y, q_z,$ \\ $\omega_{b,x}, \omega_{b,y}, \omega_{b,z}$}
-&
-Gaussian noise determined by rest phases
-&
-Gaussian noise determined by rest phases
-&
-$286\,\text{Hz}$ \\
+State & $\mathbf{q} \in SO(3)$ & Unit quaternion $[w, x, y, z]^\top$ \\
+Error state & $\delta\boldsymbol{\phi} \in {R}^3$ & Rotation vector in tangent space ${so}(3)$ \\
+Sigma points & $2n+1 = 7$ & $n=3$, spread parameter $\kappa = 1$ \\
+Process noise $\mathbf{Q}$ & $\text{diag}(\boldsymbol{\sigma}_{\omega}^2) \cdot \Delta t$ & $\boldsymbol{\sigma}_{\omega}$ from BROAD rest-phase measurements \\
+Accel.\ noise $\mathbf{R}_{\text{acc}}$ & $\text{diag}([0.044,\ 0.050,\ 0.074]^2)\ \text{m}^2/\text{s}^4$ & From BROAD rest-phase measurements \\
+Mag.\ noise $\mathbf{R}_{\text{mag}}$ & $\text{diag}([0.71,\ 0.70,\ 0.68]^2)\ \mu\text{T}^2$ & From BROAD rest-phase measurements \\
+Accel.\ gate & $5\%$ of $\|\mathbf{g}\|$ & Rejects updates under dynamic acceleration \\
+Mag.\ gate & $30\%$ of $\|\mathbf{m}_{\text{ref}}\|$ & Rejects updates under magnetic disturbance \\
+Sampling rate & $286\ \text{Hz}$ & Matches BROAD dataset \\
 \hline
 \end{tabular}
-\caption{UKF configuration}
-\label{tab:filtersetup}
+\caption{MUKF configuration}
+\label{tab:mukf_config}
 \end{table}
 
-The state estimates the orientation that is determined by integrating gyroscope measurements
-where there is an assumed slowly varying additive bias applied to the gyroscope. The matrix $Q$ handles the uncertainty
-the filter has in the process model (gyro integration). The measurement model assumes that accelerometer updates
-are the measured specific force that aligns with gravity (low linear acceleration), and the magnetometer is a reference
-of the local Earth's field. The matrix $R$ is the uncertainty that the filter has in accelerometer and magnetometer
-updates and is adaptively weighted.   
+\subsubsection{State Representation}
+The state represents the quaternion in SO(3) and the error state is the uncertainty the MUKF has in its orientation estimate. This is a significant deviation compared to the 
+interim implementation. This is because the deep-learning model is used to correct the gyroscope signal, meaning that if the filter also tried to 
+estimate this error in the gyroscope signal there would be a conflict between the filter and model. The 3D error state lives in local tangent space (so(3)),
+this is so the predict and update steps that need to happen in Euclidean space can be performed correctly and then mapped to SO(3) using \fixme{equation}.
+ 
+\subsubsection{Process Model}
+First, sigma points are generated from the current state estimate. For our case $n = 3$ for a 3D error state, giving $7$ sigma points. Then each sigma 
+point is propagated through our process model, which is the \fixme{equation}. This is the predict step of the filter and gives us the next predicted state 
+of the filter (quaternion estimate). After propagating the sigma points, the predicted mean is recovered via the Fréchet mean \cite{brossard_2020_a}, and the predicted
+covariance is reconstructed from the weighted outer product of the tangent space errors (3D errors). 
 
-\subsubsection{Adaptive Gating for Disturbed Measurements}
+\subsubsection{Measurement Models}
+The measurement models are the accelerometer and magnetometer that are used to update and correct the state estimate from the prediction. The accelerometer update
+compares the measured specific force against the gravity vector (ENU frame) rotated into body frame. As mentioned in \fixme{section}, this corrects the tilt (roll/pitch)
+of the state estimate. The magnetometer is compared against the horizontal magnetic reference which is collected over the first 50 samples which is in the rest phase \cite{laidig_2021_broada}.
+This is so the filter has a clean magnetic reference before any disturbances occur. Again as mentioned in \fixme{section}
+this corrects the azimuth/yaw of the current filter estimate.
 
-The matrix $R$ applied an adaptive scheme where disturbed accelerometer and 
-magnetometer measurements were downweighted for correcting the orientation. The initial covariance
-was determined by taking a mean of all measurements for each sensor during the rest periods, 
-and subtracting this mean, to get residuals from the sensors. These
-residuals were then computed as the covariance which is modelled as Gaussian noise and before each correction applied by the filter, 
-a heuristic approach was taken by tuning arbitrary tolerances to accept or downweight the sensor
-measurements. If measurements were deemed unreliable, then the matrix $R$ would be multiplied by a scalar
-value to downweight updates during corrections, this scheme was selected because outright rejection of measurements caused 
-discontinuous orientation estimates.
 
-The matrix $Q$, also took a similar approach where gyro bias was determined through subtracting 
-the mean during rest phases and these residuals were computed as the covariance which was modelled to be Gaussian noise. 
 \newpage
 
 
