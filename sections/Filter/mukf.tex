@@ -1,4 +1,3 @@
-\newpage
 \section{Manifold Unscented Kalman Filter}
 
 \subsection{Kalman Filter Overview}
@@ -63,8 +62,25 @@ state estimate (quaternion on the SO(3) manifold) and mapping it to and from Euc
 and the geometric representation of the state is conserved. Brossard et al and Crassidis et al
 explore and show this within their UKF-Manifold and Unscented Quaternion Estimator (USQUE) implementations \cite{brossard_2020_a} \cite{crassidis_unscented}.
 
-Thus the implementation used in this project is based on UKF-M as it is generalisable to various manifolds not just SO(3).
+The equations below show how to map a quaternion on the SO(3) manifold to local tangent space so(3) \cite{sol_2017_quaternion}. 
 
+\begin{equation}
+    \theta = 2\arccos\left(\left|q_w\right|\right)
+\end{equation}
+
+\begin{equation}
+    \text{sgn}(q_w) = \begin{cases} +1 & \text{if } q_w \geq 0 \\ -1 & \text{if } q_w < 0 \end{cases}
+\end{equation}
+
+\begin{equation}
+    \log(\mathbf{q}) = \begin{cases} 2 \cdot \text{sgn}(q_w) \cdot \mathbf{q}_{v} & \text{if } \theta \leq \epsilon \\ \dfrac{\theta}{\sin(\theta / 2)} \cdot \text{sgn}(q_w) \cdot \mathbf{q}_{v} & \text{otherwise} \end{cases}
+\end{equation}
+
+
+
+
+Thus the implementation used in this project is based on UKF-M as it uses the Fréchet mean, which is uses both \fixme{SO(3) and so(3) equations}. This avoids the need for additional Rodrigues parameter
+representation \cite{brossard_2020_a} \cite{crassidis_unscented}.
 \subsection{Filter Design}
 Table 3 below shows the configuration used for the MUKF. 
 

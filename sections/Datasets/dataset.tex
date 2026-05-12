@@ -100,16 +100,81 @@ by a factor between 5-10 \cite{sola_1997_importance}.
 
 Thus, data normalisation was considered to be a very important addition to the pre-processing pipeline.
 
-\subsubsection{Z-Score Normalisation}
+\subsubsection{Normalisation Implementation}
 
+\subsection{Window Sampling}
 
-
-
-\subsubsection{Min/Max Scaling}
-\subsubsection{Summary and Choice}
 
 
 \subsection{Noise Augmentation}
+Noise augmentation was added to the dataset to address one of the main limitations of the BROAD dataset, being that it contains a 
+small number of trials which limits the number of samples that the model can be trained on. Mentioned in \fixme{section}, limited
+samples can hurt generalisation and model performance. Thus it was considered to be pertinent that the dataset is extended. Per axis
+noise standard deviations is provided in the BROAD dataset \cite{laidig_2021_broada} which was measured through rest phases. Noise 
+is per axis and not isotropic due to individual axes having different noise characteristics (see \fixme{section}).
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{p{3cm} p{2.5cm} p{2.5cm} p{2.5cm}}
+\hline
+\textbf{Sensor} & \textbf{$\sigma_x$} & \textbf{$\sigma_y$} & \textbf{$\sigma_z$} \\
+\hline
+Gyroscope     & $0.10\,^{\circ}/\text{s}$  & $0.09\,^{\circ}/\text{s}$  & $0.12\,^{\circ}/\text{s}$  \\
+Accelerometer & $0.044\,\text{m/s}^2$ & $0.050\,\text{m/s}^2$ & $0.074\,\text{m/s}^2$ \\
+Magnetometer  & $0.71\,\mu\text{T}$   & $0.70\,\mu\text{T}$   & $0.68\,\mu\text{T}$   \\
+\hline
+\end{tabular}
+\caption{Per-axis noise standard deviations derived from a 49-minute stationary recording.}
+\label{tab:noise_augmentation}
+\end{table}
+
+Noise augmentation is only added to the training set of data, as this is the set that needs to be expanded. If it were added to the validation, or test set then
+evaluation would be inconsistent and not reproducible. 
+
+However, due to \fixme{normalisation section}, the noise standard deviations must also be normalised. This is because after normalisation the inputs to the NN are no longer 
+represent physical signals. This means that to correctly add noise, the standard deviations also must be normalised. 
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=0.6cm,
+    box/.style={
+        rectangle, rounded corners=3pt,
+        draw=black, thick,
+        text width=7cm,
+        minimum height=0.75cm,
+        align=center,
+        font=\small
+    },
+    decision/.style={
+        diamond, draw=black, thick,
+        text width=2.8cm,
+        minimum height=0.75cm,
+        align=center,
+        font=\small,
+        aspect=2.5
+    },
+    arrow/.style={->, thick, >=stealth}
+]
+
+\node[box] (load)     {Sample random window of length $T$ from training file};
+\node[box, below=of load]   (norm)     {Z-score normalise: $\tilde{x} = \dfrac{x - \mu}{\sigma}$, where $\mu, \sigma$ computed from training set only};
+\node[box, below=of norm]   (noisegen) {Generate zero-mean Gaussian noise per axis: $n \sim \mathcal{N}\!\left(0,\, \dfrac{\sigma_{\text{rest}}}{\sigma}\right)$ from Table~\ref{tab:noise_augmentation}};
+\node[box, below=of noisegen] (add)    {Add noise: $\tilde{x}_{\text{aug}} = \tilde{x} + n$};
+\node[box, below=of add]    (out)      {Output augmented, normalised IMU window $\tilde{x}_{\text{aug}} \in {R}^{9 \times T}$};
+
+\draw[arrow] (load)     -- (norm);
+\draw[arrow] (norm)     -- (noisegen);
+\draw[arrow] (noisegen) -- (add);
+\draw[arrow] (add)      -- (out);
+
+\end{tikzpicture}
+\caption{Noise augmentation pipeline applied to each training sample. The noise standard deviations are derived from the rest-phase measurements (Table~\ref{tab:noise_augmentation}) and divided by the signal standard deviation $\sigma$ to account for Z-score normalisation. Augmentation is applied only during training.}
+\label{fig:noise_augmentation}
+\end{figure}
 
 
+
+\clearpage
 
