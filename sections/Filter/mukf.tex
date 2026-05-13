@@ -41,7 +41,7 @@ The Unscented Kalman Filter (UKF) is an extension of the KF that allows for non-
 Traditionally, to apply a KF to a non-linear relationship an extended KF (EKF) is used which linearises all non-linear 
 models through the use of Jacobian matrices that are evaluated at the current state estimate \cite{julier_1997_a}.  
 However, better performance tends to be achieved by a UKF for orientation estimation as a UKF gives more accurate covariance propagation at 
-larger rotations. This is due to UKFs are able to capture second order processes through the use of sigma points \cite{kraft_2003_a} \cite{julier_1997_a}.
+larger rotations. This is due to UKFs are able to capture second order processes through the use of sigma points \cite{julier_1997_a} \cite{kraft_2003_a}.
 
 Sigma points are drawn from a specific, deterministic algorithm that when a non-linear function is applied to these points; a set of $2n + 1$ transformed
 points are left.

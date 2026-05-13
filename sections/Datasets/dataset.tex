@@ -69,6 +69,48 @@ decisions made to be circular in nature.
 Due to the main restriction of the sim to real gap, the choice was made to use the BROAD dataset.
 
 \subsubsection{Train, Validation, and Test Dataset Split}
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{p{2.5cm} p{2.5cm} p{7cm}}
+\hline
+\textbf{Split} & \textbf{Trial} & \textbf{Motion Type} \\
+\hline
+\multirow{5}{*}{Test (5)}
+  & 9  & Undisturbed, fast rotation \\
+  & 25 & Disturbed, tapping (accelerometer disturbance) \\
+  & 31 & Disturbed, stationary magnet \\
+  & 34 & Disturbed, attached magnet (1-5\,cm) \\
+  & 39 & Mixed (disturbed and undisturbed) \\
+\hline
+\multirow{6}{*}{Validation (6)}
+  & 7  & Undisturbed, fast rotation \\
+  & 16 & Undisturbed, fast translation \\
+  & 20 & Undisturbed, slow combined \\
+  & 27 & Disturbed, vibrating smartphone \\
+  & 29 & Disturbed, stationary magnet \\
+  & 35 & Disturbed, attached magnet (1-5\,cm) \\
+\hline
+Train (28) & 1-6, 8, 10-15, 17-19, 21-24, 26, 28, 30, 32, 33, 36-38 & Mix of undisturbed (slow/fast rotations, translations, combined) and disturbed conditions \\
+\hline
+\end{tabular}
+\caption{Train, validation, and test split of the 39 BROAD trials \cite{laidig_2021_broada}. Test trials were selected to represent worst-case disturbance conditions across accelerometer and magnetometer disturbances, as these are the conditions most challenging for sensor fusion alone.}
+\label{tab:dataset_split}
+\end{table}
+
+\fixme{table} shows the train, validation, and test split of the BROAD dataset. The main motivation for the test split is that it spans 
+four distinct trial types being that both robustness under very disturbed scenarios and accuracy under undisturbed but high dynamics are tested.
+This is due to the fact that the MUKF alone would struggle to correct under these conditions, giving a reasoning to why the proposed solution is needed. 
+Moreover, the entirety of each trial only resides in their individual split, this is because splitting trials mid-sequence would risk data leakage across
+the splits. Likewise, the validation set also includes similar trial scenarios as the test set so that it can influence design decisions made in \fixme{section}.
+
+\FloatBarrier
+
+The justification of the three splits is that the model only ever sees the train split, it is validated on the validation set, and the best model is only
+ever evaluated once all training and hyperparameter decisions have been finalised (test set). This is so any design decisions and changes only ever depend on the validation set as to prove generalisation the test should never be
+able to influence model design decisions and model performance is an unbiased estimate of generalisation.
+
+
 
 \subsection{Scope and Limitations of BROAD}
 The BROAD dataset is not without its limitations, the main limitation is that it contains a small number of distinct trials,
@@ -101,8 +143,23 @@ by a factor between 5-10 \cite{sola_1997_importance}.
 Thus, data normalisation was considered to be a very important addition to the pre-processing pipeline.
 
 \subsubsection{Normalisation Implementation}
+The proposed solution uses z-score normalisation 
+
 
 \subsection{Window Sampling}
+A window sampling strategy was implemented in this project to address a limitation of the BROAD dataset, this 
+being its limited trials. The strategy employed was random window sampling on the train set, this selects a random window of samples within
+a trial to be the input to the model. This allows the model to see not only different trials randomly with PyTorch using 
+"shuffle=True" \fixme{cite}, but different windows within the file. This results in a trial of length $N$ having $N - T$ possible 
+windows across training where $T = window length (2018)$. The size of $T$ is explored in \fixme{section}.
+This improves generalisation and therefore model performance
+as the model sees a wide variety of windows within each trial, in tandem with \fixme{Noise aug section}, this should be able to 
+alleviate the main limitation of the dataset. 
+
+The validation and test sets however, do not employ random window sampling but deterministic and non-overlapping windows. This 
+is because it means consistent evaluation across each epoch. If it were randomised then each epoch would return different validation
+losses meaning that they are not comparable to another epoch. Furthermore, this ensures full coverage across the validation and test 
+sets as each sample is evaluated exactly once, this is so the validation loss is not biased across the trials.
 
 
 
