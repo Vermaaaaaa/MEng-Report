@@ -1,0 +1,46 @@
+\section{Results}
+
+\subsection{Evaluation Metrics}
+Multiple metrics are used to evaluate the model performance, here in this section we outline each metric and give a motivation as to why. Throughout the results and evaluation both metrics are
+reported together. The reason as to why both metrics are reported is that even though the geodesic angle error might decrease the yaw error may increase.
+
+\subsubsection{Geodesic Angle Error}
+To determine the error between the two quaternions that exist as rotations on SO(3), we use the geodesic rotation angle between the two
+quaternions. This metric measures the minimal rotation needed to align the two quaternions.
+
+\begin{equation}
+    \epsilon_{\text{geo}} = 2\arccos\!\bigl(|\hat{q} \cdot q_{\text{gt}}|\bigr)
+\end{equation}
+
+The reason as to why we use the geodesic angle error is that it is the correct distance between two quaternions on SO(3). A Euclidean difference is not rotation invariant meaning 
+$q$ and $-q$ would represent different rotations, where they are the same rotation on SO(3). It also captures the total orientation error (roll, pitch, and yaw) between the predicted orientation
+and the ground truth.
+
+\subsubsection{Absolute Yaw Error}
+The equations below show how to calculate the absolute yaw error (AYE).
+
+\begin{equation}
+    \psi = \arctan2\!\bigl(2(wz + xy),\; 1 - 2(y^2 + z^2)\bigr)
+\end{equation}
+
+\begin{equation}
+    \epsilon_{\text{yaw}} =
+    \begin{cases}
+        |\psi_{\text{pred}} - \psi_{\text{gt}}| & \text{if } |\psi_{\text{pred}} - \psi_{\text{gt}}| \leq 180^{\circ} \\
+        360^{\circ} - |\psi_{\text{pred}} - \psi_{\text{gt}}| & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+The yaw is extracted from the quaternion rotation before the use of the equation above. Further, the AYE is wrapped over [0, 180], such that errors near $\pm180^{\circ}$ are not artificially inflated.
+
+The reason as to why the AYE is an interesting metric to track is because of \fixme{mag section}. In this section it is mentioned that only the magnetometer can provide
+a heading reference and thus with corrupted magnetometer measurements this drift in yaw becomes unbounded. By specifically looking at AYE, we can see how much the proposed solution is
+able to correct yaw especially due to the test set conditions in \fixme{train/test/val section}. 
+
+\subsection{Test Pipeline}
+
+There a two different pipelines tested within this project. First, is dead reckoning (gyroscope integration only), this pipeline tests how the TCN performs by only providing $\omega$ corrections
+which is applied additively to the raw gyroscope measurement. This test shows how the TCN performs solely as a gyroscope corrector. Second, is the full proposed solution with the integration of 
+the MUKF. This tests shows the performance of the corrected gyroscope measurement in tandem with corrections applied from the accelerometer and magnetometer by the update step in the MUKF.
+
+The rest of the results section will cover these two pipelines and report the per file statistics and the total aggregated statistics over the entire test set. 

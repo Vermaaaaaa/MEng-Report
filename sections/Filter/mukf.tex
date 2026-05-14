@@ -41,7 +41,7 @@ The Unscented Kalman Filter (UKF) is an extension of the KF that allows for non-
 Traditionally, to apply a KF to a non-linear relationship an extended KF (EKF) is used which linearises all non-linear 
 models through the use of Jacobian matrices that are evaluated at the current state estimate \cite{julier_1997_a}.  
 However, better performance tends to be achieved by a UKF for orientation estimation as a UKF gives more accurate covariance propagation at 
-larger rotations. This is due to UKFs are able to capture second order processes through the use of sigma points \cite{julier_1997_a} \cite{kraft_2003_a}.
+larger rotations. This is due to UKFs being able to capture second order non-linear effects through the use of sigma points \cite{julier_1997_a} \cite{kraft_2003_a}.
 
 Sigma points are drawn from a specific, deterministic algorithm that when a non-linear function is applied to these points; a set of $2n + 1$ transformed
 points are left.
@@ -58,7 +58,7 @@ The core issue of the UKF is that it assumes that the x lies within Euclidean sp
 and adding the measurement noise to the quaternion state is geometrically invalid, thus the state that is estimated is also invalid.
 
 The solution to this problem is to perform any arithmetic computations that the UKF requires within the local tangent space (so(3)). By taking the current 
-state estimate (quaternion on the SO(3) manifold) and mapping it to and from Euclidean vector space, the predict and update steps are performed validly 
+state error estimate and mapping it to and from Euclidean vector space, the predict and update steps are performed validly 
 and the geometric representation of the state is conserved. Brossard et al and Crassidis et al
 explore and show this within their UKF-Manifold and Unscented Quaternion Estimator (USQUE) implementations \cite{brossard_2020_a} \cite{crassidis_unscented}.
 

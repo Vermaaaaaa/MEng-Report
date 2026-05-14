@@ -119,7 +119,7 @@ conventional deep learning tasks such as natural language processing and image p
 which allows for their solutions to generalise and converge easier.
 This limitation can lead to poorer 
 generalisation to our test set and thus may reduce performance on unseen conditions. Hestness et al empirically demonstrates this
-through a power-law which states that generalisation error decreases as the training set increases \cite{hestness_deep}. However,
+through a power-law which states that model performance increases as the training set increases \cite{hestness_deep}. However,
 adding noise augmentation \fixme{section} can artificially diversify the training set and is able to alleviate this limitation but not fully solve it. 
 
 Further, the data collected was in a controlled laboratory setting, where clean and predictable conditions are present. In a real deployment, 
@@ -143,14 +143,47 @@ by a factor between 5-10 \cite{sola_1997_importance}.
 Thus, data normalisation was considered to be a very important addition to the pre-processing pipeline.
 
 \subsubsection{Normalisation Implementation}
-The proposed solution uses z-score normalisation 
+The proposed solution uses Z-score normalisation for its method \cite{google_2024_numerical}. This is because it satisfies the requirements laid out by LeCun et al
+\cite{lecun_1998_efficient} for zero mean inputs preventing weight updates being biased in a certain direction and reducing estimation error \cite{sola_1997_importance}. 
+
+Given a raw input signal $x$, the Z-score normalised signal $\tilde{x}$ is computed as:
+
+\begin{equation}
+    \tilde{x} = \frac{x - \mu}{\sigma}
+    \label{eq:zscore}
+\end{equation}
+
+where $\mu$ is the per-axis mean and $\sigma$ is the per-axis standard deviation, both computed 
+from the training set only:
+
+\begin{equation}
+    \mu = \frac{1}{N} \sum_{i=1}^{N} x_i
+    \label{eq:mean}
+\end{equation}
+
+\begin{equation}
+    \sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}
+    \label{eq:std}
+    \end{equation}
+
+where $N$ is the total number of samples in the training set. This is applied independently 
+to each of the nine input channels, as each sensor axis operates in a different physical unit 
+and dynamic range.
+
+These normalisation factors are only computed on the training set and applied to all inputs of the training, validation, and test sets. This is
+because whilst training the model should not be able to infer any information from the test and validation sets. This would consitute as data leakage, 
+as test and validation statistics would influence the normalisation applied at training. 
+
+Other methods like min/max scaling was also considered, this method scales all data between a range like $[-1, +1]$.
+However, this method is not suitable in this application, due to trials like disturbed tapping, where if only a small section of the trial
+experiences high transient motions, these samples would be the min or max and the rest of the samples are compressed around the mid point (e.g. $0$). 
 
 
 \subsection{Window Sampling}
 A window sampling strategy was implemented in this project to address a limitation of the BROAD dataset, this 
 being its limited trials. The strategy employed was random window sampling on the train set, this selects a random window of samples within
 a trial to be the input to the model. This allows the model to see not only different trials randomly with PyTorch using 
-"shuffle=True" \fixme{cite}, but different windows within the file. This results in a trial of length $N$ having $N - T$ possible 
+"shuffle=True" \cite{pytorchcontributors_2023_pytorch}, but different windows within the file. This results in a trial of length $N$ having $N - T$ possible 
 windows across training where $T = window length (2018)$. The size of $T$ is explored in \fixme{section}.
 This improves generalisation and therefore model performance
 as the model sees a wide variety of windows within each trial, in tandem with \fixme{Noise aug section}, this should be able to 

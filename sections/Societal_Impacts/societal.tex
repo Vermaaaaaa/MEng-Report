@@ -1,2 +1,32 @@
 \newpage
-\section{Societal Impacts}
+\section{Societal Factors}
+
+\subsection{Healthcare \& Rehabilitation}
+In healthcare and rehabilitation, there is a wide need for orientation estimation from limb kinematics to assessment protocols for 
+Axial Spondyloarthritis \fixme{add cites}. However, these studies
+also highlight orientation drift due to IMUs as a limitation to their uses. 
+
+
+Franco et al, highlights that IMUs have not widely been used for orientation estimation in a clincal setting due to gyroscopic drift \fixme{cite}.
+Specifically, the study conducted range of motion tests that uses an IMU and Kalman Filter under constrained movements. The BASMI
+movements performed and recorded all spanned for approximately 30s and achieved and RMSE = 2.0 degrees for joint flexion. 
+However, all of these trials were performed
+in a controlled laborartory setting with constrained movements to limit the accumulation of drift. Further, this
+sensor alignment assumes that the sensors reflect the actual tilt of the
+spine in the sagittal and frontal planes, and that the spine axial rotation is zero at t0 \fixme{cite}.
+Under these constraints and assumptions, trying to extend this protocol outside of the laborartory and into clinical settings which have a lot 
+of magnetic disturbances or under continuous monitoring of uncontrolled motions, their approach breaks down and drift accumulates. The proposed solution
+in \fixme{section} serves as a way of extending and enabling further investigation of range of motion under non-constrained and continuous monitoring.
+However, it is important to acknowledge that this proposed solution is based on data found in \fixme{section} compared to spinal kinematics data. However,
+the dataset does include slow small rotations which is representative of the types of motions that Franco et al performed.  
+
+
+\subsection{Agriculture}
+\subsection{}
+
+\begin{comment}
+    Sy et al \fixme{cite} highlight that IMUs suffer from global drift 
+and that these can be corrected with other sensors such as camera-based solutions but also mention the extra need of people needing to carry these 
+cameras or that it requires setup \fixme{cite}. Wittmann et al also highlights the need for a homogenous magnetic field to correct gyroscope
+drift \fixme{cite}. 
+\end{comment}
