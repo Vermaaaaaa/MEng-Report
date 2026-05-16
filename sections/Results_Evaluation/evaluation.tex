@@ -1,1 +1,37 @@
+\clearpage
 \section{Evaluation}
+Looking at \fixme{table}, we can see that the deep-learning model produced significant improvements across all metrics in the 
+entire test set. Both TCN Gyro and TCN + MUKF saw around a $38\%$ improvement in mean geodesic error and $40\%$ mean improvement in AYE, when compared to their raw 
+gyroscope measurement counterparts. These metrics directly support the fact that the TCN model is able to address drift in tilt and heading
+whilst both accelerometer and especially magnetometer 
+are disturbed, which are the typical failure modes seen in orientation estimation with IMUs.
+
+Furthermore, comparing TCN dead reckoning to raw gyroscope + MUKF, we can see that the TCN performs better, which highlights that 
+the TCN alone does beat uncorrected raw gyroscope measurments even with corrections from an accelerometer and magnetometer. The comparison between
+the two produces significant results with improvements in mean geodesic error  $14.6\%$, $31.6\%$ in  mean AYE, and $35.9\%$ in median AYE. This result
+is expected as the test set does contain disturbed accelerometer and magnetometer conditions. 
+
+Moreover, median improvements in TCN only of $44\%$ in geodesic error and $53\%$ in AYE, and $39.4\%$, and  $41.9\%$ in TCN + MUKF respectively, show 
+a promising result that not only does the TCN produce fewer errors (mean) but also a more consistent output as well. Coupled with the P90 improvements of 
+$41.2\%$ in geodesic error, and $44.1\%$ in AYE, for the TCN + MUKF, these results show that the entire distrubution landscape of errors is tighter. 
+It shows that not only do we have overall better orientation estimates, but these improvements are more consistent and tail errors are supressed. 
+
+
+\subsection{Trial 9: Undisturbed, Fast Rotation}
+Looking at \fixme{table}, we can see that overall there have been significant improvements in all geodesic error metrics across the two pipelines, with the 
+TCN + MUKF pipeline performing the best with an improvement of $37.2\%$ in mean geodesic error and the largest improvements in P90 and standard deviation of $54.8\%$.
+This means that the model is able to provide meaningful corrections and that it is robust to tail errors. However, in the TCN Gyro pipeline we can see that
+AYE actually gets worse ($-17.7\%$). 
+
+
+\subsection{Trial 25: Disturbed Tapping}
+
+\subsection{Trial 31: Disturbed Stationary Magnet}
+
+\subsection{Trial 34: Disturbed Magnet attached 3cm}
+
+\subsection{Trial 39: Disturbed, Mixed Conditions}
+
+\subsection{Limitations of the Proposed Solution}
+
+\subsection{Summary}

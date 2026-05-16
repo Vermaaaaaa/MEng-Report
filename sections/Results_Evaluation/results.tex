@@ -39,8 +39,207 @@ able to correct yaw especially due to the test set conditions in \fixme{train/te
 
 \subsection{Test Pipeline}
 
-There a two different pipelines tested within this project. First, is dead reckoning (gyroscope integration only), this pipeline tests how the TCN performs by only providing $\omega$ corrections
+There are two different pipelines tested within this project. First, is dead reckoning (gyroscope integration only), this pipeline tests how the TCN performs by only providing $\omega$ corrections
 which is applied additively to the raw gyroscope measurement. This test shows how the TCN performs solely as a gyroscope corrector. Second, is the full proposed solution with the integration of 
-the MUKF. This tests shows the performance of the corrected gyroscope measurement in tandem with corrections applied from the accelerometer and magnetometer by the update step in the MUKF.
+the MUKF. This test shows the TCN performance of the corrected gyroscope measurement in the predict step of the MUKF, whilst corrections applied from the accelerometer and magnetometer in the update step in the MUKF. Both of
+these pipelines are compared to their raw gyroscope counterparts. 
 
 The rest of the results section will cover these two pipelines and report the per file statistics and the total aggregated statistics over the entire test set. 
+
+
+
+
+
+\subsection{Aggregated Results}
+\begin{table}[H]
+    \centering
+    \caption{Aggregated orientation error across all five test files (mean of per-file means).
+             Geodesic angle error ($\epsilon_{\text{geo}}$) and absolute yaw error
+             ($\epsilon_{\text{yaw}}$) in degrees. Improvement rows show percentage
+             reduction in error relative to the raw gyroscope baseline within each tier.}
+    \label{tab:results_aggregated}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llcccccccc}
+        \toprule
+        & & \multicolumn{4}{c}{\textbf{Geodesic Error ($^\circ$)}}
+          & \multicolumn{4}{c}{\textbf{Absolute Yaw Error ($^\circ$)}} \\
+        \cmidrule(lr){3-6}\cmidrule(lr){7-10}
+        \textbf{Tier} & \textbf{Pipeline}
+          & Mean & Std & Median & P90
+          & Mean & Std & Median & P90 \\
+        \midrule
+        \multirow{3}{*}{Dead Reckoning}
+          & Raw Gyro & 71.389 & 43.427 & 68.509 & 131.843 & 50.813 & 43.401 & 40.696 & 117.861 \\
+          & TCN Gyro & 44.291 & 31.579 & 38.393 &  89.377 & 30.030 & 30.796 & 19.115 &  79.844 \\
+          & \textit{Improvement} & \textit{+38.0\%} & \textit{+27.3\%} & \textit{+44.0\%} & \textit{+32.2\%}
+                                 & \textit{+40.9\%} & \textit{+29.0\%} & \textit{+53.0\%} & \textit{+32.3\%} \\
+        \midrule
+        \multirow{3}{*}{Sensor Fusion}
+          & Raw Gyro + MUKF & 51.851 & 41.238 & 40.995 & 116.735 & 43.897 & 41.808 & 29.831 & 110.757 \\
+          & TCN + MUKF      & 31.749 & 25.319 & 24.823 &  68.692 & 26.593 & 27.742 & 17.327 &  61.966 \\
+          & \textit{Improvement} & \textit{+38.8\%} & \textit{+38.6\%} & \textit{+39.4\%} & \textit{+41.2\%}
+                                 & \textit{+39.4\%} & \textit{+33.6\%} & \textit{+41.9\%} & \textit{+44.1\%} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+
+\subsection{Trial 9: Undisturbed, Fast Rotation}
+\begin{table}[H]
+    \centering
+    \caption{Orientation error for file 09 (undisturbed, fast rotation with breaks).}
+    \label{tab:results_09}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llcccccccc}
+        \toprule
+        & & \multicolumn{4}{c}{\textbf{Geodesic Error ($^\circ$)}}
+          & \multicolumn{4}{c}{\textbf{Absolute Yaw Error ($^\circ$)}} \\
+        \cmidrule(lr){3-6}\cmidrule(lr){7-10}
+        \textbf{Tier} & \textbf{Pipeline}
+          & Mean & Std & Median & P90
+          & Mean & Std & Median & P90 \\
+        \midrule
+        \multirow{3}{*}{Dead Reckoning}
+          & Raw Gyro & 75.371 & 58.073 & 67.612 & 162.423 & 37.430 & 51.008 & 14.359 & 131.874 \\
+          & TCN Gyro & 56.805 & 41.942 & 49.745 & 112.683 & 44.059 & 44.654 & 29.110 & 123.329 \\
+          & \textit{Improvement} & \textit{+24.6\%} & \textit{+27.8\%} & \textit{+26.4\%} & \textit{+30.6\%}
+                                 & \textit{$-$17.7\%} & \textit{+12.5\%} & \textit{$-$102.7\%} & \textit{+6.5\%} \\
+        \midrule
+        \multirow{3}{*}{Sensor Fusion}
+          & Raw Gyro + MUKF & 46.454 & 52.109 & 17.393 & 138.242 & 43.220 & 54.157 & 10.494 & 137.716 \\
+          & TCN + MUKF      & 29.159 & 23.530 & 23.388 &  62.434 & 28.171 & 35.502 & 16.241 &  60.062 \\
+          & \textit{Improvement} & \textit{+37.2\%} & \textit{+54.8\%} & \textit{$-$34.5\%} & \textit{+54.8\%}
+                                 & \textit{+34.8\%} & \textit{+34.4\%} & \textit{$-$54.8\%} & \textit{+56.4\%} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+
+\subsection{Trial 25: Disturbed Tapping}
+\begin{table}[H]
+    \centering
+    \caption{Orientation error for file 25 (disturbed, tapping).}
+    \label{tab:results_25}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llcccccccc}
+        \toprule
+        & & \multicolumn{4}{c}{\textbf{Geodesic Error ($^\circ$)}}
+          & \multicolumn{4}{c}{\textbf{Absolute Yaw Error ($^\circ$)}} \\
+        \cmidrule(lr){3-6}\cmidrule(lr){7-10}
+        \textbf{Tier} & \textbf{Pipeline}
+          & Mean & Std & Median & P90
+          & Mean & Std & Median & P90 \\
+        \midrule
+        \multirow{3}{*}{Dead Reckoning}
+          & Raw Gyro &  5.381 & 4.027 & 4.441 &  9.767 & 2.400 & 2.680 & 1.471 &  5.835 \\
+          & TCN Gyro &  4.657 & 3.297 & 3.960 &  8.526 & 2.380 & 2.308 & 1.696 &  5.581 \\
+          & \textit{Improvement} & \textit{+13.5\%} & \textit{+18.1\%} & \textit{+10.8\%} & \textit{+12.7\%}
+                                 & \textit{+0.8\%} & \textit{+13.9\%} & \textit{$-$15.3\%} & \textit{+4.4\%} \\
+        \midrule
+        \multirow{3}{*}{Sensor Fusion}
+          & Raw Gyro + MUKF &  9.892 & 7.186 & 8.316 & 18.698 & 7.544 & 7.044 & 5.156 & 16.540 \\
+          & TCN + MUKF      &  9.545 & 7.292 & 7.721 & 18.380 & 7.220 & 7.298 & 4.981 & 16.134 \\
+          & \textit{Improvement} & \textit{+3.5\%} & \textit{$-$1.5\%} & \textit{+7.2\%} & \textit{+1.7\%}
+                                 & \textit{+4.3\%} & \textit{$-$3.6\%} & \textit{+3.4\%} & \textit{+2.5\%} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+
+\subsection{Trial 31: Disturbed Stationary Magnet}
+\begin{table}[H]
+    \centering
+    \caption{Orientation error for file 31 (disturbed, stationary magnet).}
+    \label{tab:results_31}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llcccccccc}
+        \toprule
+        & & \multicolumn{4}{c}{\textbf{Geodesic Error ($^\circ$)}}
+          & \multicolumn{4}{c}{\textbf{Absolute Yaw Error ($^\circ$)}} \\
+        \cmidrule(lr){3-6}\cmidrule(lr){7-10}
+        \textbf{Tier} & \textbf{Pipeline}
+          & Mean & Std & Median & P90
+          & Mean & Std & Median & P90 \\
+        \midrule
+        \multirow{3}{*}{Dead Reckoning}
+          & Raw Gyro & 111.134 & 44.795 & 118.547 & 163.132 & 88.799 & 51.572 & 88.343 & 159.099 \\
+          & TCN Gyro &  44.715 & 24.392 &  41.784 &  81.876 & 25.828 & 21.212 & 22.311 &  56.746 \\
+          & \textit{Improvement} & \textit{+59.8\%} & \textit{+45.5\%} & \textit{+64.8\%} & \textit{+49.8\%}
+                                 & \textit{+70.9\%} & \textit{+58.9\%} & \textit{+74.7\%} & \textit{+64.3\%} \\
+        \midrule
+        \multirow{3}{*}{Sensor Fusion}
+          & Raw Gyro + MUKF & 85.194 & 52.420 & 83.029 & 161.128 & 75.227 & 55.425 & 66.535 & 156.699 \\
+          & TCN + MUKF      & 31.443 & 19.537 & 28.882 &  58.609 & 21.563 & 17.675 & 17.551 &  46.356 \\
+          & \textit{Improvement} & \textit{+63.1\%} & \textit{+62.7\%} & \textit{+65.2\%} & \textit{+63.6\%}
+                                 & \textit{+71.3\%} & \textit{+68.1\%} & \textit{+73.6\%} & \textit{+70.4\%} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+
+\subsection{Trial 34: Disturbed Magnet attached 3cm}
+\begin{table}[H]
+    \centering
+    \caption{Orientation error for file 34 (disturbed, magnet attached 3\,cm from IMU).}
+    \label{tab:results_34}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llcccccccc}
+        \toprule
+        & & \multicolumn{4}{c}{\textbf{Geodesic Error ($^\circ$)}}
+          & \multicolumn{4}{c}{\textbf{Absolute Yaw Error ($^\circ$)}} \\
+        \cmidrule(lr){3-6}\cmidrule(lr){7-10}
+        \textbf{Tier} & \textbf{Pipeline}
+          & Mean & Std & Median & P90
+          & Mean & Std & Median & P90 \\
+        \midrule
+        \multirow{3}{*}{Dead Reckoning}
+          & Raw Gyro & 111.878 & 51.871 & 124.173 & 170.923 & 84.637 & 59.990 & 88.132 & 164.224 \\
+          & TCN Gyro &  80.055 & 48.754 &  77.076 & 145.770 & 52.168 & 45.448 & 35.869 & 125.067 \\
+          & \textit{Improvement} & \textit{+28.4\%} & \textit{+6.0\%} & \textit{+37.9\%} & \textit{+14.7\%}
+                                 & \textit{+38.4\%} & \textit{+24.2\%} & \textit{+59.3\%} & \textit{+23.8\%} \\
+        \midrule
+        \multirow{3}{*}{Sensor Fusion}
+          & Raw Gyro + MUKF & 81.234 & 48.729 & 80.444 & 150.411 & 62.208 & 49.122 & 54.595 & 135.670 \\
+          & TCN + MUKF      & 63.476 & 48.925 & 47.692 & 144.704 & 55.744 & 51.321 & 36.852 & 138.004 \\
+          & \textit{Improvement} & \textit{+21.9\%} & \textit{$-$0.4\%} & \textit{+40.7\%} & \textit{+3.8\%}
+                                 & \textit{+10.4\%} & \textit{$-$4.5\%} & \textit{+32.5\%} & \textit{$-$1.7\%} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+
+\subsection{Trial 39: Disturbed, Mixed Conditions}
+\begin{table}[H]
+    \centering
+    \caption{Orientation error for file 39 (disturbed, mixed conditions).}
+    \label{tab:results_39}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llcccccccc}
+        \toprule
+        & & \multicolumn{4}{c}{\textbf{Geodesic Error ($^\circ$)}}
+          & \multicolumn{4}{c}{\textbf{Absolute Yaw Error ($^\circ$)}} \\
+        \cmidrule(lr){3-6}\cmidrule(lr){7-10}
+        \textbf{Tier} & \textbf{Pipeline}
+          & Mean & Std & Median & P90
+          & Mean & Std & Median & P90 \\
+        \midrule
+        \multirow{3}{*}{Dead Reckoning}
+          & Raw Gyro & 53.181 & 58.371 & 27.774 & 152.970 & 40.797 & 51.757 & 11.174 & 128.271 \\
+          & TCN Gyro & 35.223 & 39.512 & 19.399 &  98.031 & 25.713 & 40.358 &  6.588 &  88.499 \\
+          & \textit{Improvement} & \textit{+33.8\%} & \textit{+32.3\%} & \textit{+30.2\%} & \textit{+35.9\%}
+                                 & \textit{+37.0\%} & \textit{+22.0\%} & \textit{+41.0\%} & \textit{+31.0\%} \\
+        \midrule
+        \multirow{3}{*}{Sensor Fusion}
+          & Raw Gyro + MUKF & 36.483 & 45.747 & 15.792 & 115.195 & 31.284 & 43.291 & 12.376 & 107.162 \\
+          & TCN + MUKF      & 25.122 & 27.312 & 16.433 &  59.333 & 20.265 & 26.913 & 11.009 &  49.274 \\
+          & \textit{Improvement} & \textit{+31.1\%} & \textit{+40.3\%} & \textit{$-$4.1\%} & \textit{+48.5\%}
+                                 & \textit{+35.2\%} & \textit{+37.8\%} & \textit{+11.0\%} & \textit{+54.0\%} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
