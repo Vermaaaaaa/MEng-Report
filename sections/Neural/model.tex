@@ -7,8 +7,9 @@
 The motivation for learning $\Delta\boldsymbol{\omega}_t = [\Delta\omega_x,\Delta\omega_y,\Delta\omega_z]^\top$ 
 comes from the fact that while sensor fusion techniques of downweighting 
 or skipping of the accelerometer and magnetometer when they are unreliable, drift cannot be mitigated due to the accumulation of gyroscopic bias 
-and noise \cite{zhang_2012_quaternionbased}\cite{bo_2023_robust}. 
-
+and noise \cite{zhang_2012_quaternionbased}\cite{bo_2023_robust}. Moreover, learning a correction to be applied to the gyroscope signal is an
+easier task than producing a correct measurement. This is because instead of the model needing to predict the entire signal, including its 
+dynamics of motion, the model just applies a correction. This explaination is further explored in \fixme{section}.
 \subsection{Model Selection}
 \subsubsection{Recurrent Neural Networks (RNNs)}
 The first type of model that was considered is a RNN. RNNs stem from an 
@@ -192,7 +193,7 @@ this change in domain.
 
 The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 10
 demonstrates the architecture of the residual block that has been 
-implemented in the first semester.
+implemented in the project.
 
 \begin{figure}[H]
     \centering

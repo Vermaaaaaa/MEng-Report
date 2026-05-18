@@ -53,10 +53,6 @@ The rest of the results section will cover these two pipelines and report the pe
 \subsection{Aggregated Results}
 \begin{table}[H]
     \centering
-    \caption{Aggregated orientation error across all five test files (mean of per-file means).
-             Geodesic angle error ($\epsilon_{\text{geo}}$) and absolute yaw error
-             ($\epsilon_{\text{yaw}}$) in degrees. Improvement rows show percentage
-             reduction in error relative to the raw gyroscope baseline within each tier.}
     \label{tab:results_aggregated}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llcccccccc}
@@ -82,13 +78,16 @@ The rest of the results section will cover these two pipelines and report the pe
         \bottomrule
     \end{tabular}%
     }
+    \caption{Aggregated orientation error across all five test trials (mean of per-trial means).
+             Geodesic angle error ($\epsilon_{\text{geo}}$) and absolute yaw error
+             ($\epsilon_{\text{yaw}}$) in degrees. Improvement rows show percentage
+             reduction in error relative to the raw gyroscope baseline within each tier.}
 \end{table}
 
 
 \subsection{Trial 9: Undisturbed, Fast Rotation}
 \begin{table}[H]
     \centering
-    \caption{Orientation error for file 09 (undisturbed, fast rotation with breaks).}
     \label{tab:results_09}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llcccccccc}
@@ -114,13 +113,33 @@ The rest of the results section will cover these two pipelines and report the pe
         \bottomrule
     \end{tabular}%
     }
+    \caption{Orientation error for trial 9 (undisturbed, fast rotation with breaks).}
 \end{table}
 
 
+
+
 \subsection{Trial 25: Disturbed Tapping}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/25_disturbed_tapping_B_cleaned_gyro_euler.png}
+    \caption{Euler Angle Plots (dead reckoning) for Trial 25: Disturbed Tapping}
+    \label{fig:tap_gyro_euler}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/25_disturbed_tapping_B_cleaned_mukf_euler.png}
+    \caption{Euler Angle Plots (MUKF pipeline) for Trial 25: Disturbed Tapping}
+    \label{fig:tap_mukf_euler}
+\end{figure}
+
+
+
+
 \begin{table}[H]
     \centering
-    \caption{Orientation error for file 25 (disturbed, tapping).}
     \label{tab:results_25}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llcccccccc}
@@ -146,13 +165,44 @@ The rest of the results section will cover these two pipelines and report the pe
         \bottomrule
     \end{tabular}%
     }
+    \caption{Orientation error for trial 25 (disturbed, tapping).}
 \end{table}
 
 
 \subsection{Trial 31: Disturbed Stationary Magnet}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/31_disturbed_stationary_magnet_D_cleaned_geodesic_gyro.png}
+    \caption{Geodesic Angle Error (dead reckoning) for Trial 31: Disturbed Stationary Magnet}
+    \label{fig:static_mag_gyro_geo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/31_disturbed_stationary_magnet_D_cleaned_geodesic_mukf.png}
+    \caption{Geodesic Angle Error (MUKF pipeline) for Trial 31: Disturbed Stationary Magnet}
+    \label{fig:static_mag_mukf_geo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/31_disturbed_stationary_magnet_D_cleaned_yaw_gyro.png}
+    \caption{Absolute Yaw Error (dead reckoning) for Trial 31: Disturbed Stationary Magnet}
+    \label{fig:static_mag_gyro_aye}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/31_disturbed_stationary_magnet_D_cleaned_yaw_mukf.png}
+    \caption{Absolute Yaw Error (MUKF pipeline) for Trial 31: Disturbed Stationary Magnet}
+    \label{fig:static_mag_mukf_aye}
+\end{figure}
+
+
 \begin{table}[H]
     \centering
-    \caption{Orientation error for file 31 (disturbed, stationary magnet).}
     \label{tab:results_31}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llcccccccc}
@@ -178,13 +228,35 @@ The rest of the results section will cover these two pipelines and report the pe
         \bottomrule
     \end{tabular}%
     }
+    \caption{Orientation error for trial 31 (disturbed, stationary magnet).}
 \end{table}
 
 
 \subsection{Trial 34: Disturbed Magnet attached 3cm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/34_disturbed_attached_magnet_3cm_cleaned_geodesic_gyro.png}
+    \caption{Geodesic Angle Error (dead reckoning) for Trial 34: Disturbed Magnet attached 3cm}
+    \label{fig:mag3cm_gyro_geo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/34_disturbed_attached_magnet_3cm_cleaned_geodesic_mukf.png}
+    \caption{Geodesic Angle Error (MUKF pipeline) for Trial 34: Disturbed Magnet attached 3cm}
+    \label{fig:mag3cm_mukf_geo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{./figures/Data/34_disturbed_attached_magnet_3cm_cleaned_mukf_euler.png}
+    \caption{Euler Angle Plots (MUKF pipeline) for Trial 34: Disturbed Magnet attached 3cm}
+    \label{fig:mag3cm_mukf_euler}
+\end{figure}
+
 \begin{table}[H]
     \centering
-    \caption{Orientation error for file 34 (disturbed, magnet attached 3\,cm from IMU).}
     \label{tab:results_34}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llcccccccc}
@@ -210,13 +282,13 @@ The rest of the results section will cover these two pipelines and report the pe
         \bottomrule
     \end{tabular}%
     }
+    \caption{Orientation error for trial 34 (disturbed, magnet attached 3\,cm from IMU).}
 \end{table}
 
 
 \subsection{Trial 39: Disturbed, Mixed Conditions}
 \begin{table}[H]
     \centering
-    \caption{Orientation error for file 39 (disturbed, mixed conditions).}
     \label{tab:results_39}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llcccccccc}
@@ -242,4 +314,7 @@ The rest of the results section will cover these two pipelines and report the pe
         \bottomrule
     \end{tabular}%
     }
+    \caption{Orientation error for trial 39 (disturbed, mixed conditions).}
 \end{table}
+
+The rest of the results graphs can be found in appendix A. 
