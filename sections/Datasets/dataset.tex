@@ -137,8 +137,7 @@ be it positive or negative. Meaning, that if the network wanted to shift weights
 it must 'zigzag' which is inefficient and slow \cite{lecun_1998_efficient}. 
 Sola et al expands on normalisation stating 
 we can expect better predictions from our NN by utilising normalisation. It was 
-concluded that with adequate normalisation of input data, estimation errors can be reduced by a factor of 
-by a factor between 5-10 \cite{sola_1997_importance}. 
+concluded that with adequate normalisation of input data, estimation errors can be reduced by a factor of 5-10 \cite{sola_1997_importance}. 
 
 Thus, data normalisation was considered to be a very important addition to the pre-processing pipeline.
 
@@ -171,12 +170,12 @@ to each of the nine input channels, as each sensor axis operates in a different 
 and dynamic range.
 
 These normalisation factors are only computed on the training set and applied to all inputs of the training, validation, and test sets. This is
-because whilst training the model should not be able to infer any information from the test and validation sets. This would constituteas data leakage, 
+because whilst training the model should not be able to infer any information from the test and validation sets. This would constitute as data leakage, 
 as test and validation statistics would influence the normalisation applied at training. 
 
 Other methods like min/max scaling was also considered, this method scales all data between a range like $[-1, +1]$.
 However, this method is not suitable in this application, due to trials like disturbed tapping, where if only a small section of the trial
-experiences high transient motions, these samples would be the min or max and the rest of the samples are compressed around the mid point (e.g. $0$). 
+experiences high transient motions, these samples would be the min or max and the rest of the samples are compressed around the midpoint (e.g. $0$). 
 
 
 \subsection{Window Sampling}

@@ -13,8 +13,8 @@ is expected as the test set does contain disturbed accelerometer and magnetomete
 
 Moreover, median improvements in TCN only of $44\%$ in geodesic error and $53\%$ in AYE, and $39.4\%$, and  $41.9\%$ in TCN + MUKF respectively, show 
 a promising result that not only does the TCN produce fewer errors (mean) but also a more consistent output as well. Coupled with the P90 improvements of 
-$41.2\%$ in geodesic error, and $44.1\%$ in AYE, for the TCN + MUKF, these results show that the entire distributionlandscape of errors is tighter. 
-It shows that not only do we have overall better orientation estimates, but these improvements are more consistent and tail errors are supressed. 
+$41.2\%$ in geodesic error, and $44.1\%$ in AYE, for the TCN + MUKF, these results show that the entire distribution landscape of errors is tighter. 
+It shows that not only do we have overall better orientation estimates, but these improvements are more consistent and tail errors are suppressed. 
 
 
 \subsection{Trial 9: Undisturbed, Fast Rotation}
@@ -23,7 +23,7 @@ TCN + MUKF pipeline performing the best with an improvement of $37.2\%$ in mean 
 This means that the model is able to provide meaningful corrections and that it is robust to tail errors. However, in the TCN Gyro pipeline we can see that
 AYE actually gets worse ($-17.7\%$). 
 
-Trial 9 is interesting compared to any other fast rotation in the dataset, this is because this trial exhibits fast rotations predominantly in the z-axis (yaw). This gives the motiviation
+Trial 9 is interesting compared to any other fast rotation in the dataset, this is because this trial exhibits fast rotations predominantly in the z-axis (yaw). This gives the motivation
 as to why AYE was chosen as a metric. Specifically $50\%$ of Trial 9 rotations are in the z-axis, whilst fast rotation training trials incorporated $67\%$ of its rotations in the x-axis (roll). This may be
 the reason to why in dead reckoning the TCN Gyro actually suffers and performs worse for AYE compared to the raw gyro. This also explains why the overall geodesic error for the TCN Gyro is better than 
 raw gyro, the TCN is able to learn and correct from the trials with fast rotations in other axes, however when the trial is now predominantly in the z-axis its corrections that it applies is not enough
@@ -80,7 +80,7 @@ in most metrics the TCN does provide improvements to the system. The figures 17 
 pipelines struggled in achieving accurate orientation estimates.
 
 This trial also shows a limitation of the proposed solution. As seen in table 13, the mean AYE in the dead reckoning pipeline for TCN Gyro achieves $52.168^{\circ}$, whilst TCN + MUKF achieves $55.744^{\circ}$.
-Overall the explanationis the same as section 9.2 but instead of corrupted accelerometer updates, it is corrupted magnetometer updates. A similar process happens that when the MUKF, receives magnetometer
+Overall the explanation is the same as section 9.2 but instead of corrupted accelerometer updates, it is corrupted magnetometer updates. A similar process happens that when the MUKF, receives magnetometer
 measurements, some of these corrupted measurements pass through the magnetometer gate (table 5), which causes an incorrect update, causing yaw to drift. This is supported in the figure 19, which shows
 TCN + MUKF correctly tracks roll and pitch accurately compared to the ground truth and yaw drifts.
 

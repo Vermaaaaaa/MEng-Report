@@ -44,7 +44,7 @@ result could have been achieved by composing each element in the tensor sequenti
 $T = 2018$, so the depth in the pairwise approach is only $\left\lceil \log_{2}(2018) \right\rceil = 11$, 
 compared to sequential  which would be $T-1 = 2018 - 1 = 2017$.  
 This approach alone vastly reduced the training time for the model. The reason as to why this is more efficient, is that all Hamilton products are calculated
-in parallel due to Graphical Processing Units (GPUs) ability to parallelise calculations. This means that depth is what represents the limiting factor is 
+in parallel due to Graphics Processing Units (GPUs) ability to parallelise calculations. This means that depth is what represents the limiting factor is 
 calculation time. 
 
 \subsection{Multi-Scale Decimated Loss}
@@ -67,7 +67,7 @@ where $baseInterval$ is selected to be $16$ empirically. Looping over the number
 where $i$ is the index of the loop.
 
 However, the model should not be penalised on predictions on where it does not have full context, as this would unfairly scale losses to be dominated by the 
-first few samples. Thus, we employ as method of only counting decimation intervals once the model has filled its receptive field.
+first few samples. Thus, we employ a method of only counting decimation intervals once the model has filled its receptive field.
 
 The decimation also pairs well with section 7.1, this is because as the relative quaternions have already been computed at each timescale, we can extract 
 the points the loss function wants with one tensor operation. We similarly do the same process of reduction on the ground-truth quaternions to find the quaternion
@@ -75,7 +75,7 @@ that maps one ground-truth quaternion to another.
 
 Before computing the error, the function first ensures that the decimated prediction quaternions and ground-truth quaternions are both sign-aligned. This is due 
 to $\mathbf{q}$ and $\mathbf{-q}$ representing the same rotation on SO(3). If this was not implemented, the loss function would incorrectly penalise 
-predictionsthat represent the same rotation. 
+predictions that represent the same rotation. 
 
 After this we compute the quaternion error between the ground-truth and prediction by 
 performing the Hamilton product. The function then decomposes this quaternion error into a rotational vector in local tangent space using equation 14, 

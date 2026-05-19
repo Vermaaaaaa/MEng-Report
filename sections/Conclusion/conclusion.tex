@@ -2,14 +2,14 @@
 \section{Conclusion}
 
 Overall, the aim of this project was to provide a deep-learning method of orientation estimation which reduces the effects of gyroscope drift, due to accumulation of errors from
-integration. The deep-learning model was was able to learn the complex and non-linear gyroscope error sources and correct it. Traditional filters like the KF, EKF, and 
-UKF are used to fuse sensor measurements, to get high accuracy orientation esitmates. However, these additional sensors (accelerometer and magnetometer) also have failure modes which
+integration. The deep-learning model was able to learn the complex and non-linear gyroscope error sources and correct it. Traditional filters like the KF, EKF, and 
+UKF are used to fuse sensor measurements, to get high accuracy orientation estimates. However, these additional sensors (accelerometer and magnetometer) also have failure modes which
 limits their application.
 
 Addressing the research questions stated in the introduction, the deep-learning method is able to learn the drift pattern and provide meaningful corrections to the gyroscope signal. 
 The direct evidence for this can be seen in table 9, for the full TCN + MUKF pipeline the mean, median, and P90 geodesic angle error improvement was $38.8\%$, $39.4\%$, and $41.2\%$. For 
 AYE the mean, median and P90 improvement was $39.4\%$, $41.9\%$, and $44.1\%$ respectively. This means that for both geodesic angle error and AYE, the full proposed solution is able
-to provide more accurate, consistent, and robust orientation estimates whilst also being able to supress tail errors which could lead to catastrophic failures.
+to provide more accurate, consistent, and robust orientation estimates whilst also being able to suppress tail errors which could lead to catastrophic failures.
 
 The answer to the second question is that the deep-learning model is able to generalise to unseen conditions. Overall, the model is able to generalise on an unseen test set of data. This is supported by the metrics above
 and found in table 9 where all metrics improved significantly. However, trial 9 highlighted a limitation to the generalisation, where the model is able to generalise for fast rotations especially in the 
@@ -17,11 +17,11 @@ roll/pitch axes, but struggled with the yaw axis due to training data primarily 
 correcting the drift in yaw axis, and future work can address the training data limitation for this specific condition to see if it will perform better.
 
 % summary of what was built
-The key technical contributions made by this project is the complete proposed solution of a TCN gyroscope corrector, integrated with a MUKF. Whilst the MUKF, was based on the UKF-M implemetation \cite{brossard_2020_a},
+The key technical contributions made by this project is the complete proposed solution of a TCN gyroscope corrector, integrated with a MUKF. Whilst the MUKF, was based on the UKF-M implementation \cite{brossard_2020_a},
 the combination of both has not been explored. Further, the inclusion of the hyperparameter optimisations on the validation set 
 using the Optuna framework gave confidence that the final solution provided was optimised to this application compared to arbitrary tuning that risks overfitting to the test set.
 The loss function also provided an efficient and geometrically valid objective for the model to achieve, the inclusion of pairwise reduction vastly decreased training times and without it the hyperparameter
-optimisations would not have been achieveable with the compute power and time constraints in this project. Moreover, the decimation based approach in the loss function allowed for the best use of the TCN's 
+optimisations would not have been achievable with the compute power and time constraints in this project. Moreover, the decimation based approach in the loss function allowed for the best use of the TCN's 
 receptive field by computing loss at different timescales, the prediction was able to remain coherent across longer timescales. 
 
 %limitations
@@ -35,14 +35,14 @@ challenges the notion that improvements are statistically  robust when compared 
 future work to address.
 
 %future work
-There are multiple angles future work can take to adress some of the limitations. First, extending the correction target to include a way of addressing accelerometer and magnetometer corruption. 
-Other works have explored this with inflating measurement and process noise in the MUKF, when corrupted measurements have been detected. This is fundmentally a different approach as it would be 
+There are multiple angles future work can take to address some of the limitations. First, extending the correction target to include a way of addressing accelerometer and magnetometer corruption. 
+Other works have explored this with inflating measurement and process noise in the MUKF, when corrupted measurements have been detected. This is fundamentally a different approach as it would be 
 a classification target compared to regression explored in this project. Thus, the model architecture and training objective used in this project would have to differ. 
 
 Additionally, by taking the trained model in this project and deploying it on embedded hardware to test whether 
 corrections can be applied in real time is desired. Currently, there is limited literature of testing whether deep learning approaches would be suitable for real time deployment. Limitations in
 real time deployment may include latency introduced by the deep learning model, and whether current affordable embedded hardware has enough compute to ensure latency is not too high. Furthermore, 
-the model presented here has $590,787$ parameters, which on embedded hardware may pose a challenge due to memory constaints.   
+the model presented here has $590,787$ parameters, which on embedded hardware may pose a challenge due to memory constraints.   
 
 %closing sentence
 The solution presented shows deep-learning method can supply corrections that reduce drift 

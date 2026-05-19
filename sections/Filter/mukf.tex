@@ -49,7 +49,7 @@ These sigma points are then used to reconstruct the mean by taking a weighted av
 for the covariance. 
 
 However, with the non-linear propagation addressed, computing a weighted mean of quaternions directly is geometrically invalid. This is due to
-quaternions existingon the SO(3) manifold, as the element-wise average of quaternions does not lie on the unit sphere and therefore does not represent a valid rotation.  
+quaternions existing on the SO(3) manifold, as the element-wise average of quaternions does not lie on the unit sphere and therefore does not represent a valid rotation.  
 
 For an in-depth derivation regarding the UKF see \cite{julier_1997_a}.
 
@@ -79,7 +79,7 @@ The equations below show how to map a quaternion on the SO(3) manifold to local 
 
 
 
-Thus the implementation used in this project is based on UKF-M as it uses the Fréchet mean, which is uses both equations 3 and 14. This avoids the need for additional Rodrigues parameter
+Thus the implementation used in this project is based on UKF-M as it uses the Fréchet mean, which uses both equations 3 and 14. This avoids the need for additional Rodrigues parameter
 representation \cite{brossard_2020_a} \cite{crassidis_unscented}.
 \subsection{Filter Design}
 Table 3 below shows the configuration used for the MUKF. 
