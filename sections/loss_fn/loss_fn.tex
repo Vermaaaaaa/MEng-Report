@@ -1,2 +1,91 @@
 \newpage
 \section{Loss Function Design}
+A loss function in deep-learning is a function used to calculate an error metric, that determines the error between a model's current prediction 
+compared to labelled data. This is supervised training, where the model can use this labelled ground-truth data to determine how incorrect its prediction is 
+and through backpropagation can update its weights to try and minimise this loss. The loss function for this project works by supervising the output 
+of the model, which is a gyroscopic correction applied to the raw gyroscope measurement, then by comparing this output to the ground truth to calculate a loss 
+between the two. Due to the nature of manifolds (\fixme{see section}), a simple comparison between the output and the ground truth is invalid as the output is a
+correction and the ground truth is quaternions, meaning a specific loss function has to be designed to overcome these limitations.
+
+\subsection{Pairwise Reduction}
+The first step in the loss function is to take the prediction made from the model and integrate it using the \fixme{equation}, this results in a window of 
+relative quaternions from the output of the model. 
+
+The next step is pairwise reduction of the relative quaternions. The idea behind the pairwise reduction is that we need to compose long windows of rotations together
+to be used at different decimation points (\fixme{see section}). First, we compute the number of reductions that need to happen for a window size of $T$. 
+This is calculated by 
+
+\begin{equation}
+    steps = \left\lceil \log_{2}(T) \right\rceil
+\end{equation}
+
+From steps, we loop from 0 to steps, where $i$ is the index. We can then calculate our stride with 
+
+\begin{equation}
+    stride = 2^{i}
+\end{equation}
+
+
+Next, each element ($t$) in tensor is multiplied by the element at  $t - stride$ using the Hamiliton product. This means that in each iteration there is 
+one Hamiliton product per element per iteration. This algorithm repeats until the loop reaches $steps$ and returns a tensor of the same size $T$, 
+where each element in the tensor now represents a cumulative orientation from the start of our prediction. The tensor is also normalised after every 
+step due to repeated Hamiliton products can accumulate floating-point drift.   
+The figure below shows a graphical view on how this algorithm works.    
+
+\begin{figure}[H]
+    \centering
+    \input{./figures/loss/pairwise_reduction.tex}
+    \caption{Example of Pairwise Reduction with $T = 8$}
+    \label{fig:pairwise}
+\end{figure}
+
+The reason as to why pairwise reduction was implemented was that it is a computationally efficient way of producing the cumulative orientations. The same 
+result could have been achieved by composing each element in the tensor sequentially. This works for small windows and batch sizes, however 
+as stated in \fixme{section}, $T = 2018$, so the depth in the pairwise approach is only $\left\lceil \log_{2}(2018) \right\rceil = 11$, 
+compared to sequential  which would be $T-1 = 2018 - 1 = 2017$.  
+This approach alone vastly reduced the training time for the model. The reason as to why this is more efficient, is that all Hamiliton products are calculated
+in parallel due to Graphical Processing Units (GPUs) ability to parallelise calculations. This means that depth is what represents the limiting factor is 
+calculation time. 
+
+\subsection{Multi-Scale Decimated Loss}
+Decimation is the process of selecting a subset of points from a window at a given interval. For the loss function this is 
+calculating the loss at different timescales, such that we can capture small and long range drift effects across the window. This is vital
+as if the model were to only see one timescale, the model would only be able to capture the effect of drift at that timescale. The consequence of not
+supervising at different timescales, is that these unsupervised scales are not penalised during training, thus the model has no training signal to be able
+to correct it. The number of scales is derived from 
+
+\begin{equation}
+    scales = \left\lceil \log_{2}(T / baseInterval) \right\rceil
+\end{equation}
+
+where $baseInterval$ is selected to be $16$ empirically. Looping over the number of scales we calculate the interval for the subsample to be
+
+\begin{equation}
+    interval = baseInterval * 2^i
+\end{equation}
+
+where $i$ is the index of the loop.
+
+However, the model should not be penalised on predictions on where it does not have full context, as this would unfairly scale losses to be dominated by the 
+first few samples. Thus, we employ as method of only counting decimation intervals once the model has filled its receptive field.
+
+The decimation also pairs well with \fixme{section}, this is because as the relative quaternions have already been computed at each timescale, we can extract 
+the points the loss function wants with one tensor operation. We similarly do the same process of reduction on the ground-truth quaternions to find the quaternion
+that maps one ground-truth quaternion to another. 
+
+Before computing the error, the function first ensures that the decimated prediction quaternions and ground-truth quaternions are both sign-aligned. This is due 
+to $\mathbf{q}$ and $\mathbf{-q}$ representing the same rotation on SO(3). If this was not implemented, the loss function would incorrectly penalise 
+predicitons that represent the same rotation. 
+
+After this we compute the quaternion error between the ground-truth and prediction by 
+performing the Hamiliton product. The function then decomposes this quaternion error into a rotational vector in local tangent space using the \fixme{equation}, 
+where the loss function minimises the error using Huber loss. The reason as to why the loss function uses Huber loss compared to mean squared error (MSE) 
+or mean absolute error (MAE), is that it makes the loss function more robust to larger orientation errors the model predicts in earlier epochs.
+
+Finally, we scale the loss by a factor of $1/2^k$, this means that finer scales are weighted more compared to coarser scales. The reason behind this is at 
+coarser scales the loss function supervises over longer timescales where drift compounds and errors are larger. Thus, without the weighting coarser scales
+would dominate the loss signal. The equation below summarises the entire loss function. 
+
+\begin{equation}
+    \mathcal{L} = \sum_{k=0}^{K} \frac{1}{2^k}\, \mathcal{L}_{\text{Huber}}\!\left(\mathbf{0},\, \log_{\mathrm{SO(3)}}\!\left(\mathbf{q}^{-1}_{gt,k}\, \hat{\mathbf{q}}_k\right)\right)
+\end{equation}

@@ -10,6 +10,7 @@ or skipping of the accelerometer and magnetometer when they are unreliable, drif
 and noise \cite{zhang_2012_quaternionbased}\cite{bo_2023_robust}. Moreover, learning a correction to be applied to the gyroscope signal is an
 easier task than producing a correct measurement. This is because instead of the model needing to predict the entire signal, including its 
 dynamics of motion, the model just applies a correction. This explaination is further explored in \fixme{section}.
+
 \subsection{Model Selection}
 \subsubsection{Recurrent Neural Networks (RNNs)}
 The first type of model that was considered is a RNN. RNNs stem from an 
@@ -257,6 +258,7 @@ used.
 \small
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.05}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{p{1.5cm} p{1.5cm} p{1.5cm} p{2.5cm} p{3.5cm} p{3.5cm}}
 \hline
 \textbf{Activation} & \textbf{Definition} & \textbf{Output range} & \textbf{When used} & \textbf{Pros} & \textbf{Cons} \\
@@ -277,7 +279,8 @@ Transformers
 /CNNs &
 Smooth, often improves accuracy & slower than ReLU \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \caption{Common activation functions.}
 \label{tab:activation_functions}
 \end{table}
@@ -289,8 +292,7 @@ is prone to dying ReLU, then leaky ReLU will be used and tested against the othe
 functions. GELU and Swish are known to be smooth implementations of ReLU, where it
 is able to take values where $x<0$ and can have slight performance improvements \cite{ramachandran_2017_searching}
 but are computationally more expensive and performance is model dependent. For implementation,
-ReLU will be considered first for its computational efficiency, however if problems arise the other activation functions 
-will be used.
+all activation functions will be tested (see \fixme{section}).
 
 
 \subsubsection{Regularisation}
@@ -326,6 +328,23 @@ the model goes deeper, the number of channels increases to capture more complex
 features as each channel has their own set of filters/kernels. The addition between
 $\mathcal{F}(x, W_i)$ and $x$ must be of two tensors of the same size so $W$ allows
 the addition to be possible.
+
+\subsection{Hyperparameter Optimisations}
+
+\subsubsection{Motivation}
+As stated in the 
+
+\subsubsection{Search Space}
+
+\subsubsection{Tree Structured Parzen (TPE) Sampler}
+
+\subsubsection{HyperBand (HB) Pruner}
+
+\subsubsection{Objective Function \& Evaluation Metric}
+
+\subsubsection{Results}
+
+\subsection{Final Model Configuration}
 
 
 

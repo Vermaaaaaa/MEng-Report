@@ -1,0 +1,64 @@
+\begin{tikzpicture}[
+  node distance=0.4cm and 0.1cm,
+  box/.style={rectangle, rounded corners=2pt, minimum width=1.55cm, minimum height=0.6cm, text width=1.5cm, align=center, font=\tiny, draw},
+  r0/.style={box, draw=blue!60!black, fill=blue!10},
+  r1/.style={box, draw=orange!80!black, fill=orange!12},
+  r2/.style={box, draw=teal!70!black, fill=teal!10},
+  r3/.style={box, draw=purple!70!black, fill=purple!10},
+  arr/.style={-Stealth, gray!60, thin},
+  lbl/.style={font=\scriptsize\itshape, text=gray!70!black}
+]
+\node[r0] (a0) {$\Delta q_0$};
+\node[r0, right=of a0] (a1) {$\Delta q_1$};
+\node[r0, right=of a1] (a2) {$\Delta q_2$};
+\node[r0, right=of a2] (a3) {$\Delta q_3$};
+\node[r0, right=of a3] (a4) {$\Delta q_4$};
+\node[r0, right=of a4] (a5) {$\Delta q_5$};
+\node[r0, right=of a5] (a6) {$\Delta q_6$};
+\node[r0, right=of a6] (a7) {$\Delta q_7$};
+\node[lbl, left=6pt of a0] {Round 0};
+\node[r1, below=1.1cm of a0] (b0) {$\Delta q_0$};
+\node[r1, below=1.1cm of a1] (b1) {$\Delta q_0 q_1$};
+\node[r1, below=1.1cm of a2] (b2) {$\Delta q_1 q_2$};
+\node[r1, below=1.1cm of a3] (b3) {$\Delta q_2 q_3$};
+\node[r1, below=1.1cm of a4] (b4) {$\Delta q_3 q_4$};
+\node[r1, below=1.1cm of a5] (b5) {$\Delta q_4 q_5$};
+\node[r1, below=1.1cm of a6] (b6) {$\Delta q_5 q_6$};
+\node[r1, below=1.1cm of a7] (b7) {$\Delta q_6 q_7$};
+\node[lbl, left=6pt of b0] {Round 1};
+\node[r2, below=1.1cm of b0] (c0) {$\Delta q_0$};
+\node[r2, below=1.1cm of b1] (c1) {$\Delta q_0{\cdots}q_1$};
+\node[r2, below=1.1cm of b2] (c2) {$\Delta q_0{\cdots}q_2$};
+\node[r2, below=1.1cm of b3] (c3) {$\Delta q_0{\cdots}q_3$};
+\node[r2, below=1.1cm of b4] (c4) {$\Delta q_1{\cdots}q_4$};
+\node[r2, below=1.1cm of b5] (c5) {$\Delta q_2{\cdots}q_5$};
+\node[r2, below=1.1cm of b6] (c6) {$\Delta q_3{\cdots}q_6$};
+\node[r2, below=1.1cm of b7] (c7) {$\Delta q_4{\cdots}q_7$};
+\node[lbl, left=6pt of c0] {Round 2};
+\node[r3, below=1.1cm of c0] (d0) {$\Delta q_0$};
+\node[r3, below=1.1cm of c1] (d1) {$\Delta q_0{\cdots}q_1$};
+\node[r3, below=1.1cm of c2] (d2) {$\Delta q_0{\cdots}q_2$};
+\node[r3, below=1.1cm of c3] (d3) {$\Delta q_0{\cdots}q_3$};
+\node[r3, below=1.1cm of c4] (d4) {$\Delta q_0{\cdots}q_4$};
+\node[r3, below=1.1cm of c5] (d5) {$\Delta q_0{\cdots}q_5$};
+\node[r3, below=1.1cm of c6] (d6) {$\Delta q_0{\cdots}q_6$};
+\node[r3, below=1.1cm of c7] (d7) {$\Delta q_0{\cdots}q_7$};
+\node[lbl, left=6pt of d0] {Round 3};
+\draw[arr] (a0) -- (b1);
+\draw[arr] (a1) -- (b2);
+\draw[arr] (a2) -- (b3);
+\draw[arr] (a3) -- (b4);
+\draw[arr] (a4) -- (b5);
+\draw[arr] (a5) -- (b6);
+\draw[arr] (a6) -- (b7);
+\draw[arr] (b0) -- (c2);
+\draw[arr] (b1) -- (c3);
+\draw[arr] (b2) -- (c4);
+\draw[arr] (b3) -- (c5);
+\draw[arr] (b4) -- (c6);
+\draw[arr] (b5) -- (c7);
+\draw[arr] (c0) -- (d4);
+\draw[arr] (c1) -- (d5);
+\draw[arr] (c2) -- (d6);
+\draw[arr] (c3) -- (d7);
+\end{tikzpicture}

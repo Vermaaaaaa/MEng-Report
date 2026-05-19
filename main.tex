@@ -16,6 +16,7 @@
 \usepackage{tikz}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{pdfpages}
 \usetikzlibrary{positioning} % Required for 'below=of' syntax
 \usetikzlibrary{shapes.geometric} % Required for the 'diamond' shape
 \usetikzlibrary{positioning,fit,arrows.meta}
@@ -37,6 +38,8 @@
 \begin{document}
 
 \input{sections/FrontPages/titlepage}
+
+\includepdf[pages=-]{sections/declaration/ELEC5870M_Declaration_of_Academic_Integrity.pdf}
 
 \input{sections/FrontPages/abstract}
 
@@ -68,7 +71,6 @@
 
 \input{sections/loss_fn/loss_fn}
 
-\input{sections/Optimisation/optimisation}
 
 \input{sections/Results_Evaluation/combined}
 
