@@ -8,8 +8,11 @@ learning-based, approach which aims to mitigate gyroscopic errors which can be
 integrated with sensor fusion techniques, to achieve more accurate orientation 
 estimates. The proposed deep-learning architecture leverages both neural 
 networks and a temporal history to learn complex and non-linear error patterns
-in IMU data, exploring if it outperforms a standard Kalman Filter (KF) without learned 
+in IMU data, exploring if it outperforms a Manifold Unscented Kalman Filter (MUKF) without learned 
 corrections. The network outputs a correction for the incoming gyroscope sample, and
 the data used in training, testing and validating the model 
 comes from public datasets, 
-such as the Berlin Robust Orientation Estimation Assessment Dataset (BROAD).
+such as the Berlin Robust Orientation Estimation Assessment Dataset (BROAD). 
+This project summarises that a deep-learning model can be used to provide meaningful
+corrections to gyroscope measurements and is effective in achieving more 
+accurate orientation estimates.

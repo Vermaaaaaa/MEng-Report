@@ -1,6 +1,6 @@
 \clearpage
 \section{Evaluation}
-Looking at \fixme{table 8}, we can see that the deep-learning model produced significant improvements across all metrics in the 
+Looking at table 9, we can see that the deep-learning model produced significant improvements across all metrics in the 
 entire test set. Both TCN Gyro and TCN + MUKF saw around a $38\%$ improvement in mean geodesic error and $40\%$ mean improvement in AYE, when compared to their raw 
 gyroscope measurement counterparts. These metrics directly support the fact that the TCN model is able to address drift in tilt and heading
 whilst both accelerometer and especially magnetometer 
@@ -18,7 +18,7 @@ It shows that not only do we have overall better orientation estimates, but thes
 
 
 \subsection{Trial 9: Undisturbed, Fast Rotation}
-Looking at \fixme{table 9}, we can see that overall there have been significant improvements in all geodesic error metrics across the two pipelines, with the 
+Looking at table 10, we can see that overall there have been significant improvements in all geodesic error metrics across the two pipelines, with the 
 TCN + MUKF pipeline performing the best with an improvement of $37.2\%$ in mean geodesic error and the largest improvements in P90 and standard deviation of $54.8\%$.
 This means that the model is able to provide meaningful corrections and that it is robust to tail errors. However, in the TCN Gyro pipeline we can see that
 AYE actually gets worse ($-17.7\%$). 
@@ -47,12 +47,12 @@ be seen that in both pipelines that the TCN provides an improvement be it a very
 First, both MUKF pipelines performed worse than the dead-reckoning counterparts. This can be explained through the update step of the MUKF, the high-frequency tapping motions experienced caused corrupted
 accelerometer measurements to propagate through the filter and provide incorrect updates to the filter. It also explains the increase in AYE error as well, as the yaw correction applied by the magnetometer 
 assumes that the accelerometer update has corrected any tilt drift, as the magnetometer correction is rotated into the body frame using the tilt. 
-In this exact trial, it can be seen that the MUKF is the main source of error compared to the TCN, this can be seen in the \hyperref[fig:tap_gyro_euler]{figures 8} and \hyperref[fig:tap_mukf_euler]{9} . 
+In this exact trial, it can be seen that the MUKF is the main source of error compared to the TCN, this can be seen in the \hyperref[fig:tap_gyro_euler]{figures 11} and \hyperref[fig:tap_mukf_euler]{9} . 
 Specifically,
-\hyperref[fig:tap_mukf_euler]{figure 9} at $t \approx 45s-55s$, shows that yaw is being somewhat accurately tracked, but roll/pitch estimation is degraded and this was under a burst of tapping.
+\hyperref[fig:tap_mukf_euler]{figure 12} at $t \approx 45s-55s$, shows that yaw is being somewhat accurately tracked, but roll/pitch estimation is degraded and this was under a burst of tapping.
 
 This trial draws an important conclusion for the proposed solution, that this approach whilst better and robust to most conditions, specific high-frequency vibrations are a failure point. This is because
-any accelerometer and magnetometer dynamics are tied to the filter to correct whilst the TCN only focuses on gyroscope measurements. With a underperforming gate (\fixme{section 5.1.2}) 
+any accelerometer and magnetometer dynamics are tied to the filter to correct whilst the TCN only focuses on gyroscope measurements. With a underperforming gate (section 5.1.2) 
 on the accelerometer, the TCN is not able to 
 address this and ultimately is corrupted by the filter. However, the improvements we saw in each respective pipeline does still support that the deep-learning model aided in the reduction of drift.
 
@@ -62,10 +62,10 @@ address this and ultimately is corrupted by the filter. However, the improvement
 Trial 31 showed the strongest results with all metrics improving across both pipelines, a mean geodesic error improvement of $59.8\%$ and $63.1\%$ and a mean AYE improvement of $70.9\%$ and $71.3\%$ for TCN Gyro 
 and TCN + MUKF 
 respectively. Improvements appear not only in mean but across all reported metrics, this shows that the proposed solution estimates were more accurate, robust, and consistent across the entire trial. 
-This is also supported by the \hyperref[fig:static_mag_gyro_geo]{figures 10 - 13}. 
+This is also supported by the \hyperref[fig:static_mag_gyro_geo]{figures 13 - 16}. 
 
 The MUKF alone underperforms here due to the nature of the trial. The trial is described as medium-speed combined rotational/translational motions, four breaks of 5 seconds, small magnet placed in stationary 
-location \cite{laidig_2021_broada}. A stationary magnet here adds a constant hard iron effect (\fixme{see section mag errors}), to the system and the rotational and translational motions also show that the 
+location \cite{laidig_2021_broada}. A stationary magnet here adds a constant hard iron effect (see section 3.3), to the system and the rotational and translational motions also show that the 
 effect varies spatially. This means that every heading correction the MUKF applies is consistently in the wrong direction. Even with the magnetometer gate rejecting the corrupted measurements, 
 the filter cannot recover heading. The heading should 
 drift as there is no magnetometer to correct it, but the TCN shows its value here by keeping heading drift contained, this is directly the gap that the TCN needs to fulfil and does. 
@@ -75,18 +75,18 @@ drift as there is no magnetometer to correct it, but the TCN shows its value her
 \subsection{Trial 34: Disturbed Magnet attached 3cm}
 Trial 34 differs from 31 in that the magnetic disturbance now varies temporally. This is because the magnet is fixed at 3cm from the IMU but as the IMU undergoes any motion, the incident 
 magnetic disturbance changes over time. This is a more challenging disturbance to try and correct as the TCN cannot learn a stable correction pattern as the disturbance changes over time. This is also supported
-by the \fixme{table} as the improvement percentage for mean geodesic error decreases to $28.4\%$ and $21.9\%$ and mean AYE improvement decreases to $38.4\%$ and $10.4\%$. However, it should be noted that overall
-in most metrics the TCN does provide improvements to the system. The \fixme{figures} also highlights the difficulty in this trial as errors cycle between $0^{\circ}$ to $~175^{\circ}$, showing that all
+by the table 13 as the improvement percentage for mean geodesic error decreases to $28.4\%$ and $21.9\%$ and mean AYE improvement decreases to $38.4\%$ and $10.4\%$. However, it should be noted that overall
+in most metrics the TCN does provide improvements to the system. The figures 17 and 18 also highlights the difficulty in this trial as errors cycle between $0^{\circ}$ to $~175^{\circ}$, showing that all
 pipelines struggled in achieving accurate orientation estimates.
 
-This trial also shows a limitation of the proposed solution. As seen in \fixme{table}, the mean AYE in the dead reckoning pipeline for TCN Gyro achieves $52.168^{\circ}$, whilst TCN + MUKF achieves $55.744^{\circ}$.
-Overall the explaination is the same as \fixme{section tapping} but instead of corrupted accelerometer updates, it is corrupted magnetometer updates. A similar process happens that when the MUKF, receives magnetometer
-measurements, some of these corrupted measurements pass throguh the magnetometer gate (\fixme{section}), which causes an incorrect update, causing yaw to drift. This is supported in the \fixme{figure}, which shows
+This trial also shows a limitation of the proposed solution. As seen in table 13, the mean AYE in the dead reckoning pipeline for TCN Gyro achieves $52.168^{\circ}$, whilst TCN + MUKF achieves $55.744^{\circ}$.
+Overall the explaination is the same as section 9.2 but instead of corrupted accelerometer updates, it is corrupted magnetometer updates. A similar process happens that when the MUKF, receives magnetometer
+measurements, some of these corrupted measurements pass through the magnetometer gate (table 5), which causes an incorrect update, causing yaw to drift. This is supported in the figure 19, which shows
 TCN + MUKF correctly tracks roll and pitch accurately compared to the ground truth and yaw drifts.
 
 This trial exposes the clearest case where this TCN hits its ceiling. As the TCN only addresses the gyroscope, some corrupted measurements are able to get through the gate and decrease its accuracy. 
-This is due to the nature of the disturbance, as a motion correlated magnetometer disturbance is harder to gate for compared to a static bias in \fixme{section}. However,
-like \fixme{section}, the solution provides overall improvements when compared to dead reckoning and filters. A solution that extends to addressing magnetometers would likely be more effective and provide
+This is due to the nature of the disturbance, as a motion correlated magnetometer disturbance is harder to gate for compared to a static bias in (section 3.3). However,
+like section 9.2, the solution provides overall improvements when compared to dead reckoning and filters. A solution that extends to addressing magnetometers would likely be more effective and provide
 better improvements.
 
 \subsection{Trial 39: Disturbed, Mixed Conditions}
@@ -104,8 +104,8 @@ less consistent. However, for AYE both pipelines improve significantly across al
 representative of real deployment conditions that the proposed solution offers vast improvements over just traditional filtering methods.
 
 \subsection{Summary}
-In summary, to address the research questions (\fixme{section}), the deep-learning method is able to learn drift patterns in IMU data to
-produce drift-reduced gyroscope measurments. Trials 39, 31, and the \fixme{aggregated table} 
+In summary, to address the research questions (section 1.3), the deep-learning method is able to learn drift patterns in IMU data to
+produce drift-reduced gyroscope measurments. Trials 39, 31, and  table 9 
 directly support this conclusion as nearly all metrics saw significant improvements. However, the trials 25 and 34, show the ceiling 
 of this approach, very high frequency vibrations and complex magnetic disturbances are still a challenge even though the solution does provide an 
 improvement over the baseline. 

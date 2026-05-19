@@ -9,7 +9,7 @@ comes from the fact that while sensor fusion techniques of downweighting
 or skipping of the accelerometer and magnetometer when they are unreliable, drift cannot be mitigated due to the accumulation of gyroscopic bias 
 and noise \cite{zhang_2012_quaternionbased}\cite{bo_2023_robust}. Moreover, learning a correction to be applied to the gyroscope signal is an
 easier task than producing a correct measurement. This is because instead of the model needing to predict the entire signal, including its 
-dynamics of motion, the model just applies a correction. This explaination is further explored in \fixme{section}.
+dynamics of motion, the model just applies a correction. This explaination is further explored in section 6.3.4.
 
 \subsection{Model Selection}
 \subsubsection{Recurrent Neural Networks (RNNs)}
@@ -52,11 +52,11 @@ reused for every timestep, and $\phi$ represents an arbitrary activation functio
     \label{fig:RNN}
 \end{figure}
 
-\hyperref[fig:RNN]{Figure 7} shows the unrolled flow of the RNN, where the arrows between each
+\hyperref[fig:RNN]{Figure 4} shows the unrolled flow of the RNN, where the arrows between each
 block represents the passing of $h_t$, from one input to the next. The point
 of the recurrence state $h_t$, is to show how the output of the model depends
 on context from previous inputs plus $h_t$. This is especially relevant in our case, as
-described in \hyperref[sec:gyroint]{section 2.1.1}, the accumulation of 
+described in \hyperref[sec:gyroint]{section 3.1.1}, the accumulation of 
 gyroscopic errors comes from the integration of the angular rate. As these
 errors accumulate, the current error depends on the history of the gyroscope 
 measurements. 
@@ -128,7 +128,7 @@ stable during training due to no backpropagation through time.
 However, unlike RNNs, baseline CNNs cannot produce outputs due to significant 
 temporal information. It can extract local features and in 1D convolutions
 it has some ability to traverse backwards through time but not to any
-significant degree. As seen in \hyperref[sec:gyroint]{section 2.1.1}, 
+significant degree. As seen in \hyperref[sec:gyroint]{section 3.1.1}, 
 the accumulation of drift is due to the integration of the angular rate
 as we move forward in time. 
 
@@ -140,7 +140,7 @@ are the use of dilations that grow the receptive field allowing the network
 to look back further in time and learn long-term information. Furthermore,
 causal convolutions meaning, that the convolution operation cannot
 look forward in time. To explain causality, we can look back at  
-\hyperref[eq:12]{equation 13} and modify this so 
+\hyperref[eq:12]{equation 19} and modify this so 
 
 \begin{equation}
   z_f[t] = b_f + \sum_{c=1}^{C_{in}} \sum_{k=0}^{K-1} w_{f,c}[k] x_c[t-k]
@@ -156,7 +156,7 @@ $x[t+1], x[t+2]$... etc.
 
 
 Dilations allow the model to look further back in time without the need
-of increasing parameters for the same $K$ and $C_{in}$ used in convolutions. This is best represented in figure 9.
+of increasing parameters for the same $K$ and $C_{in}$ used in convolutions. This is best represented in figure 6.
 
 \begin{figure}[H]
     \centering
@@ -192,7 +192,7 @@ this change in domain.
 
 \subsection{TCN Design}
 
-The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 10
+The main design of the TCN comes from Bai et al. \cite{bai_2018_an}. Figure 7
 demonstrates the architecture of the residual block that has been 
 implemented in the project.
 
@@ -203,7 +203,7 @@ implemented in the project.
     \label{fig:residual}
 \end{figure}
 
-The dilated causal convolution is the same as discussed in \hyperref[sec:tcn_sel]{section 4.2.3.}
+The dilated causal convolution is the same as discussed in \hyperref[sec:tcn_sel]{section 6.2.3.}
 
 \subsubsection{Normalisation}
 Normalisation is a technique used in deep learning to ensure training stability, 
@@ -292,7 +292,7 @@ is prone to dying ReLU, then leaky ReLU will be used and tested against the othe
 functions. GELU and Swish are known to be smooth implementations of ReLU, where it
 is able to take values where $x<0$ and can have slight performance improvements \cite{ramachandran_2017_searching}
 but are computationally more expensive and performance is model dependent. For implementation,
-all activation functions will be tested (see \fixme{section}).
+all activation functions will be tested (see section 6.4.1).
 
 
 \subsubsection{Regularisation}
@@ -309,7 +309,7 @@ allow for smoother functions.
 
 \newpage
 \subsubsection{Residual Connections/1x1 Convolution}
-The right branch (figure 10) is essential in training very deep neural networks 
+The right branch (figure 7) is essential in training very deep neural networks 
 where networks may not be able to converge due to exploding/vanishing gradients. This branch
 is called a residual connection, where the equation below shows its operation 
 
@@ -330,21 +330,111 @@ $\mathcal{F}(x, W_i)$ and $x$ must be of two tensors of the same size so $W$ all
 the addition to be possible.
 
 \subsection{Hyperparameter Optimisations}
+The motivation for hyperparameter optimisation is that with the right hyperparameters the model performs significantly better than 
+a model with different hyperparameters. Due to the number of different hyperparameters, being architecture parameters and training parameters,
+the search space would be too large for methods like grid or random search. Grid search, searches the entire space which would be very 
+inefficient and waste compute, whilst random search with a search space this large would also be inefficient. Moreover, these hyperparameters
+also interact with each other in non-trivial ways, meaning a certain hyperparameter cannot be fixed as for that current setup it may be the 
+best performer but for another set of hyperparameters it may be worse.
 
-\subsubsection{Motivation}
-As stated in the 
+Thus, it was decided
+to employ use Optuna \cite{optuna}, hyperparameter optimisation framework that can use Bayesian optimisation to efficiently search for the
+best hyperparameters.
 
 \subsubsection{Search Space}
 
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Hyperparameter} & \textbf{Type} & \textbf{Values / Range} & \textbf{Notes} \\
+\midrule
+\texttt{n\_layers}       & Integer         & {[}2, 7{]}                                                        & Number of TCN layers \\
+\texttt{base\_channels}  & Categorical     & \{8, 16, 24, 32\}                                                 & Base channel width \\
+\texttt{channel\_growth} & Categorical     & \{\texttt{double}, \texttt{constant}, \texttt{gradual}\}          & \texttt{double}: exponential; \texttt{constant}: $4\times$ base; \texttt{gradual}: linear to $8\times$ base \\
+\texttt{dilation}        & Integer         & {[}2, 4{]}                                                        & Dilation base factor \\
+\texttt{kernel\_size}    & Integer         & {[}$k_{\min}$, $k_{\max}${]}                                      & Constrained per trial; receptive field $\in [285, 1023]$; clamped to {[}3, 9{]} \\
+\texttt{norm\_type}      & Categorical     & \{\texttt{batchnorm\_only}, \texttt{weight\_norm\_only}, \texttt{batchnorm\_weight\_norm}\} & — \\
+\texttt{activation}      & Categorical     & \{\texttt{relu}, \texttt{gelu}, \texttt{leaky\_relu}, \texttt{swish}, \texttt{mish}\}       & — \\
+\texttt{dropout}         & Float           & {[}0.0, 0.4{]}                                                    & Step size $0.05$ \\
+\texttt{lr}              & Float (log)     & {[}$10^{-5}$, $2\times10^{-3}${]}                                 & Log-uniform sampling \\
+\texttt{weight\_decay}   & Float (log)     & {[}$10^{-4}$, $10^{-1}${]}                                        & Log-uniform sampling \\
+\texttt{scheduler\_type} & Categorical     & \{\texttt{CosineAnnealingLR}, \texttt{CosineAnnealingWarmRestarts}, \texttt{OneCycleLR}\}   & — \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Optuna search space for the TCN residual architecture and training hyperparameters.}
+\label{tab:search_space}
+\end{table}
+
+The total discrete search space is $136,080$, whilst the true search space is near infinite due to learning rate and weight decay being unbounded. This
+is the reason as to why grid or random search would be inefficient. The search space is also conditional to not include receptive fields larger than 1024
+(3.58s).
+
 \subsubsection{Tree Structured Parzen (TPE) Sampler}
+TPE models the distribution of 
+hyperparameter configurations based on whether the loss falls below or above a quantile threshold ($y^*$) which is set to 
+the top 25\% of trials in this project. The main equation
+that governs TPE is.
+
+\begin{equation}
+    p(x \mid y) =
+    \begin{cases}
+        \ell(x) & \text{if } y < y^* \\
+        g(x)    & \text{if } y \geq y^*
+    \end{cases}
+\end{equation}
+
+where $\ell(x)$ and $g(x)$ are kernel density estimates of the 'good' and 'bad' trials respectively \cite{NIPS2011_86e8f7ab}.
+
+The piecewise function above states how the model changes the probability of a hyperparameter configuration based on whether a trial 
+lands below or above the quantile threshold. On the next iteration of the proposed configuration, TPE aims to maximise the ratio of $\ell(x) / g(x)$ 
+and on each iteration returns the candidate with the greatest Expected Improvement (EI) \cite{NIPS2011_86e8f7ab}.
+
+TPE was chosen over other Bayesian optimisation processes like Gaussian Process (GP) was for a few reasons. First, GP scales 
+cubically with observation history, this means as more trials are completed the complexity of GP scales by O($n^3$) \cite{NIPS2011_86e8f7ab}, which can lead
+to needing more compute compared to TPE. Second, due to the nature of the search space which has different types (see table 8), TPE
+is able to model these, whilst GP is not able to model categorical types. Third, TPE allows for an option 'multivariate=True' \cite{a2026_treestructured},
+which allows TPE to model the dependencies between the hyperparameters. This is especially relevant for this project as the search space is 
+conditional, this option allows TPE to explore and find the boundaries for acceptable hyperparameters.
 
 \subsubsection{HyperBand (HB) Pruner}
+HB is an early-stopping pruner designed to limit the compute budget wasted on poorly performing trials \cite{li_2018_hyperband}. HB is based on 
+the successive halving alogrithm, which takes a set of hyperparameter configurations, and trains them on a small budget. It then discards 
+a half of the trials that were the worst performers. Successive halving then doubles the budget of the remaining trials and repeats this for 
+till a winning configuration is found. The problem with this approach is, if the set is small, less configurations are explired. If
+the set is large each configuration get less training time which may not be enough epochs to determine a clear winner \cite{li_2018_hyperband}.
 
-\subsubsection{Objective Function \& Evaluation Metric}
+HB overcomes this limitation by using multiple successive halving 'brackets' that explore a different set of configurations, each bracket have 
+different budgets and set of configurations. One bracket may have a larger set and smaller budget and vice versa. The best result across all
+brackets is returned.  Li et al. mentioned that a 50 times maximum speedup compared to random search is achievable \cite{li_2018_hyperband}. This is
+due to the savings that HB offers by pruning bad trials earlier than allowing bad configurations train to the maximum budget. Across a large search space, 
+like this project, these savings compound exponentially as worse performers are pruned early. 
 
-\subsubsection{Results}
 
 \subsection{Final Model Configuration}
+
+\begin{figure}[H]
+    \centering
+    \input{./figures/optim/final.tex}
+    \caption{Final Structure of the TCN}
+    \label{fig:structure}
+\end{figure}
+
+The results of the optuna trial returned with the model strucuture laid out above. The search also found the optimal
+training parameters as being, learning rate $= 0.00198$, weight decay $= 0.000174$, and the scheduler of OneCycleLR. 
+
+
+\subsection{Proposed Solution}
+
+\begin{figure}[H]
+    \centering
+    \input{./figures/Model/proposed.tex}
+    \caption{Final Structure of the Proposed Solution}
+    \label{fig:proposed}
+\end{figure}
+
 
 
 

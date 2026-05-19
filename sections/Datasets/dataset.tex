@@ -43,7 +43,7 @@ that train, validation, and test sets are equally represented.
 Hence, the evaluation of the deep learning
 method reflects generalisation across disturbance conditions. Furthermore, BROAD includes
 rest phases for each trial, which allows for sensor noise characteristics 
-to be determined empirically. This is expanded upon in \fixme{sections}.
+to be determined empirically. This is expanded upon in table 3.
   
 \subsubsection{Simulated Data}
 Simulators (MATLAB's Navigation Toolbox \cite{mathworks_navigation_toolbox}),
@@ -98,11 +98,11 @@ Train (28) & 1-6, 8, 10-15, 17-19, 21-24, 26, 28, 30, 32, 33, 36-38 & Mix of und
 \label{tab:dataset_split}
 \end{table}
 
-\fixme{table} shows the train, validation, and test split of the BROAD dataset. The main motivation for the test split is that it spans 
+Table 2 shows the train, validation, and test split of the BROAD dataset. The main motivation for the test split is that it spans 
 four distinct trial types being that both robustness under very disturbed scenarios and accuracy under undisturbed but high dynamics are tested.
 This is due to the fact that the MUKF alone would struggle to correct under these conditions, giving a reasoning to why the proposed solution is needed. 
 Moreover, the entirety of each trial only resides in their individual split, this is because splitting trials mid-sequence would risk data leakage across
-the splits. Likewise, the validation set also includes similar trial scenarios as the test set so that it can influence design decisions made in \fixme{section}.
+the splits. Likewise, the validation set also includes similar trial scenarios as the test set so that it can influence design decisions made in section 6.4.
 
 \FloatBarrier
 
@@ -120,11 +120,11 @@ which allows for their solutions to generalise and converge easier.
 This limitation can lead to poorer 
 generalisation to our test set and thus may reduce performance on unseen conditions. Hestness et al empirically demonstrates this
 through a power-law which states that model performance increases as the training set increases \cite{hestness_deep}. However,
-adding noise augmentation \fixme{section} can artificially diversify the training set and is able to alleviate this limitation but not fully solve it. 
+adding noise augmentation (section 4.5) can artificially diversify the training set and is able to alleviate this limitation but not fully solve it. 
 
 Further, the data collected was in a controlled laboratory setting, where clean and predictable conditions are present. In a real deployment, 
 temperature, and scale factor errors may be more present compared to the dataset. This can hurt generalisation even if the same hardware
-is being used. However, to try and alleviate this, the model was tested on the more disturbed conditions (see \fixme{section}) to try and test the model at
+is being used. However, to try and alleviate this, the model was tested on the more disturbed conditions (see section 4.1.3) to try and test the model at
 these extreme conditions.
 
 \subsection{Data Normalisation}
@@ -184,9 +184,9 @@ A window sampling strategy was implemented in this project to address a limitati
 being its limited trials. The strategy employed was random window sampling on the train set, this selects a random window of samples within
 a trial to be the input to the model. This allows the model to see not only different trials randomly with PyTorch using 
 "shuffle=True" \cite{pytorchcontributors_2023_pytorch}, but different windows within the file. This results in a trial of length $N$ having $N - T$ possible 
-windows across training where $T = window length (2018)$. The size of $T$ is explored in \fixme{section}.
+windows across training where $T = window length$.
 This improves generalisation and therefore model performance
-as the model sees a wide variety of windows within each trial, in tandem with \fixme{Noise aug section}, this should be able to 
+as the model sees a wide variety of windows within each trial, in tandem with  section 4.5, this should be able to 
 alleviate the main limitation of the dataset. 
 
 The validation and test sets however, do not employ random window sampling but deterministic and non-overlapping windows. This 
@@ -198,10 +198,10 @@ sets as each sample is evaluated exactly once, this is so the validation loss is
 
 \subsection{Noise Augmentation}
 Noise augmentation was added to the dataset to address one of the main limitations of the BROAD dataset, being that it contains a 
-small number of trials which limits the number of samples that the model can be trained on. Mentioned in \fixme{section}, limited
+small number of trials which limits the number of samples that the model can be trained on. Mentioned in section 4.2, limited
 samples can hurt generalisation and model performance. Thus it was considered to be pertinent that the dataset is extended. Per axis
 noise standard deviations is provided in the BROAD dataset \cite{laidig_2021_broada} which was measured through rest phases. Noise 
-is per axis and not isotropic due to individual axes having different noise characteristics (see \fixme{section}).
+is per axis and not isotropic due to individual axes having different noise characteristics (see table 3).
 
 \begin{table}[!htbp]
 \centering
@@ -222,7 +222,7 @@ Magnetometer  & $0.71\,\mu\text{T}$   & $0.70\,\mu\text{T}$   & $0.68\,\mu\text{
 Noise augmentation is only added to the training set of data, as this is the set that needs to be expanded. If it were added to the validation, or test set then
 evaluation would be inconsistent and not reproducible. 
 
-However, due to \fixme{normalisation section}, the noise standard deviations must also be normalised. This is because after normalisation the inputs to the NN are no longer 
+However, due to section 4.3, the noise standard deviations must also be normalised. This is because after normalisation the inputs to the NN are no longer 
 represent physical signals. This means that to correctly add noise, the standard deviations also must be normalised. 
 
 \begin{figure}[!htbp]

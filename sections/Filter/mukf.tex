@@ -29,7 +29,7 @@ or multiple measurements. The covariance P is updated by the K after every new s
 the new information the filter has gained about the system.
 
 However, the KF breaks down for orientation estimation due to some key factors. First, quaternion kinematics are
-non-linear (\fixme{see SO(3) equation}) and the assumption that the relationship is linear is violated. Second, as the relationship is non-linear, this
+non-linear (see equation 3) and the assumption that the relationship is linear is violated. Second, as the relationship is non-linear, this
 breaks the Gaussian noise process model as propagation through a non-linear function produces a non-Gaussian output. Third,
 as quaternions exist in SO(3) and not Euclidean space, adding a Gaussian term to the state can push it off the manifold \cite{gallo_2022_the}.
 
@@ -79,7 +79,7 @@ The equations below show how to map a quaternion on the SO(3) manifold to local 
 
 
 
-Thus the implementation used in this project is based on UKF-M as it uses the Fréchet mean, which is uses both \fixme{SO(3) and so(3) equations}. This avoids the need for additional Rodrigues parameter
+Thus the implementation used in this project is based on UKF-M as it uses the Fréchet mean, which is uses both equations 3 and 14. This avoids the need for additional Rodrigues parameter
 representation \cite{brossard_2020_a} \cite{crassidis_unscented}.
 \subsection{Filter Design}
 Table 3 below shows the configuration used for the MUKF. 
@@ -111,19 +111,19 @@ Sampling rate & $286\ \text{Hz}$ & Matches BROAD dataset \\
 The state represents the quaternion in SO(3) and the error state is the uncertainty the MUKF has in its orientation estimate. This is a significant deviation compared to the 
 interim implementation. This is because the deep-learning model is used to correct the gyroscope signal, meaning that if the filter also tried to 
 estimate this error in the gyroscope signal there would be a conflict between the filter and model. The 3D error state lives in local tangent space (so(3)),
-this is so the predict and update steps that need to happen in Euclidean space can be performed correctly and then mapped to SO(3) using \fixme{equation}.
+this is so the predict and update steps that need to happen in Euclidean space can be performed correctly and then mapped to SO(3) using equation 3.
  
 \subsubsection{Process Model}
 First, sigma points are generated from the current state estimate. For our case $n = 3$ for a 3D error state, giving $7$ sigma points. Then each sigma 
-point is propagated through our process model, which is the \fixme{equation}. This is the predict step of the filter and gives us the next predicted state 
+point is propagated through our process model, which is the equation 3. This is the predict step of the filter and gives us the next predicted state 
 of the filter (quaternion estimate). After propagating the sigma points, the predicted mean is recovered via the Fréchet mean \cite{brossard_2020_a}, and the predicted
 covariance is reconstructed from the weighted outer product of the tangent space errors (3D errors). 
 
 \subsubsection{Measurement Models}
 The measurement models are the accelerometer and magnetometer that are used to update and correct the state estimate from the prediction. The accelerometer update
-compares the measured specific force against the gravity vector (ENU frame) rotated into body frame. As mentioned in \fixme{section}, this corrects the tilt (roll/pitch)
+compares the measured specific force against the gravity vector (ENU frame) rotated into body frame. As mentioned in section 3.2, this corrects the tilt (roll/pitch)
 of the state estimate. The magnetometer is compared against the horizontal magnetic reference which is collected over the first 50 samples which is in the rest phase \cite{laidig_2021_broada}.
-This is so the filter has a clean magnetic reference before any disturbances occur. Again as mentioned in \fixme{section}
+This is so the filter has a clean magnetic reference before any disturbances occur. Again as mentioned in section 3.3
 this corrects the azimuth/yaw of the current filter estimate.
 
 
