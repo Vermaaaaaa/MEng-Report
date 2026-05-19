@@ -118,7 +118,7 @@ which limits the diversity of conditions the model can be exposed to. In compari
 conventional deep learning tasks such as natural language processing and image processing tend to have more diverse pool in its training set 
 which allows for their solutions to generalise and converge easier.
 This limitation can lead to poorer 
-generalisation to our test set and thus may reduce performance on unseen conditions. Hestness et al empirically demonstrates this
+generalisation to our test set and thus may reduce performance on unseen conditions. Hestness et al. empirically demonstrate this
 through a power-law which states that model performance increases as the training set increases \cite{hestness_deep}. However,
 adding noise augmentation (section 4.5) can artificially diversify the training set and is able to alleviate this limitation but not fully solve it. 
 
@@ -171,7 +171,7 @@ to each of the nine input channels, as each sensor axis operates in a different 
 and dynamic range.
 
 These normalisation factors are only computed on the training set and applied to all inputs of the training, validation, and test sets. This is
-because whilst training the model should not be able to infer any information from the test and validation sets. This would consitute as data leakage, 
+because whilst training the model should not be able to infer any information from the test and validation sets. This would constituteas data leakage, 
 as test and validation statistics would influence the normalisation applied at training. 
 
 Other methods like min/max scaling was also considered, this method scales all data between a range like $[-1, +1]$.

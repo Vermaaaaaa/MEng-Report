@@ -9,7 +9,7 @@ comes from the fact that while sensor fusion techniques of downweighting
 or skipping of the accelerometer and magnetometer when they are unreliable, drift cannot be mitigated due to the accumulation of gyroscopic bias 
 and noise \cite{zhang_2012_quaternionbased}\cite{bo_2023_robust}. Moreover, learning a correction to be applied to the gyroscope signal is an
 easier task than producing a correct measurement. This is because instead of the model needing to predict the entire signal, including its 
-dynamics of motion, the model just applies a correction. This explaination is further explored in section 6.3.4.
+dynamics of motion, the model just applies a correction. This explanation is further explored in section 6.3.4.
 
 \subsection{Model Selection}
 \subsubsection{Recurrent Neural Networks (RNNs)}
@@ -401,9 +401,9 @@ conditional, this option allows TPE to explore and find the boundaries for accep
 
 \subsubsection{HyperBand (HB) Pruner}
 HB is an early-stopping pruner designed to limit the compute budget wasted on poorly performing trials \cite{li_2018_hyperband}. HB is based on 
-the successive halving alogrithm, which takes a set of hyperparameter configurations, and trains them on a small budget. It then discards 
+the successive halving algorithm, which takes a set of hyperparameter configurations, and trains them on a small budget. It then discards 
 a half of the trials that were the worst performers. Successive halving then doubles the budget of the remaining trials and repeats this for 
-till a winning configuration is found. The problem with this approach is, if the set is small, less configurations are explired. If
+till a winning configuration is found. The problem with this approach is, if the set is small, fewer configurations are explored. If
 the set is large each configuration get less training time which may not be enough epochs to determine a clear winner \cite{li_2018_hyperband}.
 
 HB overcomes this limitation by using multiple successive halving 'brackets' that explore a different set of configurations, each bracket have 
@@ -422,7 +422,7 @@ like this project, these savings compound exponentially as worse performers are 
     \label{fig:structure}
 \end{figure}
 
-The results of the optuna trial returned with the model strucuture laid out above. The search also found the optimal
+The results of the optuna trial returned with the model structurelaid out above. The search also found the optimal
 training parameters as being, learning rate $= 0.00198$, weight decay $= 0.000174$, and the scheduler of OneCycleLR. 
 
 

@@ -23,7 +23,7 @@ Kalman Gain ($\mathbf{K}$) & Balances the weight given to the process model pred
 \label{tab:kf_terms}
 \end{table}
 
-The filter implements a two step process of prediction and update. The predicition
+The filter implements a two step process of prediction and update. The prediction
 propagates our state estimation and the update corrects the state estimation using one
 or multiple measurements. The covariance P is updated by the K after every new sensor value to reflect
 the new information the filter has gained about the system.
@@ -49,7 +49,7 @@ These sigma points are then used to reconstruct the mean by taking a weighted av
 for the covariance. 
 
 However, with the non-linear propagation addressed, computing a weighted mean of quaternions directly is geometrically invalid. This is due to
-quaternions exisiting on the SO(3) manifold, as the element-wise average of quaternions does not lie on the unit sphere and therefore does not represent a valid rotation.  
+quaternions existingon the SO(3) manifold, as the element-wise average of quaternions does not lie on the unit sphere and therefore does not represent a valid rotation.  
 
 For an in-depth derivation regarding the UKF see \cite{julier_1997_a}.
 

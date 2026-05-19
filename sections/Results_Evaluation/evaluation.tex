@@ -7,13 +7,13 @@ whilst both accelerometer and especially magnetometer
 are disturbed, which are the typical failure modes seen in orientation estimation with IMUs.
 
 Furthermore, comparing TCN dead reckoning to raw gyroscope + MUKF, we can see that the TCN performs better, which highlights that 
-the TCN alone does beat uncorrected raw gyroscope measurments even with corrections from an accelerometer and magnetometer. The comparison between
+the TCN alone does beat uncorrected raw gyroscope measurements even with corrections from an accelerometer and magnetometer. The comparison between
 the two produces significant results with improvements in mean geodesic error  $14.6\%$, $31.6\%$ in  mean AYE, and $35.9\%$ in median AYE. This result
 is expected as the test set does contain disturbed accelerometer and magnetometer conditions. 
 
 Moreover, median improvements in TCN only of $44\%$ in geodesic error and $53\%$ in AYE, and $39.4\%$, and  $41.9\%$ in TCN + MUKF respectively, show 
 a promising result that not only does the TCN produce fewer errors (mean) but also a more consistent output as well. Coupled with the P90 improvements of 
-$41.2\%$ in geodesic error, and $44.1\%$ in AYE, for the TCN + MUKF, these results show that the entire distrubution landscape of errors is tighter. 
+$41.2\%$ in geodesic error, and $44.1\%$ in AYE, for the TCN + MUKF, these results show that the entire distributionlandscape of errors is tighter. 
 It shows that not only do we have overall better orientation estimates, but these improvements are more consistent and tail errors are supressed. 
 
 
@@ -47,7 +47,7 @@ be seen that in both pipelines that the TCN provides an improvement be it a very
 First, both MUKF pipelines performed worse than the dead-reckoning counterparts. This can be explained through the update step of the MUKF, the high-frequency tapping motions experienced caused corrupted
 accelerometer measurements to propagate through the filter and provide incorrect updates to the filter. It also explains the increase in AYE error as well, as the yaw correction applied by the magnetometer 
 assumes that the accelerometer update has corrected any tilt drift, as the magnetometer correction is rotated into the body frame using the tilt. 
-In this exact trial, it can be seen that the MUKF is the main source of error compared to the TCN, this can be seen in the \hyperref[fig:tap_gyro_euler]{figures 11} and \hyperref[fig:tap_mukf_euler]{9} . 
+In this exact trial, it can be seen that the MUKF is the main source of error compared to the TCN, this can be seen in the \hyperref[fig:tap_gyro_euler]{figures 11} and \hyperref[fig:tap_mukf_euler]{12} . 
 Specifically,
 \hyperref[fig:tap_mukf_euler]{figure 12} at $t \approx 45s-55s$, shows that yaw is being somewhat accurately tracked, but roll/pitch estimation is degraded and this was under a burst of tapping.
 
@@ -80,7 +80,7 @@ in most metrics the TCN does provide improvements to the system. The figures 17 
 pipelines struggled in achieving accurate orientation estimates.
 
 This trial also shows a limitation of the proposed solution. As seen in table 13, the mean AYE in the dead reckoning pipeline for TCN Gyro achieves $52.168^{\circ}$, whilst TCN + MUKF achieves $55.744^{\circ}$.
-Overall the explaination is the same as section 9.2 but instead of corrupted accelerometer updates, it is corrupted magnetometer updates. A similar process happens that when the MUKF, receives magnetometer
+Overall the explanationis the same as section 9.2 but instead of corrupted accelerometer updates, it is corrupted magnetometer updates. A similar process happens that when the MUKF, receives magnetometer
 measurements, some of these corrupted measurements pass through the magnetometer gate (table 5), which causes an incorrect update, causing yaw to drift. This is supported in the figure 19, which shows
 TCN + MUKF correctly tracks roll and pitch accurately compared to the ground truth and yaw drifts.
 
@@ -105,7 +105,7 @@ representative of real deployment conditions that the proposed solution offers v
 
 \subsection{Summary}
 In summary, to address the research questions (section 1.3), the deep-learning method is able to learn drift patterns in IMU data to
-produce drift-reduced gyroscope measurments. Trials 39, 31, and  table 9 
+produce drift-reduced gyroscope measurements. Trials 39, 31, and  table 9 
 directly support this conclusion as nearly all metrics saw significant improvements. However, the trials 25 and 34, show the ceiling 
 of this approach, very high frequency vibrations and complex magnetic disturbances are still a challenge even though the solution does provide an 
 improvement over the baseline. 
